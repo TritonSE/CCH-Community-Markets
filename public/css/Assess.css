@@ -1,0 +1,71 @@
+img.logo{
+    width: 93px;
+    height: 43px;
+
+}
+
+h2.title{
+    font-size: 28px;
+    margin-left: 20%;
+    padding-top: 5%;
+}
+
+#home-nav{
+    position: static;
+}
+
+.card{
+    position: relative;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: 0;
+￼1-2
+    word-wrap: break-word;
+    background-clip: border-box;
+    border-radius: .25rem;
+    border: 1px solid rgba(0,0,0,0.125);
+    margin: auto;
+    max-width: 60%;
+}
+
+
+.required-input:after{
+    content: " *";
+    color: red;
+}
+
+.btn-primary{
+    background-color: #0099FF;
+    border-color: #0099FF;
+}
+
+#new-market-input{
+    display: none;
+}
+
+div.assessment-container{
+    display:none;
+    position: relative;
+    margin: auto;
+    max-width: 60%;
+    padding-top: 3%;
+}
+
+.section-break-title{
+    margin-top: 5%;
+    text-align: left;
+    color: darkblue;
+}
+
+.assess-first{
+    color: darkblue;
+}
+
+.if-no{
+    color: darkblue;
+    display: none;
+}
+
+
