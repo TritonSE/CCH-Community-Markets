@@ -40,7 +40,7 @@ a.start-btn{
     border-radius: 25px;
 }
 body{
-    background-image: url("../img/background.jpg");
+    background-image: url("/img/background.jpg");
     background-size: cover !important;
     background-position: center;
     if [Gecko] {
