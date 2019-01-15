@@ -1,20 +1,17 @@
 {
-  "name": "live-weller",
-  "description": "Serving static content via html files",
-  "version": "0.0.1",
-  "author": "Triton Software Engineering",
-
-  "repository": {
-  	"type": "git",
-  	"url": "https://github.com/ksoloway/live-weller"
-  },
-  "license": "TSE",
-
-  "main": "server.js",
-  "dependencies": {
-    "express": "3.x"
-  },
-  "engines": {
-  	"node": "0.10.x"
-  }
+	"name": "live-weller",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node ./bin/www"
+	},
+	"dependencies": {
+		"body-parser": "^1.18.2",
+		"cookie-parser": "~1.4.3",
+		"debug": "~2.6.9",
+		"ejs": "^1.0.0",
+		"express": "~4.16.0",
+		"http-errors": "~1.6.2",
+		"morgan": "^1.9.0"
+	}
 }
