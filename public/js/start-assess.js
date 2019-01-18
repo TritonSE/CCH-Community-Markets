@@ -1,5 +1,5 @@
 //once pre-assess is over, displays assessment questions
-$('#pre-assess-button').click(function(event){
+$('#pre-assess-button').click(function(event) {
     event.preventDefault();
 
     var responses = $('#pre-assess-form').serializeArray();
