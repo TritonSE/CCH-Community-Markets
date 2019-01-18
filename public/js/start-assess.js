@@ -1,10 +1,13 @@
 //once pre-assess is over, displays assessment questions
 $('#pre-assess-button').click(function(event) {
+    // Prevent the page from refreshing.
     event.preventDefault();
 
+    // Pull information from form.
     var responses = $('#pre-assess-form').serializeArray();
     console.log(responses);
 
+    // Firebase login info.
     var config = {
         apiKey: "AIzaSyAt3owhyucxkE6YzxZKiootmMuRdfbZDmw",
         authDomain: "live-well-ff7c8.firebaseapp.com",
@@ -14,15 +17,19 @@ $('#pre-assess-button').click(function(event) {
         messagingSenderId: "1012764335295"
     };
 
+    // Create new firebase app if not already created.
     if (!firebase.apps.length) {
         firebase.initializeApp(config);
     }
 
+    // Setup database communication.
     var db = firebase.database();
     var ref = db.ref("live_well");
 
+    // Move to sub-directory.
     var marketsRef = ref.child("markets");
 
+    // Check if new market or existing market.
     if (responses.length == 5) {
         var marketName = responses[4];
 
