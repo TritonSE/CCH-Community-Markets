@@ -14,9 +14,9 @@ $('#pre-assess-button').click(function(event) {
         messagingSenderId: "1012764335295"
     };
 
-    // if (!firebase.apps.length) {
-    firebase.initializeApp(config);
-    // }
+    if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+    }
 
     var db = firebase.database();
     var ref = db.ref("live_well");
