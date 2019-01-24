@@ -1,3 +1,6 @@
+#ignore files
+config.js
+
 # logs
 logs
 *.log

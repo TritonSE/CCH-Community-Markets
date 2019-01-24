@@ -8,14 +8,6 @@ $('#pre-assess-button').click(function(event) {
     console.log(responses);
 
     // Firebase login info.
-    var config = {
-        apiKey: "",
-        authDomain: "",
-        databaseURL: "",
-        projectId: "",
-        storageBucket: "",
-        messagingSenderId: ""
-    };
 
     // Create new firebase app if not already created.
     if (!firebase.apps.length) {
