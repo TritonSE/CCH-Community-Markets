@@ -1,8 +1,19 @@
 //once pre-assess is over, displays assessment questions
 $('#pre-assess-button').click(function(event) {
-    // Prevent the page from refreshing.
-    event.preventDefault();
+    var myform = $('#pre-assess-form')
 
+    if( ! myform[0].checkValidity()){
+        return;
+    }
+    
+    else{
+        event.preventDefault();
+        $('h2.title').hide();
+        $('#pre-assess-container').hide();
+        $('.assessment-container').show();
+    }
+    
+    /**
     // Pull information from form.
     var responses = $('#pre-assess-form').serializeArray();
     console.log(responses);
@@ -66,10 +77,6 @@ $('#pre-assess-button').click(function(event) {
             }
         });
     }
+    */
 });
 
-$('#pre-assess-button').click(function(){
-    $('h2.title').hide();
-    $('#pre-assess-container').hide();
-    $('.assessment-container').show();
-});

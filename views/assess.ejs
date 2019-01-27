@@ -176,7 +176,7 @@
 
                 <label class="custom-control-label" for="Yes-1">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="200" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?" id="No-1" class="custom-control-input" value="No" required>
@@ -207,7 +207,7 @@
 
                 <label class="custom-control-label" for="Yes-2">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="1" disabled>
+                <input class="points-input" type="hidden" name="points" value="900" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Is the market’s tobacco license clearly displayed?" id="No-2" class="custom-control-input" value="No" >
@@ -326,7 +326,7 @@
               </div>
           </div>
 
-
+    
 
         </div>
       </li>
@@ -2559,9 +2559,9 @@
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Is there a bike rack outside of the market?" id="No-69" class="custom-control-input" value="No" required>
 
-                <label class="custom-control-label" for="No-69">No</label>
+                <label data-weight="100" class="custom-control-label" for="No-69" >No</label>
 
-                <input class="points-input" type="hidden" name="points" value="1" disabled>
+                <input class="points-input" type="hidden" name="points" value="1000" disabled>
               </div>
           </div>
 
@@ -2600,19 +2600,16 @@
       </li>
     </ol>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button id="assess-button" type="submit" class="btn btn-primary">Submit</button>
   </form>
   </div>
 </div>
 
-<script type="text/javascript" src="/js/assess.js"></script>
-
-
+    <script type="text/javascript" src="/js/submitAssess.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
     <script src="/js/new-market.js"> </script>
     <script src="/js/links.js"></script>
     <script src="/js/start-assess.js"> </script>
-    <script src="/js/config.js"></script>
     <script src="/js/update-questions.js"></script>
     </body>
 
