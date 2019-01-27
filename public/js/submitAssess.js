@@ -1,6 +1,6 @@
 $('#assess-button').click(function(event) {
 
-    
+    //gets form
     var myForm = $('#assessment-form');
 
     if(! myForm[0].checkValidity()) {
@@ -9,25 +9,30 @@ $('#assess-button').click(function(event) {
         return;
     }
 
-    else{
-        event.preventDefault();
-    }
-
+    event.preventDefault();
+    
+    //keeps track of current question #
     var count = 1;
-
+    
+    //loops through all questions, executes the following function for each question one at a time. 
     $('.answers').each(function(){
         let currentQuestion = $(this);
+
+        //finds checked label
         let answer = currentQuestion.find(':checked');
     
+        //if skipped
         if(typeof answer.val() == "undefined"){
             count++;
             return;
         }
-
+        
         else{
-            alert("Question #" + count);
-            alert("Value is "+ answer.val());
-            alert("Weight is "+ answer.parent().find('.points-input').val());
+            console.log("Question #" + count);
+            console.log("Value is "+ answer.val());
+
+            //grabs value hidden input corresponding with label in assess.ejs
+            console.log("Weight is "+ answer.parent().find('.points-input').val());
             count++;
         }
 
