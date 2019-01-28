@@ -13,6 +13,9 @@ $('#assess-button').click(function(event) {
     
     //keeps track of current question #
     var count = 1;
+
+    //each index represents the amount of times a level occurs.
+    // [level 1, level 2, level 3]
     var levelArr = [0,0,0];
     
     //loops through all questions, executes the following function for each question one at a time. 
@@ -22,23 +25,23 @@ $('#assess-button').click(function(event) {
         //finds checked label
         let answer = currentQuestion.find(':checked');
     
-        //if skipped
+        //if no input
         if(typeof answer.val() == "undefined"){
+            count++;
+            return;
+        }
+
+        //if disabled from selecting no
+        if(answer.is(':disabled')){
             count++;
             return;
         }
         
         else{
-            /*
-            console.log("Question #" + count);
-            console.log("Value is "+ answer.val());
-
             //grabs level hidden input corresponding with label in assess.ejs
-            console.log("Level is "+ answer.parent().find('.points-input').val());
-            */
-
             var level = answer.parent().find('.points-input').val();
-
+            
+            
             if(level == 1){
                 levelArr[0]++;
             }
@@ -50,7 +53,8 @@ $('#assess-button').click(function(event) {
             else if(level == 3){
                 levelArr[2]++;
             }
-
+            
+            //case when 0
             else{
             }
 
@@ -61,14 +65,14 @@ $('#assess-button').click(function(event) {
 
     });
 
-
+    
+    //finds highest value in array and makes index+1 of it the market's level
     highestLevel = Math.max(...levelArr);
-    console.log("Market Level = " + (levelArr.indexOf(highestLevel) + 1));
-    console.log(levelArr[0]);
-    console.log(levelArr[1]);
-    console.log(levelArr[2]);
+    console.log("Market Level: " + (levelArr.indexOf(highestLevel) + 1));
 
-
-
+    //logs amount of times each level appeared 
+    console.log("Amount of L1: " + levelArr[0]);
+    console.log("Amount of L2: " + levelArr[1]);
+    console.log("Amount of L3: " + levelArr[2]);
 
 });
