@@ -13,6 +13,7 @@ $('#assess-button').click(function(event) {
     
     //keeps track of current question #
     var count = 1;
+    var levelArr = [0,0,0];
     
     //loops through all questions, executes the following function for each question one at a time. 
     $('.answers').each(function(){
@@ -28,17 +29,44 @@ $('#assess-button').click(function(event) {
         }
         
         else{
+            /*
             console.log("Question #" + count);
             console.log("Value is "+ answer.val());
 
-            //grabs value hidden input corresponding with label in assess.ejs
-            console.log("Weight is "+ answer.parent().find('.points-input').val());
+            //grabs level hidden input corresponding with label in assess.ejs
+            console.log("Level is "+ answer.parent().find('.points-input').val());
+            */
+
+            var level = answer.parent().find('.points-input').val();
+
+            if(level == 1){
+                levelArr[0]++;
+            }
+
+            else if(level == 2){
+                levelArr[1]++;
+            }
+
+            else if(level == 3){
+                levelArr[2]++;
+            }
+
+            else{
+            }
+
             count++;
         }
 
 
 
     });
+
+
+    highestLevel = Math.max(...levelArr);
+    console.log("Market Level = " + (levelArr.indexOf(highestLevel) + 1));
+    console.log(levelArr[0]);
+    console.log(levelArr[1]);
+    console.log(levelArr[2]);
 
 
 
