@@ -1,16 +1,5 @@
 //once pre-assess is over, displays assessment questions
-function get_config() {
-    var config = {
-        apiKey: "AIzaSyAt3owhyucxkE6YzxZKiootmMuRdfbZDmw",
-        authDomain: "live-well-ff7c8.firebaseapp.com",
-        databaseURL: "https://live-well-ff7c8.firebaseio.com",
-        projectId: "live-well-ff7c8",
-        storageBucket: "live-well-ff7c8.appspot.com",
-        messagingSenderId: "1012764335295"
-    };
 
-    return config
-}
 
 export {get_config}
 $('#pre-assess-button').click(function(event) {
@@ -25,7 +14,7 @@ $('#pre-assess-button').click(function(event) {
     
     // Create new firebase app if not already created.
     if (!firebase.apps.length) {
-        firebase.initializeApp(get_config());
+        firebase.initializeApp(config);
     }
     
     // Setup database communication.
