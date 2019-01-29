@@ -1,7 +1,4 @@
 //once pre-assess is over, displays assessment questions
-
-
-export {get_config}
 $('#pre-assess-button').click(function(event) {
 
     //gets form
