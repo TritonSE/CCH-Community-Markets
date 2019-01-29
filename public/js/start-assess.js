@@ -1,4 +1,7 @@
 //once pre-assess is over, displays assessment questions
+
+
+export {get_config}
 $('#pre-assess-button').click(function(event) {
 
     //gets form
@@ -22,12 +25,12 @@ $('#pre-assess-button').click(function(event) {
     console.log(responses);
 
     // Firebase login info.
-
+    
     // Create new firebase app if not already created.
     if (!firebase.apps.length) {
         firebase.initializeApp(config);
     }
-
+    
     // Setup database communication.
     var db = firebase.database();
     var ref = db.ref("live_well");
@@ -82,4 +85,5 @@ $('#pre-assess-button').click(function(event) {
     }
     */
 });
+
 
