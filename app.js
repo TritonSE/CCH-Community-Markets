@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var index = require('./routes/index');
 var assess = require('./routes/assess');
+var markets = require('./routes/markets')
 
 var app = express();
 
@@ -21,5 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/assess', assess);
+app.use('/markets', markets);
 
 module.exports = app;
