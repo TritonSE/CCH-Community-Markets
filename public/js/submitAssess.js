@@ -123,7 +123,7 @@ $('#assess-button').click(function(event) {
     console.log(disqualified);
     let isLevel = [false, false, false];
     for(let i in isLevel){
-        console.log(isLevel);
+        // console.log(isLevel);
         // alert("total for market " + (i+1) + " is " + levelArr[i]);
         // alert("total potential is " + levelPotential[i]);
         if(levelArr[i] == levelPotential[i]){
@@ -131,12 +131,12 @@ $('#assess-button').click(function(event) {
         }
 
         if(isLevel[i]){
-            console.log("market is level " + (i+1));
+            // console.log("market is level " + (i+1));
             level = i + 1;
         }
     }
 
-    console.log(level);
+    // console.log(level);
 
     /*****************************************************************
      * 
