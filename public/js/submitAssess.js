@@ -105,9 +105,7 @@ $('#assess-button').click(function(event) {
 
     console.log(disqualified)
     let isLevel = [false, false, false]
-    for(let i in isLevel){
-        alert("total for market " + (i+1) + " is " + levelArr[i])
-        alert("total potential is " + levelPotential[i])
+    for(let i = 0; i < isLevel.length; i++){
         if(levelArr[i] == levelPotential[i]){
             isLevel[i] = true;
         }
