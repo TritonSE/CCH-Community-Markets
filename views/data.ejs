@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Market Data | LWCMP Tool</title>
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <!-- Bootstrap 4.1 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <!-- jQuery UI -->
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"></script>
+
+    <!-- main.js -->
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <!-- main.css -->
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="/img/live-well-logo.png" as="image" media="">
+
+    <!-- DataTables import -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <link href="/css/table.css" rel="stylesheet" type="text/css">
+
+    <!-- From old app -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <!-- Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+
+      <nav id="home-nav" class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+
+        <a class="navbar-brand" href="/"><img class="logo" src="/img/live-well-logo.png"/></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-row-reerse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/assess">Assess <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/markets">Markets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/data">Data</a>
+            </li>
+          </ul>
+
+          <div class="ml-auto">
+            <a role="button" href="/admin-login" class="btn btn-outline-warning">Admin Login</a>
+          </div>
+      </div>
+
+  </nav>
+
+
+    <div class="container main">
+
+  <h2>Market Data</h2>
+  <div class="card">
+    <div class="card-body">
+      <div class="questionChartContainer">
+        
+        <form id="question-form" onchange="drawQuestion()">
+          <div class="form-group">
+            <label for="market-name-dropdown" class="required-input">Viewing data for assessment question:</label>
+            <select class="form-control custom-select" id="question-name-dropdown" name="questionTitle" required>
+              <option disabled selected value>-- Select a question to show graph --</option>
+              <!--options-->
+                  <option>Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?</option>
+                  <option>Is the market’s tobacco license clearly displayed?</option>
+                  <option>Are tobacco products easily accessible e.g., within reach without help from market staff?</option>
+                  <option>How many tobacco ads do you see in the checkout area (i.e., attached to, hanging from the ceiling, below, or on the floor of the checkout area)?</option>
+                  <option>Is there tobacco advertising next to candy or toy displays?</option>
+                  <option>Is there tobacco advertising at a height of 4 feet or lower?</option>
+                  <option>Does the market sell electronic smoking devices?</option>
+                  <option>Is there advertising for electronic smoking devices 2 feet or closer to candy, snacks, and/or non-alcoholic beverages?</option>
+                  <option>Are there any electronic smoking devices accessible to customers?</option>
+                  <option>Does the market sell alcohol?</option>
+                  <option>Does the market sell single-serve alcoholic beverages?</option>
+                  <option>Are alcohol products easily accessible to minors?</option>
+                  <option>How many alcohol ads do you see in the checkout area (i.e., attached to, hanging from the ceiling, below, or on the floor of the checkout area)?</option>
+                  <option>Do you see any arcade-style or coin-operated games?</option>
+                  <option>Do you see trash cans inside the market?</option>
+                  <option>Is there a copy of the ABC operating standards posted around the market&#x27;s premises visible to the general public (either inside or outside)?</option>
+                  <option>What is the number of unhealthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?</option>
+                  <option>What is the number of healthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?</option>
+                  <option>Is there a Healthy Grab ‘n’ Go Snack Zone or Healthy Checkout Lane*?</option>
+                  <option>How many healthy snacks are there throughout the market (includes, fruits, vegetables, unsalted nuts and seeds, non-sugar added trail mix, yogurt, string cheese, granola bars, and crackers with at least 50% whole grain)?</option>
+                  <option>How many healthful beverages are there throughout the market (e.g., plain and unflavored water with or without carbonation, unsweetened iced tea, 100% pure and unsweetened fruit or vegetable justice that contains no more than 140 milligrams of sodium per serving, and dairy and non-fortified dairy beverages)?</option>
+                  <option>Are there at least two varieties/brands of bottled water that are cheaper per volume than alcohol or sugar-sweetened beverages?</option>
+                  <option>How many signs does the market have advertising health products or healthy messages?</option>
+                  <option>Does the market accept EBT?</option>
+                  <option>Are there any ads cross-promoting CalFresh EBT with unhealthy products?</option>
+                  <option>Are there any ads cross-promoting CalFresh EBT with healthy products?</option>
+                  <option>Does the market accept WIC?</option>
+                  <option>Are there any ads cross-promoting WIC and healthy foods?</option>
+                  <option>Are there any fruits or vegetables for sale?</option>
+                  <option>How many combined fruits and/or vegetables does the market have?</option>
+                  <option>What is the total number of fresh fruit available inside and outside the market (excluding limes and lemons)?</option>
+                  <option>Choose the description that best describes the overall quality of the fresh fruit:</option>
+                  <option>What is the total number of fresh vegetables available inside and outside the market?</option>
+                  <option>Choose the description that best describes the overall quality of the fresh vegetables.</option>
+                  <option>Does the market have a deli and/or prepared foods section?</option>
+                  <option>Does the market have fresh vegetables and/or fruit that can be offered as a side or added to a meal?</option>
+                  <option>Does the market advertise healthy meal options available in the deli/prepared foods section?</option>
+                  <option>If meal combos are offered, is water advertised as a beverage option?</option>
+                  <option>How many ads are there of unhealthy products on the market&#x27;s exterior property?</option>
+                  <option>How many ads are there for healthy products on the market&#x27;s exterior property?</option>
+                  <option>How many ads are there for tobacco on the market’s exterior property?</option>
+                  <option>How many ads are there for tobacco at a height of 4 feet or lower?</option>
+                  <option>How many ads are there for alcohol on the market&#x27;s exterior property?</option>
+                  <option>Are there permanent bars/chains on the windows or doors (not including sliding or rolling chains or bars)?</option>
+                  <option>Does the market have lighting fixtures including all entrances, exits, and in the parking lot (if applicable)?</option>
+                  <option>Do you see any graffiti on the market’s walls, sidewalks, or parking?</option>
+                  <option>Do you see any trash cans outside of the market?</option>
+                  <option>Do you see any litter (including cigarette butts) around the premises, including nearby sidewalks and/or parking lots?</option>
+                  <option>Do you see any individuals drinking alcohol around the premises?</option>
+                  <option>Is the cash register clearly visible from outside the market?</option>
+                  <option>Is more than 1/3 of the total window area covered by any type of advertising?</option>
+                  <option>Does the market have a prominent, permanent, and clearly visible sign posted that states, “No loitering is allowed on or in front of these premises”?</option>
+                  <option>Does the market have a prominent, permanent, and clearly visible sign posted that states, “No open alcoholic beverage containers are allowed on these premises”?</option>
+                  <option>Does the market have neon signs?</option>
+                  <option>How many of the neon signs are for alcohol?</option>
+                  <option>Are there any signs promoting WIC?</option>
+                  <option>Are there any ads promoting CalFresh, Food Stamps, SNAP, and/or EBT with healthy products?</option>
+                  <option>Are there any ads promoting CalFresh, Food Stamps, SNAP, and/or EBT with unhealthy products?</option>
+                  <option>Is there a parking lot for the market?</option>
+                  <option>How many cars can the parking lot accommodate?</option>
+                  <option>Are there sidewalks or walking paths on most of the streets clearly visible from the market?</option>
+                  <option>Are the sidewalks and/or walking paths well-maintained (not a lot of cracks, broken pieces, etc.)?</option>
+                  <option>Are there marked crosswalks to safely cross the street clearly visible from the market?</option>
+                  <option>Are there pedestrian signals at the crosswalk?</option>
+                  <option>There are no gaps or spots where the sidewalk/walking paths are missing.</option>
+                  <option>Is there a transit stop (bus, trolley, train, etc.) clearly visible from the market?</option>
+                  <option>Are there trees shading the sidewalks and/or walking paths clearly visible from the market?</option>
+                  <option>Are there marked bike lanes or paths clearly visible from the market?</option>
+                  <option>Is there a bike rack outside of the market?</option>
+                  <option>If answer is no, is there space for a bike rack?</option>
+              </select>
+          </div>
+        </form>
+
+        <div class="chartContainer">
+          <div id="questionChart" style=""></div>
+        </div>
+      </div>
+
+      <!-- Overall statistics charts -->
+      <div class="sideChartContainer">
+        <p>Overall Statistics</p>
+  
+          <div id="levelChart" style=""></div>
+     
+
+       
+          <div id="typeChart" style=""></div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" src="js/data.js"></script>
+
+
+</body>
+</html>
