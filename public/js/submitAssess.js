@@ -122,7 +122,7 @@ $('#assess-button').click(function(event) {
     var level = null;
     console.log(disqualified);
     let isLevel = [false, false, false];
-    for(let i in isLevel){
+    for (let i = 0; i < isLevel.length; i++){
         // console.log(isLevel);
         // alert("total for market " + (i+1) + " is " + levelArr[i]);
         // alert("total potential is " + levelPotential[i]);

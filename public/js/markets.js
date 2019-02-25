@@ -21,7 +21,7 @@ $(document).ready( function () {
           var name = childData.marketInfo.marketName;
           var size = childData.marketInfo.storeType;
           var zip = childData.marketInfo.zip;
-          var level = 1;
+          var level = childData.marketInfo.marketLevel;
 
           var markup = "<tr><td>" + name + "</td><td>" + size + 
                       "</td><td>" + zip + "</td><td>" + level + 
