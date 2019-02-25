@@ -122,7 +122,7 @@ $('#assess-button').click(function(event) {
     var level = 0;
     console.log(disqualified);
     let isLevel = [false, false, false];
-    for (let i = 0; i < isLevel.length; i++){
+    for(let i in isLevel){
         // console.log(isLevel);
         // alert("total for market " + (i+1) + " is " + levelArr[i]);
         // alert("total potential is " + levelPotential[i]);
@@ -149,21 +149,16 @@ $('#assess-button').click(function(event) {
     sessionStorage.setItem("lvl",level.toString());
     if (responses.length == 5) {
         var marketName = responses[4].value;
+        marketsRef = marketsRef.child(marketName);
 
-        marketsRef.child(marketName).update({
-            personalInfo: {
-                firstName: responses[0].value,
-                lastName: responses[1].value,
-                email: responses[2].value,
-                code: responses[3].value,
-            },
-            marketInfo: {
-                marketName: responses[4].value,
-                marketLevel: level
-            },
-            responses: {
-                filler: "test"
-            }
+        marketsRef.child("marketInfo").update({
+            marketLevel: level
+        });
+        marketsRef.child("personalInfo").update({
+            firstName: responses[0].value,
+            lastName: responses[1].value,
+            email: responses[2].value,
+            code: responses[3].value
         });
     } else {
         var marketName = responses[5].value + ', ' + responses[7].value;
