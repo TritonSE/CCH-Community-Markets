@@ -49,7 +49,8 @@ $('#pre-assess-button').click(function(event) {
             },
             responses: {
                 filler: "test"
-            }
+            },
+            market_rating: -1
         });
     } else {
         var marketName = responses[5].value;
@@ -71,7 +72,8 @@ $('#pre-assess-button').click(function(event) {
             },
             responses: {
                 filler: "test"
-            }
+            },
+            market_rating: -1
         });
     }
 });

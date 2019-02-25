@@ -4,6 +4,8 @@ $.get('/markets', function(rows){
     var assessmentArray = new Array();
     let currentObj;
 
+    console.log(rows)
+
     for (var i = 0; i < rows.length; i++){
         currentObj = rows[i];
         assessmentArray[i] = currentObj;
