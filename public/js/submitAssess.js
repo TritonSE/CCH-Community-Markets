@@ -117,7 +117,6 @@ $('#assess-button').click(function(event) {
 
 		    });
 
-
     });
 
     var level = null;
