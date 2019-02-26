@@ -119,7 +119,7 @@ $('#assess-button').click(function(event) {
 
     });
 
-    var level = null;
+    var level = 0;
     console.log(disqualified);
     let isLevel = [false, false, false];
     for (let i = 0; i < isLevel.length; i++){
