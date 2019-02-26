@@ -114,5 +114,6 @@ $('#assess-button').click(function(event) {
             console.log("market is level " + (i+1));
         }
     }
-
+  
+    location.href='results';
 });
