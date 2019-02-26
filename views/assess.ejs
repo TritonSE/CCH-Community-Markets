@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
         <!-- CSS File --> 
-        <link rel="stylesheet" type="text/css" href="../css/Assess.css">
+        <link rel="stylesheet" type="text/css" href="/css/assess.css">
 
         <!-- JQuery 3.3.1 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
@@ -19,7 +19,7 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha254-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
         <!-- for dropdown (mobile) -->
-        <script src="../js/bootstrap-dropdown.js"></script>
+        <script src="/js/bootstrap-dropdown.js"></script>
 
 
 
@@ -30,7 +30,7 @@
        <!-- navbar -->
         <nav id="home-nav" class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="index.html">
-                <img class="logo" src="../img/live-well-logo.png">
+                <img class="logo" src="/img/live-well-logo.png">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse flex-row-reerse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="Assess.html">Assess <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/assess">Assess <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/markets">Markets</a>
@@ -65,9 +65,7 @@
   
                 <div class="form-row">
                     <div class="col-12">
-            <label class="$('.answers').change(function(){
-    alert("clicked");
-});required-input">Name
+            <label class="required-input">Name
             </label>
           </div>
           <div class="form-group col-sm-6">
@@ -93,10 +91,6 @@
           <label for="market-name-dropdown" class="required-input">Conduct market assessment for:</label>
           <select class="form-control custom-select" id="market-name-dropdown" name="marketName" required="">
             <option disabled="" selected="" value="">-- Select a market --</option>
-              <option>African Caribbean Food Market</option>
-              <option>Balboa International Market</option>
-              <option>99 Ranch</option>
-            <option>NEW MARKET</option>
           </select>
         </div>
   
@@ -176,14 +170,14 @@
 
                 <label class="custom-control-label" for="Yes-1">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there tobacco products for sale in the market (including electronic smoking devices, but not including rolling papers)?" id="No-1" class="custom-control-input" value="No" required>
 
                 <label class="custom-control-label" for="No-1">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
 
               <label class="if-no" id="1"> Skip to Question 10. </label>
@@ -236,14 +230,14 @@
 
                 <label class="custom-control-label" for="Yes-3">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are tobacco products easily accessible e.g., within reach without help from market staff?" id="No-3" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-3">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -315,18 +309,18 @@
 
                 <label class="custom-control-label" for="Yes-5">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Is there tobacco advertising next to candy or toy displays?" id="No-5" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-5">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
-
+    
 
         </div>
       </li>
@@ -344,14 +338,14 @@
 
                 <label class="custom-control-label" for="Yes-6">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Is there tobacco advertising at a height of 4 feet or lower?" id="No-6" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-6">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -373,14 +367,14 @@
 
                 <label class="custom-control-label" for="Yes-7">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Does the market sell electronic smoking devices?" id="No-7" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-7">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
 
               </div>
 
@@ -405,14 +399,14 @@
 
                 <label class="custom-control-label" for="Yes-8">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Is there advertising for electronic smoking devices 2 feet or closer to candy, snacks, and/or non-alcoholic beverages?" id="No-8" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-8">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -434,14 +428,14 @@
 
                 <label class="custom-control-label" for="Yes-9">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there any electronic smoking devices accessible to customers?" id="No-9" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-9">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -463,14 +457,14 @@
 
                 <label class="custom-control-label" for="Yes-10">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Does the market sell alcohol?" id="No-10" class="custom-control-input" value="No" required>
 
                 <label class="custom-control-label" for="No-10">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <label class="if-no" id="10"> Skip to Question 16. </label>
           </div>
@@ -522,14 +516,14 @@
 
                 <label class="custom-control-label" for="Yes-12">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are alcohol products easily accessible to minors?" id="No-12" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-12">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -694,35 +688,35 @@
 
                 <label class="custom-control-label" for="0-17">0</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the number of unhealthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?" id="1-2-17" class="custom-control-input" value="1-2" required>
 
                 <label class="custom-control-label" for="1-2-17">1-2</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the number of unhealthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?" id="3-5-17" class="custom-control-input" value="3-5" required>
 
                 <label class="custom-control-label" for="3-5-17">3-5</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the number of unhealthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?" id="6-9-17" class="custom-control-input" value="6-9" required>
 
                 <label class="custom-control-label" for="6-9-17">6-9</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the number of unhealthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?" id="10+-17" class="custom-control-input" value="10+" required>
 
                 <label class="custom-control-label" for="10+-17">10+</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -744,35 +738,35 @@
 
                 <label class="custom-control-label" for="0-18">0</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the number of healthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?" id="1-2-18" class="custom-control-input" value="1-2" required>
 
                 <label class="custom-control-label" for="1-2-18">1-2</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the number of healthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?" id="3-5-18" class="custom-control-input" value="3-5" required>
 
                 <label class="custom-control-label" for="3-5-18">3-5</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the number of healthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?" id="6-9-18" class="custom-control-input" value="6-9" required>
 
                 <label class="custom-control-label" for="6-9-18">6-9</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the number of healthy products near the checkout area (including next to, below, on the floor near the register, or hanging above the register)?" id="10+-18" class="custom-control-input" value="10+" required>
 
                 <label class="custom-control-label" for="10+-18">10+</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -1149,14 +1143,14 @@
 
                 <label class="custom-control-label" for="Yes-29">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there any fruits or vegetables for sale?" id="No-29" class="custom-control-input" value="No" required>
 
                 <label class="custom-control-label" for="No-29">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -1195,6 +1189,7 @@
 
                 <input class="points-input" type="hidden" name="points" value="1" disabled>
               </div>
+
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many combined fruits and/or vegetables does the market have?" id="6-9-30" class="custom-control-input" value="6-9" required>
 
@@ -1225,39 +1220,39 @@
 
           <div class="answers">
               <div class="custom-control custom-radio">
-                <input type="radio" name="What is the total number of fresh fruit available inside and outside the market (excluding limes and lemons)?" id="0-31" class="custom-control-input" value="0" required>
+                <input type="radio" name="What is the total number of fresh fruit available inside and outside the market (excluding limes and lemons)?" id="0-31" class="custom-control-input" value="-1" required>
 
                 <label class="custom-control-label" for="0-31">0</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the total number of fresh fruit available inside and outside the market (excluding limes and lemons)?" id="1-2-31" class="custom-control-input" value="1-2" required>
 
                 <label class="custom-control-label" for="1-2-31">1-2</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the total number of fresh fruit available inside and outside the market (excluding limes and lemons)?" id="3-5-31" class="custom-control-input" value="3-5" required>
 
                 <label class="custom-control-label" for="3-5-31">3-5</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the total number of fresh fruit available inside and outside the market (excluding limes and lemons)?" id="6-9-31" class="custom-control-input" value="6-9" required>
 
                 <label class="custom-control-label" for="6-9-31">6-9</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the total number of fresh fruit available inside and outside the market (excluding limes and lemons)?" id="10+-31" class="custom-control-input" value="10+" required>
 
                 <label class="custom-control-label" for="10+-31">10+</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -1280,28 +1275,28 @@
 
                 <label class="custom-control-label" for="All or most is poor-32">All or most is poor</label>
 
-                <input class="points-input" type="hidden" name="points" value="0 disabled">
+                <input class="points-input" type="hidden" name="points" value="-1">
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="Choose the description that best describes the overall quality of the fresh fruit:" id="Mixed quality, more poor than good-32" class="custom-control-input" value="Mixed quality, more poor than good" >
 
                 <label class="custom-control-label" for="Mixed quality, more poor than good-32">Mixed quality, more poor than good</label>
 
-                <input class="points-input" type="hidden" name="points" value="0 disabled">
+                <input class="points-input" type="hidden" name="points" value="-1">
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="Choose the description that best describes the overall quality of the fresh fruit:" id="Mixed quality, more good than poor-32" class="custom-control-input" value="Mixed quality, more good than poor" >
 
                 <label class="custom-control-label" for="Mixed quality, more good than poor-32">Mixed quality, more good than poor</label>
 
-                <input class="points-input" type="hidden" name="points" value="1 disabled">
+                <input class="points-input" type="hidden" name="points" value="-1">
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="Choose the description that best describes the overall quality of the fresh fruit:" id="All or most is good-32" class="custom-control-input" value="All or most is good" >
 
                 <label class="custom-control-label" for="All or most is good-32">All or most is good</label>
 
-                <input class="points-input" type="hidden" name="points" value="2 disabled">
+                <input class="points-input" type="hidden" name="points" value="-1">
               </div>
           </div>
 
@@ -1318,39 +1313,39 @@
 
           <div class="answers">
               <div class="custom-control custom-radio">
-                <input type="radio" name="What is the total number of fresh vegetables available inside and outside the market?" id="0-33" class="custom-control-input" value="0" required>
+                <input type="radio" name="What is the total number of fresh vegetables available inside and outside the market?" id="0-33" class="custom-control-input" value="-1" required>
 
                 <label class="custom-control-label" for="0-33">0</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the total number of fresh vegetables available inside and outside the market?" id="1-2-33" class="custom-control-input" value="1-2" required>
 
                 <label class="custom-control-label" for="1-2-33">1-2</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the total number of fresh vegetables available inside and outside the market?" id="3-5-33" class="custom-control-input" value="3-5" required>
 
                 <label class="custom-control-label" for="3-5-33">3-5</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the total number of fresh vegetables available inside and outside the market?" id="6-9-33" class="custom-control-input" value="6-9" required>
 
                 <label class="custom-control-label" for="6-9-33">6-9</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="What is the total number of fresh vegetables available inside and outside the market?" id="10+-33" class="custom-control-input" value="10+" required>
 
                 <label class="custom-control-label" for="10+-33">10+</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -1373,28 +1368,28 @@
 
                 <label class="custom-control-label" for="All or most is poor-34">All or most is poor</label>
 
-                <input class="points-input" type="hidden" name="points" value="0 disabled">
+                <input class="points-input" type="hidden" name="points" value="-1">
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="Choose the description that best describes the overall quality of the fresh vegetables." id="Mixed quality, more poor than good-34" class="custom-control-input" value="Mixed quality, more poor than good" >
 
                 <label class="custom-control-label" for="Mixed quality, more poor than good-34">Mixed quality, more poor than good</label>
 
-                <input class="points-input" type="hidden" name="points" value="0 disabled">
+                <input class="points-input" type="hidden" name="points" value="-1">
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="Choose the description that best describes the overall quality of the fresh vegetables." id="Mixed quality, more good than poor-34" class="custom-control-input" value="Mixed quality, more good than poor" >
 
                 <label class="custom-control-label" for="Mixed quality, more good than poor-34">Mixed quality, more good than poor</label>
 
-                <input class="points-input" type="hidden" name="points" value="1 disabled">
+                <input class="points-input" type="hidden" name="points" value="-1">
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="Choose the description that best describes the overall quality of the fresh vegetables." id="All or most is good-34" class="custom-control-input" value="All or most is good" >
 
                 <label class="custom-control-label" for="All or most is good-34">All or most is good</label>
 
-                <input class="points-input" type="hidden" name="points" value="2 disabled">
+                <input class="points-input" type="hidden" name="points" value="-1">
               </div>
           </div>
 
@@ -1414,14 +1409,14 @@
 
                 <label class="custom-control-label" for="Yes-35">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Does the market have a deli and/or prepared foods section?" id="No-35" class="custom-control-input" value="No" required>
 
                 <label class="custom-control-label" for="No-35">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <label class="if-no" id="35"> Skip to Question 39. </label>
           </div>
@@ -1585,35 +1580,35 @@
 
                 <label class="custom-control-label" for="0-40">0</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many ads are there for healthy products on the market&#x27;s exterior property?" id="1-2-40" class="custom-control-input" value="1-2" required>
 
                 <label class="custom-control-label" for="1-2-40">1-2</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many ads are there for healthy products on the market&#x27;s exterior property?" id="3-5-40" class="custom-control-input" value="3-5" required>
 
                 <label class="custom-control-label" for="3-5-40">3-5</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many ads are there for healthy products on the market&#x27;s exterior property?" id="6-9-40" class="custom-control-input" value="6-9" required>
 
                 <label class="custom-control-label" for="6-9-40">6-9</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many ads are there for healthy products on the market&#x27;s exterior property?" id="10+-40" class="custom-control-input" value="10+" required>
 
                 <label class="custom-control-label" for="10+-40">10+</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -1685,35 +1680,35 @@
 
                 <label class="custom-control-label" for="0-42">0</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many ads are there for tobacco at a height of 4 feet or lower?" id="1-2-42" class="custom-control-input" value="1-2" >
 
                 <label class="custom-control-label" for="1-2-42">1-2</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many ads are there for tobacco at a height of 4 feet or lower?" id="3-5-42" class="custom-control-input" value="3-5" >
 
                 <label class="custom-control-label" for="3-5-42">3-5</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many ads are there for tobacco at a height of 4 feet or lower?" id="6-9-42" class="custom-control-input" value="6-9" >
 
                 <label class="custom-control-label" for="6-9-42">6-9</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many ads are there for tobacco at a height of 4 feet or lower?" id="10+-42" class="custom-control-input" value="10+" >
 
                 <label class="custom-control-label" for="10+-42">10+</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -1784,14 +1779,14 @@
 
                 <label class="custom-control-label" for="Yes-44">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there permanent bars/chains on the windows or doors (not including sliding or rolling chains or bars)?" id="No-44" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-44">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2074,14 +2069,14 @@
 
                 <label class="custom-control-label" for="Yes-54">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Does the market have neon signs?" id="No-54" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-54">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2104,35 +2099,35 @@
 
                 <label class="custom-control-label" for="0-55">0</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many of the neon signs are for alcohol?" id="1-2-55" class="custom-control-input" value="1-2" >
 
                 <label class="custom-control-label" for="1-2-55">1-2</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many of the neon signs are for alcohol?" id="3-5-55" class="custom-control-input" value="3-5" >
 
                 <label class="custom-control-label" for="3-5-55">3-5</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many of the neon signs are for alcohol?" id="6-9-55" class="custom-control-input" value="6-9" >
 
                 <label class="custom-control-label" for="6-9-55">6-9</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many of the neon signs are for alcohol?" id="10+-55" class="custom-control-input" value="10+" >
 
                 <label class="custom-control-label" for="10+-55">10+</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2243,14 +2238,14 @@
 
                 <label class="custom-control-label" for="Yes-59">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Is there a parking lot for the market?" id="No-59" class="custom-control-input" value="No" required>
 
                 <label class="custom-control-label" for="No-59">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2269,39 +2264,39 @@
 
           <div class="answers">
               <div class="custom-control custom-radio">
-                <input type="radio" name="How many cars can the parking lot accommodate?" id="0-60" class="custom-control-input" value="0" >
+                <input type="radio" name="How many cars can the parking lot accommodate?" id="0-60" class="custom-control-input" value="-1" >
 
                 <label class="custom-control-label" for="0-60">0</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many cars can the parking lot accommodate?" id="1-2-60" class="custom-control-input" value="1-2" >
 
                 <label class="custom-control-label" for="1-2-60">1-2</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many cars can the parking lot accommodate?" id="3-5-60" class="custom-control-input" value="3-5" >
 
                 <label class="custom-control-label" for="3-5-60">3-5</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many cars can the parking lot accommodate?" id="6-9-60" class="custom-control-input" value="6-9" >
 
                 <label class="custom-control-label" for="6-9-60">6-9</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" name="How many cars can the parking lot accommodate?" id="10+-60" class="custom-control-input" value="10+" >
 
                 <label class="custom-control-label" for="10+-60">10+</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2322,14 +2317,14 @@
 
                 <label class="custom-control-label" for="Yes-61">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there sidewalks or walking paths on most of the streets clearly visible from the market?" id="No-61" class="custom-control-input" value="No" required>
 
                 <label class="custom-control-label" for="No-61">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2351,14 +2346,14 @@
 
                 <label class="custom-control-label" for="Yes-62">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are the sidewalks and/or walking paths well-maintained (not a lot of cracks, broken pieces, etc.)?" id="No-62" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-62">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2380,14 +2375,14 @@
 
                 <label class="custom-control-label" for="Yes-63">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there marked crosswalks to safely cross the street clearly visible from the market?" id="No-63" class="custom-control-input" value="No" required>
 
                 <label class="custom-control-label" for="No-63">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2409,14 +2404,14 @@
 
                 <label class="custom-control-label" for="Yes-64">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there pedestrian signals at the crosswalk?" id="No-64" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-64">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2438,14 +2433,14 @@
 
                 <label class="custom-control-label" for="Yes-65">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="There are no gaps or spots where the sidewalk/walking paths are missing." id="No-65" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-65">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2467,14 +2462,14 @@
 
                 <label class="custom-control-label" for="Yes-66">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Is there a transit stop (bus, trolley, train, etc.) clearly visible from the market?" id="No-66" class="custom-control-input" value="No" required>
 
                 <label class="custom-control-label" for="No-66">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2496,14 +2491,14 @@
 
                 <label class="custom-control-label" for="Yes-67">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there trees shading the sidewalks and/or walking paths clearly visible from the market?" id="No-67" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-67">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2525,14 +2520,14 @@
 
                 <label class="custom-control-label" for="Yes-68">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Are there marked bike lanes or paths clearly visible from the market?" id="No-68" class="custom-control-input" value="No" required>
 
                 <label class="custom-control-label" for="No-68">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
 
@@ -2559,7 +2554,7 @@
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="Is there a bike rack outside of the market?" id="No-69" class="custom-control-input" value="No" required>
 
-                <label class="custom-control-label" for="No-69">No</label>
+                <label data-weight="100" class="custom-control-label" for="No-69" >No</label>
 
                 <input class="points-input" type="hidden" name="points" value="1" disabled>
               </div>
@@ -2583,36 +2578,34 @@
 
                 <label class="custom-control-label" for="Yes-70">Yes</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" name="If answer is no, is there space for a bike rack?" id="No-70" class="custom-control-input" value="No" >
 
                 <label class="custom-control-label" for="No-70">No</label>
 
-                <input class="points-input" type="hidden" name="points" value="0" disabled>
+                <input class="points-input" type="hidden" name="points" value="-1" disabled>
               </div>
           </div>
-
-
 
         </div>
       </li>
     </ol>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button id="assess-button" type="submit" class="btn btn-primary">Submit</button>
   </form>
   </div>
 </div>
 
-<script type="text/javascript" src="js/assess.js"></script>
-
-
-             
-    <script src="../js/new-market.js"> </script>
-    <script src="../js/links.js"></script>
-    <script src="../js/start-assess.js"> </script>
-    <script src="../js/update-questions.js"></script>
+    <script type="text/javascript" src="/js/submitAssess.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script src="/js/new-market.js"> </script>
+    <script src="/js/links.js"></script>
+    <script src="/js/start-assess.js"> </script>
+    <script src="/js/update-questions.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/update-dropdown.js"></script>
     </body>
 
 
