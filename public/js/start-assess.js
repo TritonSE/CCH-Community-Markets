@@ -1,5 +1,6 @@
 //once pre-assess is over, displays assessment questions
 $('#pre-assess-button').click(function(event) {
+    location.href='results';
 
     //gets form
     var myform = $('#pre-assess-form')
