@@ -10,7 +10,6 @@ var markets = require('./routes/markets')
 var results = require('./routes/results')
 var data = require('./routes/data')
 
-
 var app = express();
 
 // view engine setup

@@ -1,4 +1,21 @@
 $('#assess-button').click(function(event) {
+
+    // Pull information from form.
+    var responses = $('#pre-assess-form').serializeArray();
+
+    // Firebase login info.
+    
+    // Create new firebase app if not already created.
+    if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+    }
+    
+    // Setup database communication.
+    var db = firebase.database();
+    var ref = db.ref("live_well");
+
+    // Move to sub-directory.
+    var marketsRef = ref.child("markets");
     
     //gets form
     var myForm = $('#assessment-form');
@@ -100,20 +117,74 @@ $('#assess-button').click(function(event) {
 
 		    });
 
-
     });
 
-    console.log(disqualified)
-    let isLevel = [false, false, false]
-    for(let i = 0; i < isLevel.length; i++){
+    var level = 0;
+    console.log(disqualified);
+    let isLevel = [false, false, false];
+    for (let i = 0; i < isLevel.length; i++){
+        // console.log(isLevel);
+        // alert("total for market " + (i+1) + " is " + levelArr[i]);
+        // alert("total potential is " + levelPotential[i]);
         if(levelArr[i] == levelPotential[i]){
             isLevel[i] = true;
         }
 
         if(isLevel[i]){
-            console.log("market is level " + (i+1));
+            // console.log("market is level " + (i+1));
+            level = i + 1;
         }
     }
-  
-    location.href='results';
+
+    // console.log(level);
+
+    /*****************************************************************
+     * 
+     * ---------------------> SEND TO DATABASE <---------------------
+     * 
+     ****************************************************************/
+
+    // Check if new market or existing market.
+    if (responses.length == 5) {
+        var marketName = responses[4].value;
+
+        marketsRef.child(marketName).update({
+            personalInfo: {
+                firstName: responses[0].value,
+                lastName: responses[1].value,
+                email: responses[2].value,
+                code: responses[3].value,
+            },
+            marketInfo: {
+                marketName: marketName,
+                marketLevel: level
+            },
+            responses: {
+                filler: "test"
+            }
+        });
+    } else {
+        var marketName = responses[5].value;
+
+        marketsRef.child(marketName).set({
+            personalInfo: {
+                firstName: responses[0].value,
+                lastName: responses[1].value,
+                email: responses[2].value,
+                code: responses[3].value,
+            },
+            marketInfo: {
+                marketName: marketName,
+                storeType: responses[6].value,
+                address: responses[7].value,
+                city: responses[8].value,
+                state: responses[9].value,
+                zip: responses[10].value,
+                marketLevel: level
+            },
+            responses: {
+                filler: "test"
+            }
+        });
+    }
 });
