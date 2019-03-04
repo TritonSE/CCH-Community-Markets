@@ -23,8 +23,6 @@ $(document).ready(function() {
         var childKey = childSnapshot.key;
         var childData = childSnapshot.val();
 
-        // var name = childData.marketInfo.marketName;
-
         form.append($('<option>',{value: childKey}).text(childKey))
         });
         form.append($('<option>', {value: "NEW MARKET"}).text("NEW MARKET"));
