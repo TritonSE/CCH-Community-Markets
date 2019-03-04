@@ -165,6 +165,7 @@ $('#assess-button').click(function(event) {
         });
     } else {
         var marketName = responses[5].value + ', ' + responses[7].value;
+        marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '')
 
         marketsRef.child(marketName).set({
             personalInfo: {
