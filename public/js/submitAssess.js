@@ -12,7 +12,7 @@ $('#assess-button').click(function(event) {
     
     // Setup database communication.
     var db = firebase.database();
-    var ref = db.ref("live_well");
+    var ref = db.ref("live_weller");
 
     // Move to sub-directory.
     var marketsRef = ref.child("markets");
@@ -70,7 +70,7 @@ $('#assess-button').click(function(event) {
             }
 
             else if(level == 2){
-                levelArr[0];
+                levelArr[0]++;
                 levelArr[1]++;
             }
 
@@ -156,7 +156,7 @@ $('#assess-button').click(function(event) {
                 code: responses[3].value,
             },
             marketInfo: {
-                marketName: marketName,
+                marketName: responses[4].value,
                 marketLevel: level
             },
             responses: {
@@ -164,7 +164,7 @@ $('#assess-button').click(function(event) {
             }
         });
     } else {
-        var marketName = responses[5].value;
+        var marketName = responses[5].value + ', ' + responses[7].value;
 
         marketsRef.child(marketName).set({
             personalInfo: {
@@ -174,7 +174,7 @@ $('#assess-button').click(function(event) {
                 code: responses[3].value,
             },
             marketInfo: {
-                marketName: marketName,
+                marketName: responses[5].value,
                 storeType: responses[6].value,
                 address: responses[7].value,
                 city: responses[8].value,
@@ -187,4 +187,6 @@ $('#assess-button').click(function(event) {
             }
         });
     }
+
+    location.href='results';
 });

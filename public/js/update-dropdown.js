@@ -12,7 +12,7 @@ $(document).ready(function() {
     
     // Setup database communication.
     var db = firebase.database();
-    var ref = db.ref("live_well");
+    var ref = db.ref("live_weller");
 
     // Move to sub-directory.
     var marketsRef = ref.child("markets");
@@ -23,16 +23,11 @@ $(document).ready(function() {
         var childKey = childSnapshot.key;
         var childData = childSnapshot.val();
 
-        var name = childData.marketInfo.marketName;
+        // var name = childData.marketInfo.marketName;
 
-        form.append($('<option>',{value: name}).text(name))
-        
-        
-        // ...
+        form.append($('<option>',{value: childKey}).text(childKey))
         });
         form.append($('<option>', {value: "NEW MARKET"}).text("NEW MARKET"));
     });
-
-
 });
 

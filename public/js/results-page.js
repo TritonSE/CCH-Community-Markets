@@ -1,4 +1,3 @@
-
 var level = "2";
 var market = "99 Ranch";
 var stringMarket = "Thank you for filling the assesment for "+ market + "."

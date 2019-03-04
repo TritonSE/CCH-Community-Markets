@@ -26,7 +26,7 @@ $(document).ready( function () {
     var db = firebase.database();
 
     // Links to head of database.
-    var ref = db.ref("live_well");
+    var ref = db.ref("live_weller");
 
     // Links to markets list.
     var marketsRef = ref.child("markets");
