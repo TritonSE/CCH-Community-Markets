@@ -26,8 +26,8 @@ $(document).ready( function () {
           var size = childData.marketInfo.storeType;
           var zip = childData.marketInfo.zip;
           var level = childData.marketInfo.marketLevel;
-
-          var markup = "<tr><td>" + <a onclick="redirectFunction(name);">name</a> + "</td><td>" + address + 
+          
+          var markup = "<tr><td>" + "<a onclick='redirectFunction(name);'>"+name+"</a>" + "</td><td>" + address + 
                       "</td><td>" + size + "</td><td>" + zip + 
                       "</td><td>" + level + "</td><td><button class=\"mapButton\"" +
                       "onclick=\"window.open('https://www.google.com/maps/dir/?api=1&destination=University of California, San Diego')\">" + 
