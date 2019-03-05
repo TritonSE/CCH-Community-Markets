@@ -145,6 +145,8 @@ $('#assess-button').click(function(event) {
      ****************************************************************/
 
     // Check if new market or existing market.
+    sessionStorage.setItem("formname",responses[4].value);
+    sessionStorage.setItem("lvl",level.toString());
     if (responses.length == 5) {
         var marketName = responses[4].value;
 
