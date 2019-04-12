@@ -1,7 +1,8 @@
 // let markets = $('#table_id').DataTable();
 let assessmentArray = new Array();
-function redirectFunction(name){
-  sessionStorage.setItem("marketName",name);
+function redirectFunction(){
+  
+  console.log("Function Entered");
   location.href='marketdata';
 }
 $(document).ready( function () {
@@ -22,12 +23,13 @@ $(document).ready( function () {
           var childData = childSnapshot.val();
 
           var name = childData.marketInfo.marketName;
+          sessionStorage.setItem("marketName",name);
           var address = childData.marketInfo.address;
           var size = childData.marketInfo.storeType;
           var zip = childData.marketInfo.zip;
           var level = childData.marketInfo.marketLevel;
           
-          var markup = "<tr><td>" + "<a onclick='redirectFunction(name);'>"+name+"</a>" + "</td><td>" + address + 
+          var markup = "<tr><td>" + "<a onclick='redirectFunction();'>"+name+"</a>" + "</td><td>" + address + 
                       "</td><td>" + size + "</td><td>" + zip + 
                       "</td><td>" + level + "</td><td><button class=\"mapButton\"" +
                       "onclick=\"window.open('https://www.google.com/maps/dir/?api=1&destination=University of California, San Diego')\">" + 
