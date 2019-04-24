@@ -38,6 +38,8 @@ $('#assess-button').click(function(event) {
     var levelPotential = [0,0,0]
 
     var disqualified = false;
+
+    var questionsList = {}
     
     //loops through all questions, executes the following function for each question one at a time. 
     $('.answers').each(function(){
@@ -45,6 +47,22 @@ $('#assess-button').click(function(event) {
 
         //finds checked label
         let answer = currentQuestion.find(':checked');
+
+        let questionKey = answer.attr('name');
+        if (typeof questionKey != "undefined") {
+            questionKey = questionKey.replace(/[^0-9a-zA-Z, ]/gi, '');
+        } else {
+            questionKey = "undefined";
+        }
+
+        let answerText = answer.val();
+        if (typeof answerText != "undefined") {
+            answerText = answerText
+        } else {
+            answerText = "undefined";
+        }
+
+        questionsList[questionKey] = answerText;
     
         //if no input
         if(typeof answer.val() == "undefined"){
@@ -144,29 +162,35 @@ $('#assess-button').click(function(event) {
      * 
      ****************************************************************/
 
+    console.log(questionsList);
+
     // Check if new market or existing market.
     sessionStorage.setItem("formname",responses[4].value);
     sessionStorage.setItem("lvl",level.toString());
+    
+    // Existing market.
     if (responses.length == 5) {
         var marketName = responses[4].value;
 
-        marketsRef.child(marketName).update({
-            personalInfo: {
-                firstName: responses[0].value,
-                lastName: responses[1].value,
-                email: responses[2].value,
-                code: responses[3].value,
-            },
-            marketInfo: {
-                marketName: responses[4].value,
-                marketLevel: level
-            },
-            responses: {
-                filler: "test"
-            }
+        marketsRef = marketsRef.child(marketName);
+
+        // Update market level.
+        marketsRef.child("marketInfo").update({
+            marketLevel: level
         });
-    } else {
+        // Update user info.
+        marketsRef.child("personalInfo").update({
+            firstName: responses[0].value,
+            lastName: responses[1].value,
+            email: responses[2].value,
+            code: responses[3].value
+        });
+        // Update question responses.
+        marketsRef.child("questions").set(questionsList);
+
+    } else { // New market.
         var marketName = responses[5].value + ', ' + responses[7].value;
+        // Make sure illegal characters removed from key.
         marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '')
 
         marketsRef.child(marketName).set({
@@ -185,9 +209,7 @@ $('#assess-button').click(function(event) {
                 zip: responses[10].value,
                 marketLevel: level
             },
-            responses: {
-                filler: "test"
-            }
+            questions: questionsList
         });
     }
 
