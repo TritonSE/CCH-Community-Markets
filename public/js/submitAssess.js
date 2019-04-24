@@ -57,7 +57,7 @@ $('#assess-button').click(function(event) {
 
         let answerText = answer.val();
         if (typeof answerText != "undefined") {
-            answerText = answerText.replace(/[^0-9a-zA-Z, ]/gi, '');
+            answerText = answerText
         } else {
             answerText = "undefined";
         }
