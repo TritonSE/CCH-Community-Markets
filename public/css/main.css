@@ -8522,16 +8522,12 @@ textarea {
 .chartContainer {
   margin-top: 80px;
   height: 300px; }
- #turnblue {
-   color:grey;
-   text-decoration: underline;
-   
- }
+ 
  #turnblue{
   color:grey;
-  text-decoration: underline;
 } 
 #turnblue:hover{
   cursor:pointer;
-  background-color: red
+  background-color: greenyellow;
+  text-decoration: underline;
 } 
