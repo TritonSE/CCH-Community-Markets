@@ -5,7 +5,7 @@ $(document).ready(function() {
     console.log(marketName);
     console.log(sessionStorage);
     
-    $('.text-dark').append(marketName);
+    $('.text-dark_md').append(marketName);
 
     if (!firebase.apps.length) {
         firebase.initializeApp(config);
@@ -37,23 +37,25 @@ $(document).ready(function() {
 
             if (name === marketName) {
 
-                $('.text-dark').append("<br>");
-                $('.text-dark').append("Market Level: " + level);
-                $('.text-dark').append("<br>");
-                $('.text-dark').append("Address: " + address);
-                $('.text-dark').append("<br>");
-                $('.text-dark').append("Size: " + size);
-                $('.text-dark').append("<br>");
+                var element = ".text-dark_md"
 
-                $('.text-subdark').append("Reviewer: " + firstName + " " + lastName);
-                $('.text-subdark').append("<br>");
-                $('.text-subdark').append("Email: " + email);
-                $('.text-subdark').append("<br>");
+                $(element).append("<br>");
+                $(element).append("Market Level: " + level);
+                $(element).append("<br>");
+                $(element).append("Address: " + address);
+                $(element).append("<br>");
+                $(element).append("Size: " + size);
+                $(element).append("<br>");
+
+                $('.text-subdark_md').append("Reviewer: " + firstName + " " + lastName);
+                $('.text-subdark_md').append("<br>");
+                $('.text-subdark_md').append("Email: " + email);
+                $('.text-subdark_md').append("<br>");
 
                 for (var key in questions) {
                     if (key !== "undefined") {
-                        $('.text-muted').append(key + ": " + "<span class=\"boldanswer\">" + questions[key] + "</span>");
-                        $('.text-muted').append("<br>");
+                        $('.text-muted_md').append(key + ": " + "<span class=\"boldanswer\">" + questions[key] + "</span>");
+                        $('.text-muted_md').append("<br>");
                     }
                 }
 

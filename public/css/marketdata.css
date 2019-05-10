@@ -14,34 +14,34 @@ span.boldanswer{
     color: black;
 }
 
-h1.text-dark{
+h1.text-dark_md{
     color: #343a40;
     font-size: 35px;
     font-family: arial;
     font-weight: 100;
 }
 
-h2.text-subdark{
+h2.text-subdark_md{
     color: #343a40;
     font-size: 30px;
     font-family: arial;
     font-weight: 80;
 }
 
-h3.text-subdark2{
+h3.text-subdark_md{
     color: #343a40;
     font-size: 30px;
     font-family: arial;
     font-weight: 80;
 }
 
-p.text-muted{
+p.text-muted_md{
     margin-top: -5px;
     font-size: 20px;
     color: #343a40;
 }
 
-p.text-muted2{
+p.text-muted_md{
     margin-top: -5px;
     font-size: 20px;
     color: #343a40;
