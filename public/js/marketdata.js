@@ -52,7 +52,7 @@ $(document).ready(function() {
 
                 for (var key in questions) {
                     if (key !== "undefined") {
-                        $('.text-muted').append(key + ": " + questions[key]);
+                        $('.text-muted').append(key + ": " + "<span class=\"boldanswer\">" + questions[key] + "</span>");
                         $('.text-muted').append("<br>");
                     }
                 }
