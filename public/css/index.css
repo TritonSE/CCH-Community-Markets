@@ -3,12 +3,12 @@ div.home-caption{
     background-color: rgba(255,255,255, 0.9);
     padding: 1.0rem 2rem 2rem;
     border-radius: .3rem;
-    width: 80%;
-    padding-bottom: 20px;
+    max-width: 715px;
+    padding-top: 35px;
     -webkit-transform: translate(-50%,-40%);
     transform: translate(-50%,-40%);
     position: absolute;
-    top: 75%;
+    top: 50%;
     left: 50%;
 }
 
@@ -64,10 +64,6 @@ body{
     background-image: url("/img/background.jpg");
     background-size: cover !important;
     background-position: center;
-    if [Gecko] {
-        background-position: -80px -160px;
-    }
-
 }
 
 .btn-success{
