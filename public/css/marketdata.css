@@ -28,7 +28,14 @@ h2.text-subdark_md{
     font-weight: 80;
 }
 
-h3.text-subdark_md{
+h3.text-subdark2_md{
+    color: #343a40;
+    font-size: 30px;
+    font-family: arial;
+    font-weight: 80;
+}
+
+h3.text-subdark3_md{
     color: #343a40;
     font-size: 30px;
     font-family: arial;
@@ -41,10 +48,16 @@ p.text-muted_md{
     color: #343a40;
 }
 
-p.text-muted_md{
+p.text-muted2_md{
     margin-top: -5px;
     font-size: 20px;
-    color: #343a40;
+    color: #586068;
+}
+
+p.text-muted3_md{
+    margin-top: -5px;
+    font-size: 20px;
+    color: #586068;
 }
 
 body{

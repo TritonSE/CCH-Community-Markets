@@ -54,8 +54,8 @@ $(document).ready(function() {
 
                 for (var key in questions) {
                     if (key !== "undefined") {
-                        $('.text-muted_md').append(key + ": " + "<span class=\"boldanswer\">" + questions[key] + "</span>");
-                        $('.text-muted_md').append("<br>");
+                        $('.text-muted2_md').append(key + ": " + "<span class=\"boldanswer\">" + questions[key] + "</span>");
+                        $('.text-muted2_md').append("<br>");
                     }
                 }
 
