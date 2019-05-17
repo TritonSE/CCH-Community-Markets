@@ -126,9 +126,15 @@ $('#assess-button').click(function(event) {
     for(let i = 0; i < levelArr.length; i++){
         console.log("total for market " + (i+1) + " is " + levelArr[i])
         console.log("total potential is " + levelPotential[i])
-        if(levelArr[i] == levelPotential[i]){
+        if(levelArr[i] >= levelPotential[i]){
             //isLevel[i] = true;
             marketLevel = i + 1;
+        }
+        else{
+            if(i==0){
+                marketLevel = 0;
+                break;
+            }
         }
 
     }
@@ -177,7 +183,7 @@ $('#assess-button').click(function(event) {
             //grabs level hidden input corresponding with label in assess.ejs
             var level = answer.parent().find('.points-input').val();
                 
-            if(level == marketLevel + 1){
+            if(level >= marketLevel + 1){
                 count++;
                 return;
             }
@@ -190,11 +196,11 @@ $('#assess-button').click(function(event) {
             //case when question has value that isn't equal to the marketlevel + 1
             else{
                 
+                var alreadyPushed = false;
                 currentQuestion.find('.points-input').each(function() {
                     let pointlevel = $(this).val()
 
                     //for when more than one options satisfy marketLevel + 1, no need to push the count twice 
-                    let alreadyPushed = false;
 
                     if(pointlevel == marketLevel + 1){
                         if(count < 17 && !alreadyPushed){
@@ -204,18 +210,18 @@ $('#assess-button').click(function(event) {
 
                         else if(count > 16 && count < 39 && !alreadyPushed){
                             missedSections[1].push(count);
-                            alreadPushed = true;
+                            alreadyPushed = true;
                         }
     
                         else if(count > 38 && count < 59 && !alreadyPushed){
                             missedSections[2].push(count);
-                            alreadPushed = true;
+                            alreadyPushed = true;
                         }
 
                         else{
                             if(!alreadyPushed){
                                 missedSections[3].push(count);
-                                has3 = true;
+                                alreadyPushed = true;
                             }
                         }
                     
@@ -243,12 +249,6 @@ $('#assess-button').click(function(event) {
         }
 
         else{
-            for(let k = 0; k < missedSections[j].length; k++){
-                if(missedSections[j].length > 3){
-                    console.log("Too many questions missed for section " + (j+1) + ".");
-                    continue;
-                }
-
                 if(j == 0 && !section1Echoed){
                     console.log("Questions that need to be fixed for first section:");
                     section1Echoed = true;
@@ -272,10 +272,25 @@ $('#assess-button').click(function(event) {
                     }
                 }
 
+                for(let k = 0; k < missedSections[j].length; k++){
                     console.log(missedSections[j][k]);
+                }
+        }
+    }
+    
+    if(marketLevel == 0){
+        for(let x = 0; x < levelArr.length; x++){
+            if(levelArr[x] >= levelPotential[x]){
+                marketLevel = x + 1;
             }
         }
     }
+
+    else{
+        marketLevel = marketLevel + 1;
+    }
+
+    console.log("fix these questions to become market level: " + marketLevel);
 
         
 });
