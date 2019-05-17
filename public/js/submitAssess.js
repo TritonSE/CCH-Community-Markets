@@ -273,6 +273,10 @@ $('#assess-button').click(function(event) {
                 }
 
                 for(let k = 0; k < missedSections[j].length; k++){
+                    if(missedSections[j].length > 3){
+                        console.log("Too many questions missed.");
+                        break;
+                    }
                     console.log(missedSections[j][k]);
                 }
         }
