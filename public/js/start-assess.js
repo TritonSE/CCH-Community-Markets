@@ -1,4 +1,3 @@
-if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/";}
 //once pre-assess is over, displays assessment questions
 $('#pre-assess-button').click(function(event) {
     //gets form

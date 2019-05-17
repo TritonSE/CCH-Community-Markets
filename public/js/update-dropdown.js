@@ -1,4 +1,3 @@
-if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/";}
 $(document).ready(function() {
     /*
     var userId = firebase.auth().currentUser.uid;
