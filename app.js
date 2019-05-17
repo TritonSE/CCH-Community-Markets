@@ -11,6 +11,7 @@ var results = require('./routes/results');
 var data = require('./routes/data');
 var marketdata = require('./routes/marketdata');
 var login = require('./routes/admin-login');
+var loginprocess = require('./routes/admin-process');
 var app = express();
 
 // view engine setup
@@ -30,5 +31,6 @@ app.use('/results',results);
 app.use('/data',data);
 app.use('/marketdata',marketdata);
 app.use('/admin-login',login);
+app.use('/admin-process',loginprocess);
 
 module.exports = app;

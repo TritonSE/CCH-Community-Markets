@@ -1,9 +1,9 @@
+if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/";}
 var marketName = sessionStorage.getItem("marketName");
 
 $(document).ready(function() {
     console.log("Redirect Worked");
     console.log(marketName);
-    console.log(sessionStorage);
     
     $('.text-dark_md').append(marketName);
 

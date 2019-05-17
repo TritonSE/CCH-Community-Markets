@@ -1,3 +1,4 @@
+if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/";}
 //handles disabling buttons if no is pressed on some of the questions
 //questions that say if no, skip to ...
 //questions are 1, 7, 10, 24, 27, 35

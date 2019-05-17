@@ -19,7 +19,7 @@
 
         <!-- JQuery UI -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-        <script src="/js/marketdata.js"></script>
+        <script src="/js/admin-login.js"></script>
 
 
     </head>
@@ -38,13 +38,13 @@
             <div class="collapse navbar-collapse flex-row-reerse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/assess">Assess <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" id="closeassess" href="/assess">Assess <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/markets">Markets</a>
+                        <a class="nav-link" id="closemarket" href="/markets">Markets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/data">Data</a>
+                        <a class="nav-link" id="closedata" href="/data">Data</a>
                     </li>
                 </ul>
 
@@ -62,7 +62,7 @@
                 <div class="admin-login text-center">
                   <label><h3>Administrator Login</h3></label>
             
-                  <form method="post" action="admin-login">
+                  <form method="get" action="admin-process">
                     <div class="form-group">
                       <input type="username" name="username" class="form-control form-control-lg"   placeholder="Username">
                     </div>
@@ -78,9 +78,7 @@
             
             <script type="text/javascript" src="js/admin-login.js"></script>
             
-        </div>
-        
-
+          </div>
     
     </body>
 

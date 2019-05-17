@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
          
         <!-- CSS Files -->
-        <link rel="stylesheet" type="text/css" href="/css/index.css">
+        <link rel="stylesheet" type="text/css" href="/css/marketdata.css">
         <link rel="stylesheet" type="text/css" href="/css/normalize.css">
 
         <!-- JQuery 3.3.1 -->
@@ -19,9 +19,8 @@
 
         <!-- JQuery UI -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-        <script src="/js/index.js"></script>
-
-
+        <script type="text/javascript" src="/js/admin-process.js"></script>
+        
     </head>
 
     <body>
@@ -41,7 +40,7 @@
                         <a class="nav-link" id="closeassess" href="/assess">Assess <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="closemarket" href="/markets">Markets</a>
+                        <a class="nav-link"id="closemarket" href="/markets">Markets</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="closedata" href="/data">Data</a>
@@ -53,23 +52,14 @@
                 </div>
             </div>
         </nav>
-
-
         <!-- home caption -->
         <div class="home-caption">
-            <h1 class="text-dark"> Live Well Community Market Program Tool </h1>
-            <p class="text-muted"> Help the Live Well Community Market Program (LWCMP) improve and promote access to healthy
-                foods throughout San Diego County by completing a market assessment. </p>
-            
-            <p> 
-                <a class="btn btn-lg btn-success" href="/assess" role="button">Start Assessment</a>
-            </p>
-
+            <h2 class="jChange">Logging in...</h2>
         </div>
 
-        <script src="/js/index.js"></script>
-        
-
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+        <script src="/js/admin-process.js"></script>
+        <script src="/js/config.js"></script>
     
     </body>
 

@@ -1,3 +1,4 @@
+if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/";}
 $('#assess-button').click(function(event) {
     
     //gets form

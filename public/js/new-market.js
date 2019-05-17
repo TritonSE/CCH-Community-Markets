@@ -1,3 +1,4 @@
+if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/";}
 //when new market is selected in pre-assess, form updates with additional fields
 $('#market-name-dropdown').change(function(){
     if(this.value == 'NEW MARKET'){
