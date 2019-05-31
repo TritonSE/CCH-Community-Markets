@@ -1,5 +1,3 @@
-var myConfig = require('./app');
-
 $(document).ready( function () {
     console.log("here");
     
@@ -17,7 +15,7 @@ $(document).ready( function () {
     }
 
     if (!firebase.apps.length) {
-        firebase.initializeApp(myConfig.config);
+        firebase.initializeApp(config);
     }
 
     var urlString = window.location.href;
