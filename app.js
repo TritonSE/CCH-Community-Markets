@@ -10,8 +10,11 @@ var markets = require('./routes/markets');
 var results = require('./routes/results');
 var data = require('./routes/data');
 var marketdata = require('./routes/marketdata');
-
+var login = require('./routes/admin-login');
+var loginprocess = require('./routes/admin-process');
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,5 +32,7 @@ app.use('/markets', markets);
 app.use('/results',results);
 app.use('/data',data);
 app.use('/marketdata',marketdata);
+app.use('/admin-login',login);
+app.use('/admin-process',loginprocess);
 
 module.exports = app;

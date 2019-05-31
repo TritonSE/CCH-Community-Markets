@@ -11,6 +11,7 @@ html {
   -webkit-text-size-adjust: 100%;
   /* 2 */ }
 
+
 /* Sections
    ========================================================================== */
 /**
@@ -8521,3 +8522,11 @@ textarea {
 .chartContainer {
   margin-top: 80px;
   height: 300px; }
+ 
+ #turnblue{
+  color:grey;
+} 
+#turnblue:hover{
+  cursor:pointer;
+  text-decoration: underline;
+} 

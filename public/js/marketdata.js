@@ -1,11 +1,11 @@
+if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/";}
 var marketName = sessionStorage.getItem("marketName");
 
 $(document).ready(function() {
     console.log("Redirect Worked");
     console.log(marketName);
-    console.log(sessionStorage);
     
-    $('.text-dark').append(marketName);
+    $('.text-dark_md').append(marketName);
 
     if (!firebase.apps.length) {
         firebase.initializeApp(config);
@@ -34,27 +34,41 @@ $(document).ready(function() {
             var email = childData.personalInfo.email;
 
             var questions = childData.questions;
+            var missed = childData.missedQuestions;
 
             if (name === marketName) {
 
-                $('.text-dark').append("<br>");
-                $('.text-dark').append("Market Level: " + level);
-                $('.text-dark').append("<br>");
-                $('.text-dark').append("Address: " + address);
-                $('.text-dark').append("<br>");
-                $('.text-dark').append("Size: " + size);
-                $('.text-dark').append("<br>");
+                var element = ".text-dark_md"
 
-                $('.text-subdark').append("Reviewer: " + firstName + " " + lastName);
-                $('.text-subdark').append("<br>");
-                $('.text-subdark').append("Email: " + email);
-                $('.text-subdark').append("<br>");
+                $(element).append("<br>");
+                $(element).append("Market Level: " + level);
+                $(element).append("<br>");
+                $(element).append("Address: " + address);
+                $(element).append("<br>");
+                $(element).append("Size: " + size);
+                $(element).append("<br>");
+
+                $('.text-subdark_md').append("Reviewer: " + firstName + " " + lastName);
+                $('.text-subdark_md').append("<br>");
+                $('.text-subdark_md').append("Email: " + email);
+                $('.text-subdark_md').append("<br>");
 
                 for (var key in questions) {
                     if (key !== "undefined") {
-                        $('.text-muted').append(key + ": " + questions[key]);
-                        $('.text-muted').append("<br>");
+                        $('.text-muted2_md').append(key + ": " + "<span class=\"boldanswer\">" + questions[key] + "</span>");
+                        $('.text-muted2_md').append("<br>");
                     }
+                }
+
+                if (level === 3) {
+                    $(".text-subdark3_md").append("Market is at Top Level!");
+                } else {
+                    $(".text-subdark3_md").append("Questions to fix to get to level " + (parseInt(level) + 1));
+                }
+
+                for (var key in missed) {
+                    $('.text-muted3_md').append(missed[key]);
+                    $('.text-muted3_md').append("<br>");
                 }
 
                 

@@ -1,10 +1,17 @@
 $('#assess-button').click(function(event) {
+    
+    //gets form
+    var myForm = $('#assessment-form');
+
+    if(! myForm[0].checkValidity()) {
+        // If the form is invalid, submit it. The form won't actually submit;
+        // this will just cause the browser to display the native HTML5 error messages.
+        return;
+    }
 
     // Pull information from form.
     var responses = $('#pre-assess-form').serializeArray();
 
-    // Firebase login info.
-    
     // Create new firebase app if not already created.
     if (!firebase.apps.length) {
         firebase.initializeApp(config);
@@ -16,15 +23,6 @@ $('#assess-button').click(function(event) {
 
     // Move to sub-directory.
     var marketsRef = ref.child("markets");
-    
-    //gets form
-    var myForm = $('#assessment-form');
-
-    if(! myForm[0].checkValidity()) {
-        // If the form is invalid, submit it. The form won't actually submit;
-        // this will just cause the browser to display the native HTML5 error messages.
-        return;
-    }
 
     event.preventDefault();
 
@@ -40,6 +38,10 @@ $('#assess-button').click(function(event) {
     var disqualified = false;
 
     var questionsList = {}
+    var doBetterQuestions = []
+
+    //for when questions hit level zero
+    var increaseZeroCase = 0;
     
     //loops through all questions, executes the following function for each question one at a time. 
     $('.answers').each(function(){
@@ -78,7 +80,6 @@ $('#assess-button').click(function(event) {
         
         else{
 
-
             //grabs level hidden input corresponding with label in assess.ejs
             var level = answer.parent().find('.points-input').val();
             
@@ -99,24 +100,29 @@ $('#assess-button').click(function(event) {
             }
 
             else if(level == -1){
+                count++;
                 return;
             }
             
             //case when 0
             else{
-                disqualified = true;
+                levelArr[0]++;
+                levelArr[1]++;
+                levelArr[2]++;
+                increaseZeroCase++;
             }
 
-            count++;
         }
         
+        //make sure only to increase potential once for each section
+        var has0 = false;
         var has1 = false;
         var has2 = false;
         var has3 = false;
-
+        
         currentQuestion.find('.points-input').each(function() {
                 let pointlevel = $(this).val()
-
+                
                 if(pointlevel == 1 && !has1){
                     levelPotential[0]++;
                     has1 = true;
@@ -127,34 +133,202 @@ $('#assess-button').click(function(event) {
                     has2 = true;
                 }
 
-                if(pointlevel == 2 && !has3){
+                if(pointlevel == 3 && !has3){
                     levelPotential[2]++;
                     has3 = true;
                 }
 
 
-		    });
+		});
+        
+        //increase question count
+        count++;
+
+    });
+    
+    //increasing potential to account for questions where zero option was selected 
+    for(let z = 0; z < increaseZeroCase; z++){
+        levelPotential[0]++;
+        levelPotential[1]++;
+        levelPotential[2]++;
+    }
+
+
+    //grab final market value.
+    var marketLevel = 0;
+
+    for(let i = 0; i < levelArr.length; i++){
+        console.log("total for market " + (i+1) + " is " + levelArr[i])
+        console.log("total potential is " + levelPotential[i])
+        if(levelArr[i] >= levelPotential[i]){
+            //isLevel[i] = true;
+            marketLevel = i + 1;
+        }
+        else{
+            if(i==0){
+                marketLevel = 0;
+                break;
+            }
+        }
+
+    }
+
+    console.log("Market is level: " + marketLevel);
+
+    //no potential to hit therefore return
+    if(marketLevel == 3){
+        return false;
+    }
+
+    //the next level of the market assuming it's been hit.
+    var potentialLevel = marketLevel + 1;
+
+    //grabing missed numbers from each section
+
+    var missedSections = [[],[],[],[]]
+
+    //keep track of current question
+    var count =1;
+        
+    //count of potential market level 
+    var countPotential = 0;
+
+    //loop through questions again
+    $('.answers').each(function(){
+        let currentQuestion = $(this);
+
+        //finds checked label
+        let answer = currentQuestion.find(':checked');
+    
+        //if no input
+        if(typeof answer.val() == "undefined"){
+            count++;
+            return;
+        }
+
+        //if disabled from selecting no
+        if(answer.is(':disabled')){
+            count++;
+            return;
+        }
+        
+        else{
+
+            //grabs level hidden input corresponding with label in assess.ejs
+            var level = answer.parent().find('.points-input').val();
+                
+            if(level >= marketLevel + 1){
+                count++;
+                return;
+            }
+            
+            else if(level == -1){
+                count++;
+                return;
+            }
+            
+            //case when question has value that isn't equal to the marketlevel + 1
+            else{
+                
+                var alreadyPushed = false;
+                currentQuestion.find('.points-input').each(function() {
+                    let pointlevel = $(this).val()
+
+                    //for when more than one options satisfy marketLevel + 1, no need to push the count twice 
+
+                    if(pointlevel == marketLevel + 1){
+                        if(count < 17 && !alreadyPushed){
+                            missedSections[0].push(count);
+                            alreadyPushed = true;
+                        }
+
+                        else if(count > 16 && count < 39 && !alreadyPushed){
+                            missedSections[1].push(count);
+                            alreadyPushed = true;
+                        }
+    
+                        else if(count > 38 && count < 59 && !alreadyPushed){
+                            missedSections[2].push(count);
+                            alreadyPushed = true;
+                        }
+
+                        else{
+                            if(!alreadyPushed){
+                                missedSections[3].push(count);
+                                alreadyPushed = true;
+                            }
+                        }
+                    
+                    }
+
+
+	            });
+
+            }
+                // go to next question
+                count++;
+        }
 
     });
 
-    var level = 0;
-    console.log(disqualified);
-    let isLevel = [false, false, false];
-    for (let i = 0; i < isLevel.length; i++){
-        // console.log(isLevel);
-        // alert("total for market " + (i+1) + " is " + levelArr[i]);
-        // alert("total potential is " + levelPotential[i]);
-        if(levelArr[i] == levelPotential[i]){
-            isLevel[i] = true;
+    
+    // make sure print statements are only called once
+    console.log("Checking for questions to fix");
+    var section1Echoed = false;
+    var section2Echoed = false;
+    var section3Echoed = false;
+    var section4Echoed = false;
+    for(let j = 0; j < missedSections.length; j++){
+        if(missedSections[j].length == 0){
+            continue;
         }
 
-        if(isLevel[i]){
-            // console.log("market is level " + (i+1));
-            level = i + 1;
+        else{
+                if(j == 0 && !section1Echoed){
+                    console.log("Questions that need to be fixed for first section:");
+                    section1Echoed = true;
+                }
+
+                else if(j==1 && !section2Echoed){
+                    console.log("Questions that need to be fixed for second section:");
+                    section2Echoed = true;
+                }
+
+                else if(j == 2 && !section3Echoed){
+                    console.log("Questions that need to be fixed for third section:");
+                    section3Echoed = true;
+
+                }
+
+                else{   
+                    if(!section4Echoed){
+                        console.log("Questions that need to be fixed for fourth section:");
+                        section4Echoed = true;
+                    }
+                }
+
+                var lis = document.getElementById("assessment-q-list").getElementsByTagName("li");
+                for(let k = 0; k < missedSections[j].length; k++){
+                    var index = missedSections[j][k]
+                    console.log(index);
+                    doBetterQuestions.push("<span class=\"boldanswer\">" + index.toString() + "</span>" + ": " + lis[index - 1].getElementsByTagName("p")[0].innerText)
+                }
+        }
+    }
+    
+    if(marketLevel == 0){
+        for(let x = 0; x < levelArr.length; x++){
+            if(levelArr[x] >= levelPotential[x]){
+                marketLevel = x + 1;
+            }
         }
     }
 
-    // console.log(level);
+    else{
+        marketLevel = marketLevel + 1;
+    }
+
+    console.log("fix these questions to become market level: " + marketLevel);
 
     /*****************************************************************
      * 
@@ -163,20 +337,22 @@ $('#assess-button').click(function(event) {
      ****************************************************************/
 
     console.log(questionsList);
-
-    // Check if new market or existing market.
-    sessionStorage.setItem("formname",responses[4].value);
-    sessionStorage.setItem("lvl",level.toString());
+    console.log(doBetterQuestions);
     
     // Existing market.
     if (responses.length == 5) {
+        console.log("push existing market");
+        // Check if new market or existing market.
+        sessionStorage.setItem("formname",responses[4].value);
+        sessionStorage.setItem("lvl", marketLevel.toString());
+
         var marketName = responses[4].value;
 
         marketsRef = marketsRef.child(marketName);
 
         // Update market level.
         marketsRef.child("marketInfo").update({
-            marketLevel: level
+            marketLevel: marketLevel
         });
         // Update user info.
         marketsRef.child("personalInfo").update({
@@ -187,8 +363,14 @@ $('#assess-button').click(function(event) {
         });
         // Update question responses.
         marketsRef.child("questions").set(questionsList);
+        marketsRef.child("missedQuestions").set(doBetterQuestions);
 
     } else { // New market.
+        console.log("push new market");
+        // Check if new market or existing market.
+        sessionStorage.setItem("formname",responses[5].value);
+        sessionStorage.setItem("lvl", marketLevel.toString());
+
         var marketName = responses[5].value + ', ' + responses[7].value;
         // Make sure illegal characters removed from key.
         marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '')
@@ -207,11 +389,13 @@ $('#assess-button').click(function(event) {
                 city: responses[8].value,
                 state: responses[9].value,
                 zip: responses[10].value,
-                marketLevel: level
+                marketLevel: marketLevel
             },
-            questions: questionsList
+            questions: questionsList,
+            missedQuestions: doBetterQuestions
         });
     }
 
+    console.log("switching window");
     location.href='results';
 });

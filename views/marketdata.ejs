@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
          
         <!-- CSS Files -->
-        <link rel="stylesheet" type="text/css" href="/css/index.css">
+        <link rel="stylesheet" type="text/css" href="/css/marketdata.css">
         <link rel="stylesheet" type="text/css" href="/css/normalize.css">
 
         <!-- JQuery 3.3.1 -->
@@ -26,52 +26,24 @@
     <body>
 
        <!-- navbar -->
-       <nav id="home-nav" class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="index.html">
-                <img class="logo" src="/img/live-well-logo.png">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse flex-row-reerse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/assess">Assess <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/markets">Markets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/data">Data</a>
-                    </li>
-                </ul>
-
-                <div class="ml-auto">
-                    <a role="button" href="/admin-login" class="btn btn-outline-warning">Admin Login</a>
-                </div>
-            </div>
-        </nav>
+       <<%- include partials/header.ejs %>
         <!-- home caption -->
         <div class="home-caption">
-            <h1 class="text-dark"> </h1>
+            <h1 class="text-dark_md"> </h1>
             <hr></hr>
-            <h2 class="text-subdark"> </h2>
+            <h2 class="text-subdark_md"> </h2>
             <hr></hr>
-            <h3 class="text-subdark2"> Questions and Responses </h3>
+            <h3 class="text-subdark2_md"> Questions and Responses </h3>
             <br>
-            <p class="text-muted"> </p>
+            <p class="text-muted2_md"> </p>
 
             <hr></hr>
 
             <br>
-            <h3 class="text-subdark2"> Questions Needed to Improve Score </h3>
-            <p class="text-muted2"> </p>
+            <h3 class="text-subdark3_md"> </h3>
+            <p class="text-muted3_md"> </p>
 
             <hr></hr>
-
-            <p> 
-            </p>
 
         </div>
 

@@ -19,7 +19,7 @@
 
         <!-- JQuery UI -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-        <script src="/js/index.js"></script>
+        <script src="/js/admin-login.js"></script>
 
 
     </head>
@@ -27,24 +27,33 @@
     <body>
 
        <!-- navbar -->
-       <<%- include partials/header.ejs %>
-      
-       
+       <%- include partials/header.ejs %>
+
+
         <!-- home caption -->
         <div class="home-caption">
-            <h1 class="text-dark"> Live Well Community Market Program Tool </h1>
-            <p class="text-muted"> Help the Live Well Community Market Program (LWCMP) improve and promote access to healthy
-                foods throughout San Diego County by completing a market assessment. </p>
+            <div class="container main" style="height: 100%;">
+              <div class="admin-login-container d-flex justify-content-center align-items center">
+                <div class="admin-login text-center">
+                  <label><h3>Administrator Login</h3></label>
             
-            <p> 
-                <a class="btn btn-lg btn-success" href="/assess" role="button">Start Assessment</a>
-            </p>
-
-        </div>
-
-        <script src="/js/index.js"></script>
-        
-
+                  <form method="get" action="admin-process">
+                    <div class="form-group">
+                      <input type="username" name="username" class="form-control form-control-lg"   placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-block btn-lg btn-success">Sign In</button>
+                  </form>
+            
+                </div>
+              </div>
+            </div>
+            
+            <script type="text/javascript" src="js/admin-login.js"></script>
+            
+          </div>
     
     </body>
 

@@ -1,3 +1,5 @@
+if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/";}
+
 $(document).ready( function () {
 
     /* Levels chart */
