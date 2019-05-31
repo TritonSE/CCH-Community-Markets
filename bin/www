@@ -26,7 +26,6 @@ app.set('port', port);
   app.set('projectId', projectId);
   app.set('storageBucket', storageBucket);
   app.set('pomessagingSenderId', messagingSenderId);
-
 /**
  * Create HTTP server.
  */
