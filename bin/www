@@ -20,6 +20,12 @@ app.set('port', port);
   var projectId = process.env.projectId;
   var storageBucket = process.env.storageBucket;
   var messagingSenderId = process.env.messagingSenderId;
+  app.set('apiKey', apiKey);
+  app.set('authDomain', authDomain);
+  app.set('databaseURL', databaseURL);
+  app.set('projectId', projectId);
+  app.set('storageBucket', storageBucket);
+  app.set('pomessagingSenderId', messagingSenderId);
 
 /**
  * Create HTTP server.
