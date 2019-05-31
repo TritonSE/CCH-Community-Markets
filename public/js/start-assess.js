@@ -1,8 +1,7 @@
 //once pre-assess is over, displays assessment questions
 $('#pre-assess-button').click(function(event) {
     //gets form
-    var myform = $('#pre-assess-form')
-    console.log(process.env.projectId);
+    var myform = $('#pre-assess-form');
 
     if(!myform[0].checkValidity()) {
         // If the form is invalid, submit it. The form won't actually submit;

@@ -33,4 +33,6 @@ app.use('/marketdata',marketdata);
 app.use('/admin-login',login);
 app.use('/admin-process',loginprocess);
 
+console.log(process.env.projectId);
+
 module.exports = app;
