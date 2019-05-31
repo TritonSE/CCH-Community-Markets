@@ -2,6 +2,7 @@
 $('#pre-assess-button').click(function(event) {
     //gets form
     var myform = $('#pre-assess-form')
+    console.log(process.env.projectId);
 
     if(!myform[0].checkValidity()) {
         // If the form is invalid, submit it. The form won't actually submit;
