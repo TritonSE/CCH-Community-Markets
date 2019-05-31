@@ -38,7 +38,7 @@ $('#assess-button').click(function(event) {
     var disqualified = false;
 
     var questionsList = {}
-    var doBetterQuestions = {}
+    var doBetterQuestions = []
 
     //for when questions hit level zero
     var increaseZeroCase = 0;
@@ -273,6 +273,7 @@ $('#assess-button').click(function(event) {
 
     
     // make sure print statements are only called once
+    console.log("Checking for questions to fix");
     var section1Echoed = false;
     var section2Echoed = false;
     var section3Echoed = false;
@@ -306,12 +307,11 @@ $('#assess-button').click(function(event) {
                     }
                 }
 
+                var lis = document.getElementById("assessment-q-list").getElementsByTagName("li");
                 for(let k = 0; k < missedSections[j].length; k++){
-                    if(missedSections[j].length > 3){
-                        console.log("Too many questions missed.");
-                        break;
-                    }
-                    console.log(missedSections[j][k]);
+                    var index = missedSections[j][k]
+                    console.log(index);
+                    doBetterQuestions.push("<span class=\"boldanswer\">" + index.toString() + "</span>" + ": " + lis[index - 1].getElementsByTagName("p")[0].innerText)
                 }
         }
     }
@@ -337,20 +337,22 @@ $('#assess-button').click(function(event) {
      ****************************************************************/
 
     console.log(questionsList);
-
-    // Check if new market or existing market.
-    sessionStorage.setItem("formname",responses[4].value);
-    sessionStorage.setItem("lvl",level.toString());
+    console.log(doBetterQuestions);
     
     // Existing market.
     if (responses.length == 5) {
+        console.log("push existing market");
+        // Check if new market or existing market.
+        sessionStorage.setItem("formname",responses[4].value);
+        sessionStorage.setItem("lvl", marketLevel.toString());
+
         var marketName = responses[4].value;
 
         marketsRef = marketsRef.child(marketName);
 
         // Update market level.
         marketsRef.child("marketInfo").update({
-            marketLevel: level
+            marketLevel: marketLevel
         });
         // Update user info.
         marketsRef.child("personalInfo").update({
@@ -361,8 +363,14 @@ $('#assess-button').click(function(event) {
         });
         // Update question responses.
         marketsRef.child("questions").set(questionsList);
+        marketsRef.child("missedQuestions").set(doBetterQuestions);
 
     } else { // New market.
+        console.log("push new market");
+        // Check if new market or existing market.
+        sessionStorage.setItem("formname",responses[5].value);
+        sessionStorage.setItem("lvl", marketLevel.toString());
+
         var marketName = responses[5].value + ', ' + responses[7].value;
         // Make sure illegal characters removed from key.
         marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '')
@@ -381,13 +389,13 @@ $('#assess-button').click(function(event) {
                 city: responses[8].value,
                 state: responses[9].value,
                 zip: responses[10].value,
-                marketLevel: level
+                marketLevel: marketLevel
             },
-            questions: questionsList
+            questions: questionsList,
+            missedQuestions: doBetterQuestions
         });
     }
 
+    console.log("switching window");
     location.href='results';
-
-        
 });
