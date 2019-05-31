@@ -13,15 +13,14 @@ var http = require('http');
  */
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-var config = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  databaseURL: process.env.databaseURL,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId
-};
-app.set('config',config)
+
+  var apiKey = process.env.apiKey;
+  var authDomain = process.env.authDomain;
+  var databaseURL = process.env.databaseURL;
+  var projectId = process.env.projectId;
+  var storageBucket = process.env.storageBucket;
+  var messagingSenderId = process.env.messagingSenderId;
+
 /**
  * Create HTTP server.
  */
