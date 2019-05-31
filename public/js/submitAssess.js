@@ -9,6 +9,21 @@ $('#assess-button').click(function(event) {
         return;
     }
 
+    // Pull information from form.
+    var responses = $('#pre-assess-form').serializeArray();
+
+    // Create new firebase app if not already created.
+    if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+    }
+    
+    // Setup database communication.
+    var db = firebase.database();
+    var ref = db.ref("live_weller");
+
+    // Move to sub-directory.
+    var marketsRef = ref.child("markets");
+
     event.preventDefault();
 
     //keeps track of current question #
@@ -22,6 +37,9 @@ $('#assess-button').click(function(event) {
 
     var disqualified = false;
 
+    var questionsList = {}
+    var doBetterQuestions = {}
+
     //for when questions hit level zero
     var increaseZeroCase = 0;
     
@@ -31,6 +49,22 @@ $('#assess-button').click(function(event) {
 
         //finds checked label
         let answer = currentQuestion.find(':checked');
+
+        let questionKey = answer.attr('name');
+        if (typeof questionKey != "undefined") {
+            questionKey = questionKey.replace(/[^0-9a-zA-Z, ]/gi, '');
+        } else {
+            questionKey = "undefined";
+        }
+
+        let answerText = answer.val();
+        if (typeof answerText != "undefined") {
+            answerText = answerText
+        } else {
+            answerText = "undefined";
+        }
+
+        questionsList[questionKey] = answerText;
     
         //if no input
         if(typeof answer.val() == "undefined"){
@@ -295,6 +329,65 @@ $('#assess-button').click(function(event) {
     }
 
     console.log("fix these questions to become market level: " + marketLevel);
+
+    /*****************************************************************
+     * 
+     * ---------------------> SEND TO DATABASE <---------------------
+     * 
+     ****************************************************************/
+
+    console.log(questionsList);
+
+    // Check if new market or existing market.
+    sessionStorage.setItem("formname",responses[4].value);
+    sessionStorage.setItem("lvl",level.toString());
+    
+    // Existing market.
+    if (responses.length == 5) {
+        var marketName = responses[4].value;
+
+        marketsRef = marketsRef.child(marketName);
+
+        // Update market level.
+        marketsRef.child("marketInfo").update({
+            marketLevel: level
+        });
+        // Update user info.
+        marketsRef.child("personalInfo").update({
+            firstName: responses[0].value,
+            lastName: responses[1].value,
+            email: responses[2].value,
+            code: responses[3].value
+        });
+        // Update question responses.
+        marketsRef.child("questions").set(questionsList);
+
+    } else { // New market.
+        var marketName = responses[5].value + ', ' + responses[7].value;
+        // Make sure illegal characters removed from key.
+        marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '')
+
+        marketsRef.child(marketName).set({
+            personalInfo: {
+                firstName: responses[0].value,
+                lastName: responses[1].value,
+                email: responses[2].value,
+                code: responses[3].value,
+            },
+            marketInfo: {
+                marketName: responses[5].value,
+                storeType: responses[6].value,
+                address: responses[7].value,
+                city: responses[8].value,
+                state: responses[9].value,
+                zip: responses[10].value,
+                marketLevel: level
+            },
+            questions: questionsList
+        });
+    }
+
+    location.href='results';
 
         
 });
