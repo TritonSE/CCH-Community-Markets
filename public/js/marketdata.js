@@ -34,6 +34,7 @@ $(document).ready(function() {
             var email = childData.personalInfo.email;
 
             var questions = childData.questions;
+            var missed = childData.missedQuestions;
 
             if (name === marketName) {
 
@@ -57,6 +58,17 @@ $(document).ready(function() {
                         $('.text-muted2_md').append(key + ": " + "<span class=\"boldanswer\">" + questions[key] + "</span>");
                         $('.text-muted2_md').append("<br>");
                     }
+                }
+
+                if (level === 3) {
+                    $(".text-subdark3_md").append("Market is at Top Level!");
+                } else {
+                    $(".text-subdark3_md").append("Questions to fix to get to level " + (parseInt(level) + 1));
+                }
+
+                for (var key in missed) {
+                    $('.text-muted3_md').append(missed[key]);
+                    $('.text-muted3_md').append("<br>");
                 }
 
                 
