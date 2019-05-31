@@ -1,5 +1,4 @@
 $(document).ready( function () {
-    console.log(process.env.projectId);
     console.log("here");
     var loggedIn = sessionStorage.getItem('loggedIn');
     console.log(loggedIn);

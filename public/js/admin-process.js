@@ -1,14 +1,7 @@
 $(document).ready( function () {
     console.log("here");
 
-    var config = {
-        apiKey: process.env.apiKey,
-        authDomain: process.env.authDomain,
-        databaseURL: process.env.databaseURL,
-        projectId: process.env.projectId,
-        storageBucket: process.env.storageBucket,
-        messagingSenderId: process.env.messagingSenderId
-    };
+
     
     var loggedIn = sessionStorage.getItem('loggedIn');
     console.log(loggedIn);
