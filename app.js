@@ -22,6 +22,7 @@ var config = {
     storageBucket: process.env.storageBucket,
     messagingSenderId: process.env.messagingSenderId
 };
+exports.config = conifg;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
