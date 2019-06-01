@@ -1,4 +1,5 @@
-var app = express()
+var app = require('../app');
+
 var config = {
     apiKey: app.get('apiKey'),
     authDomain: app.get('authDomain'),
