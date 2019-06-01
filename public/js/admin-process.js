@@ -1,7 +1,7 @@
+var config = !{JSON.stringify(config)};
+
 $(document).ready( function () {
     console.log("here");
-
-    var config = !{JSON.stringify(config)};
 
     var loggedIn = sessionStorage.getItem('loggedIn');
     console.log(loggedIn);
