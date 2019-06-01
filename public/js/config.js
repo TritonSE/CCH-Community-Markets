@@ -1,4 +1,5 @@
-var app = require('../app');
+/*
+var app = require('../../app');
 
 var config = {
     apiKey: app.get('apiKey'),
@@ -8,3 +9,4 @@ var config = {
     storageBucket: app.get('storageBucket'),
     messagingSenderId: app.get('messagingSenderId')
 };
+*/
