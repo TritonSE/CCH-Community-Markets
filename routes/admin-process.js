@@ -2,16 +2,12 @@ var express = require('express');
 var router = express.Router();
 var app = express();
 
+console.log("hello");
+
 router.get('/', function(req, res, next) {
-	res.render('admin-process', {config: {
-	    apiKey: app.get('apiKey'),
-	    authDomain: app.get('authDomain'),
-	    databaseURL: app.get('databaseURL'),
-	    projectId: app.get('projectId'),
-	    storageBucket: app.get('storageBucket'),
-	    messagingSenderId: app.get('messagingSenderId')
-	}}
-);
+	console.log(req.app.get('test'));
+	console.log("yo");
+	res.render('admin-process');
 });
 
 module.exports = router;

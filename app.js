@@ -35,6 +35,15 @@ app.use('/marketdata',marketdata);
 app.use('/admin-login',login);
 app.use('/admin-process',loginprocess);
 
+var config = {
+		apiKey: app.get('apiKey'),
+		authDomain: app.get('authDomain'),
+		databaseURL: app.get('databaseURL'),
+		projectId: app.get('projectId'),
+		storageBucket: app.get('storageBucket'),
+		messagingSenderId: app.get('messagingSenderId')
+};
 
+app.set("test", "test2");
 
 module.exports = app;

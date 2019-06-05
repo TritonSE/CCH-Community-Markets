@@ -1,12 +1,8 @@
-/*
-var app = require('../../app');
-
 var config = {
-    apiKey: app.get('apiKey'),
-    authDomain: app.get('authDomain'),
-    databaseURL: app.get('databaseURL'),
-    projectId: app.get('projectId'),
-    storageBucket: app.get('storageBucket'),
-    messagingSenderId: app.get('messagingSenderId')
+    apiKey: "AIzaSyB33kxrp6W3dihuRRFhgk2UFI9VSHCQvtI",
+    authDomain: "live-weller.firebaseapp.com",
+    databaseURL: "https://live-weller.firebaseio.com",
+    projectId: "live-weller",
+    storageBucket: "live-weller.appspot.com",
+    messagingSenderId: "147602049424"
 };
-*/
