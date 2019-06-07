@@ -1,7 +1,6 @@
 
 $(document).ready( function () {
     console.log("here");
-    console.log(config);
     var loggedIn = sessionStorage.getItem('loggedIn');
     console.log(loggedIn);
     if (loggedIn == "true") {
