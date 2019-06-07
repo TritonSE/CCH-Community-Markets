@@ -340,13 +340,13 @@ $('#assess-button').click(function(event) {
     console.log(doBetterQuestions);
     
     // Existing market.
-    if (responses.length == 5) {
+    if (responses.length == 4) {
         console.log("push existing market");
         // Check if new market or existing market.
-        sessionStorage.setItem("formname",responses[4].value);
+        sessionStorage.setItem("formname",responses[3].value);
         sessionStorage.setItem("lvl", marketLevel.toString());
 
-        var marketName = responses[4].value;
+        var marketName = responses[3].value;
 
         marketsRef = marketsRef.child(marketName);
 
@@ -358,8 +358,7 @@ $('#assess-button').click(function(event) {
         marketsRef.child("personalInfo").update({
             firstName: responses[0].value,
             lastName: responses[1].value,
-            email: responses[2].value,
-            code: responses[3].value
+            email: responses[2].value
         });
         // Update question responses.
         marketsRef.child("questions").set(questionsList);
@@ -368,10 +367,10 @@ $('#assess-button').click(function(event) {
     } else { // New market.
         console.log("push new market");
         // Check if new market or existing market.
-        sessionStorage.setItem("formname",responses[5].value);
+        sessionStorage.setItem("formname",responses[4].value);
         sessionStorage.setItem("lvl", marketLevel.toString());
 
-        var marketName = responses[5].value + ', ' + responses[7].value;
+        var marketName = responses[4].value + ', ' + responses[6].value;
         // Make sure illegal characters removed from key.
         marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '')
 
@@ -380,15 +379,14 @@ $('#assess-button').click(function(event) {
                 firstName: responses[0].value,
                 lastName: responses[1].value,
                 email: responses[2].value,
-                code: responses[3].value,
             },
             marketInfo: {
-                marketName: responses[5].value,
-                storeType: responses[6].value,
-                address: responses[7].value,
-                city: responses[8].value,
-                state: responses[9].value,
-                zip: responses[10].value,
+                marketName: responses[4].value,
+                storeType: responses[5].value,
+                address: responses[6].value,
+                city: responses[7].value,
+                state: responses[8].value,
+                zip: responses[9].value,
                 marketLevel: marketLevel
             },
             questions: questionsList,
