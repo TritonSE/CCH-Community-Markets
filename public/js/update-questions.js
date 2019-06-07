@@ -5,32 +5,32 @@ $('input').change(function(){
     var id = $(this).attr("id");
     var currentNumber = id.match(/\d+/g);
     var currentNumber = parseInt(currentNumber);
-    if( (currentNumber==1) || (currentNumber==8) || (currentNumber==11) || (currentNumber==25) || (currentNumber==28) || (currentNumber==36)){
-    
+    if( (currentNumber==1) || (currentNumber==7) || (currentNumber==10) || (currentNumber==24) || (currentNumber==27) || (currentNumber==35)){
+
     var end;
 
     if(currentNumber==1){
-        end = 11;
+        end = 10;
     }
 
-    else if(currentNumber==8){
-        end = 11;
+    else if(currentNumber==7){
+        end = 10;
     }
 
-    else if(currentNumber == 11){
-        end = 17;
+    else if(currentNumber == 10){
+        end = 16;
     }
 
-    else if(currentNumber == 25){
-        end = 28;
+    else if(currentNumber == 24){
+        end = 27;
     }
 
-    else if(currentNumber == 28){
-        end = 30;
+    else if(currentNumber == 27){
+        end = 29;
     }
 
     else{
-        end = 40;
+        end = 39;
     }
 
 
@@ -38,14 +38,14 @@ $('input').change(function(){
     for(var i = currentNumber + 1; i<end; i++){
         if($('#No-'+ currentNumber).is(":checked")){
             $('#Yes-'+i).attr('disabled',true);
-            $('#No-'+i).attr('disabled',true); 
+            $('#No-'+i).attr('disabled',true);
         }
 
         else{
             $('#Yes-'+i).attr('disabled',null);
-            $('#No-'+i).attr('disabled', null); 
-        
-        } 
+            $('#No-'+i).attr('disabled', null);
+
+        }
     }
 
     if($('#No-' + currentNumber).is(":checked")){
@@ -57,8 +57,8 @@ $('input').change(function(){
             $('#10-4').attr("disabled", true);
             $('#6-9-4').attr("disabled", true);
         }
-        
-        if(currentNumber == 11){
+
+        if(currentNumber == 10){
             $('#0-13').attr("disabled", true);
             $('#1-2-13').attr("disabled", true);
             $('#3-5-13').attr("disabled", true);
@@ -77,8 +77,8 @@ $('input').change(function(){
             $('#3-5-4').attr("disabled", null);
             $('#10-4').attr("disabled", null);
             $('#6-9-4').attr("disabled", null);
-       } 
-        if(currentNumber == 11){
+       }
+        if(currentNumber == 10){
             $('#0-13').attr("disabled", null);
             $('#1-2-13').attr("disabled", null);
             $('#3-5-13').attr("disabled", null);
