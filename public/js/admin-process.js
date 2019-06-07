@@ -1,10 +1,6 @@
 
 $(document).ready( function () {
     console.log("here");
-<<<<<<< HEAD
-=======
-
->>>>>>> a0495a9a1d22148a355115b51d3b53cc2b44de7f
     var loggedIn = sessionStorage.getItem('loggedIn');
     console.log(loggedIn);
     if (loggedIn == "true") {
