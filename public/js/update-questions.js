@@ -5,7 +5,7 @@ $('input').change(function(){
     var id = $(this).attr("id");
     var currentNumber = id.match(/\d+/g);
     var currentNumber = parseInt(currentNumber);
-    if( (currentNumber==1) || (currentNumber==7) || (currentNumber==10) || (currentNumber==24) || (currentNumber==27) || (currentNumber==35)){
+    if( (currentNumber==1) || (currentNumber==8) || (currentNumber==11) || (currentNumber==25) || (currentNumber==28) || (currentNumber==36)){
     
     var end;
 
@@ -30,7 +30,7 @@ $('input').change(function(){
     }
 
     else{
-        end = 36;
+        end = 40;
     }
 
 
