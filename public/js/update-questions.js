@@ -5,32 +5,32 @@ $('input').change(function(){
     var id = $(this).attr("id");
     var currentNumber = id.match(/\d+/g);
     var currentNumber = parseInt(currentNumber);
-    if( (currentNumber==1) || (currentNumber==7) || (currentNumber==10) || (currentNumber==24) || (currentNumber==27) || (currentNumber==35)){
+    if( (currentNumber==1) || (currentNumber==8) || (currentNumber==11) || (currentNumber==25) || (currentNumber==28) || (currentNumber==36)){
 
     var end;
 
     if(currentNumber==1){
-        end = 10;
+        end = 11;
     }
 
-    else if(currentNumber==7){
-        end = 10;
+    else if(currentNumber==8){
+        end = 11;
     }
 
-    else if(currentNumber == 10){
-        end = 16;
+    else if(currentNumber == 11){
+        end = 17;
     }
 
-    else if(currentNumber == 24){
-        end = 27;
+    else if(currentNumber == 25){
+        end = 28;
     }
 
-    else if(currentNumber == 27){
-        end = 29;
+    else if(currentNumber == 28 ){
+        end = 30;
     }
 
     else{
-        end = 39;
+        end = 40;
     }
 
 
@@ -58,12 +58,12 @@ $('input').change(function(){
             $('#6-9-4').attr("disabled", true);
         }
 
-        if(currentNumber == 10){
-            $('#0-13').attr("disabled", true);
-            $('#1-2-13').attr("disabled", true);
-            $('#3-5-13').attr("disabled", true);
-            $('#6-9-13').attr("disabled", true);
-            $('#10-13').attr("disabled", true);
+        if(currentNumber == 11){
+            $('#0-14').attr("disabled", true);
+            $('#1-2-14').attr("disabled", true);
+            $('#3-5-14').attr("disabled", true);
+            $('#6-9-14').attr("disabled", true);
+            $('#10-14').attr("disabled", true);
         }
 
     }
