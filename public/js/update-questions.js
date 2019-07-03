@@ -56,6 +56,11 @@ $('input').change(function(){
             $('#3-5-4').attr("disabled", true);
             $('#10-4').attr("disabled", true);
             $('#6-9-4').attr("disabled", true);
+            $('#0-7').attr("disabled", true);
+            $('#1-2-7').attr("disabled", true);
+            $('#3-5-7').attr("disabled", true);
+            $('#6-9-7').attr("disabled", true);
+            $('#10-7').attr("disabled", true);
         }
 
         if(currentNumber == 11){
