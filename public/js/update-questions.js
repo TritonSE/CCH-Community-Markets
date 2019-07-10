@@ -82,6 +82,13 @@ $('input').change(function(){
             $('#3-5-4').attr("disabled", null);
             $('#10-4').attr("disabled", null);
             $('#6-9-4').attr("disabled", null);
+            $('#0-7').attr("disabled", null);
+            $('#1-2-7').attr("disabled", null);
+            $('#3-5-7').attr("disabled", null);
+            $('#6-9-7').attr("disabled", null);
+            $('#10-7').attr("disabled", null);
+
+
        }
         if(currentNumber == 10){
             $('#0-13').attr("disabled", null);
