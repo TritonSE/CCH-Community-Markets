@@ -1,104 +1,81 @@
 //handles disabling buttons if no is pressed on some of the questions
-//questions that say if no, skip to ...
-//questions are 1, 7, 10, 24, 27, 35
+//questions that say if no, skip to ... on the spreadsheet 
+//questions are 1, 8, 11, 25, 28, 36
 $('input').change(function(){
-    var id = $(this).attr("id");
-    var currentNumber = id.match(/\d+/g);
-    var currentNumber = parseInt(currentNumber);
-    if( (currentNumber==1) || (currentNumber==8) || (currentNumber==11) || (currentNumber==25) || (currentNumber==28) || (currentNumber==36)){
+    var id = $(this).attr("id")
+    var currentNumber = id.match(/\d+/g)
+    var currentNumber = parseInt(currentNumber)
+    
+    //map with questions that require greying out as keys and end markers as values
+    const options = new Map([
+      [1,11],
+      [8,11],
+      [11, 17],
+      [25, 28],
+      [28, 30],
+      [36, 40]
+    ])
+    
+    //checks to see whether current number requires greying out 
+    const end = options.has(currentNumber) ? options.get(currentNumber) : -1
+    
+    //if the current number requires greying out
+    if( end != -1 ){
+      
+      //booleans for reversing numOptions (grey/ungrey) and "Skip to ..." label (show/hide)
+      var reverseLabel = false
+      var reverseNumOptions = false
 
-    var end;
-
-    if(currentNumber==1){
-        end = 11;
-    }
-
-    else if(currentNumber==8){
-        end = 11;
-    }
-
-    else if(currentNumber == 11){
-        end = 17;
-    }
-
-    else if(currentNumber == 25){
-        end = 28;
-    }
-
-    else if(currentNumber == 28 ){
-        end = 30;
-    }
-
-    else{
-        end = 40;
-    }
-
-
-
-    for(var i = currentNumber + 1; i<end; i++){
-        if($('#No-'+ currentNumber).is(":checked")){
-            $('#Yes-'+i).attr('disabled',true);
-            $('#No-'+i).attr('disabled',true);
+      //loops through affected questions 
+      for(let i = currentNumber + 1; i < end; i++){
+        
+        //sees whether no options was selected for current number
+        const  response = ($('#No-' + currentNumber).is(":checked")) ? true : null
+        
+        //shows "Skip to ..." label 
+        if(!reverseLabel){
+          reverseLabel = true
+          
+          //decides whether to show or hide label based on response
+          if( response ){
+            $('#'+currentNumber+'.if-no').show()
+          }
+          
+          else{
+            $('#'+currentNumber+'.if-no').hide()
+          }
+          
         }
-
-        else{
-            $('#Yes-'+i).attr('disabled',null);
-            $('#No-'+i).attr('disabled', null);
-
+              
+        //enables or disables number options affected by current number (1) only once
+        if( !reverseNumOptions && currentNumber == 1 ){
+          reverseNumOptions = true;
+          $('#0-4').attr("disabled", response)
+          $('#1-2-4').attr("disabled", response)
+          $('#3-5-4').attr("disabled", response)
+          $('#10-4').attr("disabled", response)
+          $('#6-9-4').attr("disabled", response)
+          $('#0-7').attr("disabled", response)
+          $('#1-2-7').attr("disabled", response)
+          $('#3-5-7').attr("disabled", response)
+          $('#6-9-7').attr("disabled", response)
+          $('#10-7').attr("disabled", response)
         }
-    }
-
-    if($('#No-' + currentNumber).is(":checked")){
-        $('#'+currentNumber+'.if-no').show();
-        if(currentNumber == 1){
-            $('#0-4').attr("disabled", true);
-            $('#1-2-4').attr("disabled", true);
-            $('#3-5-4').attr("disabled", true);
-            $('#10-4').attr("disabled", true);
-            $('#6-9-4').attr("disabled", true);
-            $('#0-7').attr("disabled", true);
-            $('#1-2-7').attr("disabled", true);
-            $('#3-5-7').attr("disabled", true);
-            $('#6-9-7').attr("disabled", true);
-            $('#10-7').attr("disabled", true);
+          
+        //enables or disables number options affected by current number (11) only once 
+        if( !reverseNumOptions && currentNumber == 11 ){
+          reverseNumOptions = true
+          $('#0-14').attr("disabled", response)
+          $('#1-2-14').attr("disabled", response)
+          $('#3-5-14').attr("disabled", response)
+          $('#6-9-14').attr("disabled", response)
+          $('#10-14').attr("disabled", response)
         }
-
-        if(currentNumber == 11){
-            $('#0-14').attr("disabled", true);
-            $('#1-2-14').attr("disabled", true);
-            $('#3-5-14').attr("disabled", true);
-            $('#6-9-14').attr("disabled", true);
-            $('#10-14').attr("disabled", true);
-        }
-
-    }
-
-    else{
-
-        $('#'+currentNumber+'.if-no').hide();
-        if(currentNumber == 1){
-            $('#0-4').attr("disabled", null);
-            $('#1-2-4').attr("disabled", null);
-            $('#3-5-4').attr("disabled", null);
-            $('#10-4').attr("disabled", null);
-            $('#6-9-4').attr("disabled", null);
-            $('#0-7').attr("disabled", null);
-            $('#1-2-7').attr("disabled", null);
-            $('#3-5-7').attr("disabled", null);
-            $('#6-9-7').attr("disabled", null);
-            $('#10-7').attr("disabled", null);
-
-
-       }
-        if(currentNumber == 10){
-            $('#0-13').attr("disabled", null);
-            $('#1-2-13').attr("disabled", null);
-            $('#3-5-13').attr("disabled", null);
-            $('#6-9-13').attr("disabled", null);
-            $('#10-13').attr("disabled", null);
-        }
-
-
-    }
-    }
+          
+        //enables or disables yes/no questions up till end
+        $('#Yes-'+i).attr('disabled',response)
+        $('#No-'+i).attr('disabled', response)
+    } 
+          
+  }
 });
