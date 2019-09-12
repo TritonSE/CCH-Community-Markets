@@ -1,4 +1,3 @@
-
 $(document).ready( function () {
     if (!firebase.apps.length) {
         firebase.initializeApp(config);
