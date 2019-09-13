@@ -21,14 +21,12 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         <script src="/js/admin-login.js"></script>
 
-
     </head>
 
     <body>
 
        <!-- navbar -->
        <%- include partials/navbar.ejs %>
-
 
         <!-- home caption -->
         <div class="home-caption">
@@ -37,7 +35,7 @@
                 <div class="admin-login text-center">
                   <label><h3>Administrator Login</h3></label>
             
-                  <form method="get" action="admin-process">
+                  <form class="admin-login-form">
                     <div class="form-group">
                       <input type="username" name="username" class="form-control form-control-lg"   placeholder="Username">
                     </div>
