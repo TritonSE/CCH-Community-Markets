@@ -1,11 +1,21 @@
 $(document).ready( function () {
-    var loggedIn = sessionStorage.getItem('loggedIn');
-    if (loggedIn == "true") {
-        document.getElementById("closemarket").href = "/markets";
-        document.getElementById("closedata").href = "/data";
+    if (!firebase.apps.length) {
+        firebase.initializeApp(config);
     }
-    else {
-        document.getElementById("closemarket").href = "/admin-login";
-        document.getElementById("closedata").href = "/admin-login";
-    }
+
+    var urlString = window.location.href;
+    var url = new URL(urlString);
+    var email = url.searchParams.get('username');
+    var password = url.searchParams.get('password');
+
+    firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
+        sessionStorage.setItem('loggedIn', true);
+        $(".jChange").text("Successfully logged in.");
+        location.href="/";
+
+    }).catch(function(error) {
+        sessionStorage.setItem('loggedIn', false);
+        $(".jChange").text("Failed to login. Try again.");
+        location.href="/admin-login"
+    });
 });
