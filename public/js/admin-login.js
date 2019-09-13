@@ -13,7 +13,9 @@ $(document).ready( function () {
             event.preventDefault();
         }).catch(function(error) {
             sessionStorage.setItem('loggedIn', false);
-            // $(".jChange").text("Failed to login. Try again.");
+            $("#username").val("");
+            $("#password").val("");
+            $(".output").text("Incorrect username or password.");
             event.preventDefault();
         });
 
