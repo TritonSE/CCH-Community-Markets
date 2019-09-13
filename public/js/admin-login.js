@@ -3,19 +3,22 @@ $(document).ready( function () {
         firebase.initializeApp(config);
     }
 
-    var urlString = window.location.href;
-    var url = new URL(urlString);
-    var email = url.searchParams.get('username');
-    var password = url.searchParams.get('password');
+    $("#submit").on("click", function(event) {
+        var email = $("#username").val();
+        var password = $("#password").val();
 
-    firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
-        sessionStorage.setItem('loggedIn', true);
-        $(".jChange").text("Successfully logged in.");
-        location.href="/";
+        firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
+            sessionStorage.setItem('loggedIn', true);
+            location.href="/";
+            event.preventDefault();
+        }).catch(function(error) {
+            sessionStorage.setItem('loggedIn', false);
+            // $(".jChange").text("Failed to login. Try again.");
+            event.preventDefault();
+        });
 
-    }).catch(function(error) {
-        sessionStorage.setItem('loggedIn', false);
-        $(".jChange").text("Failed to login. Try again.");
-        location.href="/admin-login"
+        event.preventDefault();
+
     });
+    
 });
