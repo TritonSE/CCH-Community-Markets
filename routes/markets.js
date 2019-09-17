@@ -19,7 +19,6 @@ router.get('/', function(req, res, next) {
 
 	marketsRef.once('value', function(snapshot) {
 		snapshot.forEach(function(childSnapshot) {
-			var childKey = childSnapshot.key;
 			var childData = childSnapshot.val();
 
 			var name = childData.marketInfo.marketName;
@@ -37,7 +36,6 @@ router.get('/', function(req, res, next) {
 		});
 
 		res.render('markets', {marketList: dbinfo});
-		// $('#table_id').DataTable();
 	});
 });
 
