@@ -10,19 +10,19 @@ router.get('/', function(req, res, next) {
 	}
 
 	// Setup database communication.
-	var db = firebase.database();
-	var ref = db.ref("live_weller");
+	let db = firebase.database();
+	let ref = db.ref("live_weller");
 
 	// Move to sub-directory.
-	var marketsRef = ref.child("markets");
-	var data = "";
+	let marketsRef = ref.child("markets");
+	let data = "";
 
 	marketsRef.once('value', function(snapshot) {
    	snapshot.forEach(function(childSnapshot) {
-   		var childKey = childSnapshot.key;
-      	var childData = childSnapshot.val();
+   		let childKey = childSnapshot.key;
+      	let childData = childSnapshot.val();
 			
-			var markup = "<option>" + childKey + "</option>";
+			let markup = "<option>" + childKey + "</option>";
 			data += markup;
    	});
 
