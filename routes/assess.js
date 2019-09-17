@@ -6,9 +6,9 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 	
 	if(!firebase.apps.length) {
-     firebase.initializeApp(config);
+     firebase.initializeApp(config.info());
 	}
-   console.log("sadfasd");
+
 	// Setup database communication.
 	var db = firebase.database();
 	var ref = db.ref("live_weller");
@@ -17,7 +17,6 @@ router.get('/', function(req, res, next) {
 	var marketsRef = ref.child("markets");
 	var data = "";
 
-	console.log("here");
 	marketsRef.once('value', function(snapshot) {
    	snapshot.forEach(function(childSnapshot) {
    		var childKey = childSnapshot.key;
@@ -28,10 +27,9 @@ router.get('/', function(req, res, next) {
    	});
 
 		data += "<option>" + "NEW MARKET" + "</option>";		 	
+		res.render('assess', {data: data});
 	});
 
-
-	res.render('assess', {data: data});
 });
 
 module.exports = router;
