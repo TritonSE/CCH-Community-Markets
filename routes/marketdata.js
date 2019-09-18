@@ -18,25 +18,17 @@ router.get('/:marketName', function(req, res, next) {
 
     marketsRef.once('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
-            let childData = childSnapshot.val();
-
-            let name = childData.marketInfo.marketName;
-            let address = childData.marketInfo.address;
-            let size = childData.marketInfo.storeType;
-            let level = childData.marketInfo.marketLevel;
-
-            let firstName = childData.personalInfo.firstName;
-            let lastName = childData.personalInfo.lastName;
-            let email = childData.personalInfo.email;
+            const childData = childSnapshot.val();
             
-            let marketStatus = "";
+            let status = "";
             let questions = []
             let missed = [];
 
-            if (name === marketName) {
-                marketStatus = "Questions to fix to get to level " + (parseInt(level) + 1);
-                if (level === 3) {
-                    marketStatus = "Market is at Top Level!";
+            if (childData.marketInfo.marketName === marketName) {
+                status = "Questions to fix to get to level " + (parseInt(childData.marketInfo.marketLevel) + 1);
+                
+                if (childData.marketInfo.marketLevel === 3) {
+                    status = "Market is at Top Level!";
                 }
 
                 for (let key in childData.questions) {
@@ -49,7 +41,18 @@ router.get('/:marketName', function(req, res, next) {
                     missed.push({key: childData.missedQuestions[key].replace('<span class=\"boldanswer\">', '').replace('</span>', '')});
                 }
 
-                res.render('marketdata', {name: marketName, level: level, address: address, size: size, first: firstName, last: lastName, email: email, status: marketStatus, questions: questions, missed: missed});
+                res.render('marketdata', {
+                    name: childData.marketInfo.marketName,
+                    level: childData.marketInfo.marketLevel,
+                    address: childData.marketInfo.address,
+                    size: childData.marketInfo.storeType,
+                    first: childData.personalInfo.firstName,
+                    last: childData.personalInfo.lastName,
+                    email: childData.personalInfo.email,
+                    status,
+                    questions,
+                    missed
+                })
             }
         });		
     });

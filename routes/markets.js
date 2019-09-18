@@ -18,18 +18,18 @@ router.get('/', function(req, res, next) {
 
 	marketsRef.once('value', function(snapshot) {
 		snapshot.forEach(function(childSnapshot) {
-			let childData = childSnapshot.val();
+			const childData = childSnapshot.val().marketInfo;
 
-			let name = childData.marketInfo.marketName;
-			let address = childData.marketInfo.address;
-			let size = childData.marketInfo.storeType;
-			let zip = childData.marketInfo.zip;
-			let level = childData.marketInfo.marketLevel;
-
-			markets.push({name: name, address: address, size: size, zip: zip, level: level});
+			markets.push({
+				name: childData.marketName, 
+				address: childData.address, 
+				size: childData.storeType, 
+				zip: childData.zip,
+				level: childData.marketLevel
+			});
 		});
 
-		res.render('markets', {markets: markets});
+		res.render('markets', {markets});
 	});
 });
 
