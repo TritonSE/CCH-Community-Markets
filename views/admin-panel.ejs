@@ -35,7 +35,12 @@
 							<th> <h3 style="text-decoration: underline;"> Emails </h3> </th>
 					</thead>
 					<tbody>
-						<%- data %>
+						<% admins.forEach(function(admins) { %>
+							<tr>
+								<th> <%= admins.email %> </th>
+								<th> <button value="<%=admins.email%>"> Remove </button> </th>
+							</tr>
+						<% }); %>
 					</tbody>
 				</table>
 			</div>

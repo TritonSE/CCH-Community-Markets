@@ -13,20 +13,18 @@ router.get('/', function(req, res, next) {
 		});
 	}
 	
-	let data = "";
-
+	let admins = [];
 	admin.auth().listUsers()
 	.then(function(listUsersResult) {
-	  listUsersResult.users.forEach(function(userRecord) {
-	  	let markup = "<tr><th>" + userRecord.toJSON().email + "</th><th>" + "<button value="+ userRecord.toJSON().email+ ">Remove </button></th></tr>";
-		
-		if(userRecord.toJSON().email !== "tse@ucsd.edu"){
-	  		data += markup;
-		}
-	  });
+		listUsersResult.users.forEach(function(userRecord) {
 
-		res.render('admin-panel', {data: data});
-	})
+			if(userRecord.toJSON().email !== "tse@ucsd.edu"){
+	  			admins.push({email: userRecord.toJSON().email});
+			}
+		});
+
+		res.render('admin-panel', {admins});
+	});
 });
 
 module.exports = router;
