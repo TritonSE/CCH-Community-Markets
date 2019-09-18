@@ -15,19 +15,16 @@ router.get('/', function(req, res, next) {
 
 	// Move to sub-directory.
 	let marketsRef = ref.child("markets");
-	let data = "";
+	let marketOptions = [];
 
 	marketsRef.once('value', function(snapshot) {
    	snapshot.forEach(function(childSnapshot) {
    		let childKey = childSnapshot.key;
-      	let childData = childSnapshot.val();
-			
-			let markup = "<option>" + childKey + "</option>";
-			data += markup;
+			marketOptions.push({marketName: childKey});
    	});
-
-		data += "<option>" + "NEW MARKET" + "</option>";		 	
-		res.render('assess', {data: data});
+		
+		marketOptions.push({marketName: "NEW MARKET"});
+		res.render('assess', {marketOptions});
 	});
 
 });

@@ -62,7 +62,9 @@
 <label for="market-name-dropdown" class="required-input">Conduct market assessment for:</label>
 <select class="form-control custom-select" id="market-name-dropdown" name="marketName" required="">
 <option disabled="" selected="" value="">-- Select a market --</option>
-<%- data %> 
+<% marketOptions.forEach(function(marketOptions) { %>
+	<option><%= marketOptions.marketOption %></option>
+	<% }); %>
 </select>
 </div>
 
