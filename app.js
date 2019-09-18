@@ -11,6 +11,7 @@ var results = require('./routes/results');
 var data = require('./routes/data');
 var marketdata = require('./routes/marketdata');
 var login = require('./routes/admin-login');
+var admins = require('./routes/admin-panel');
 var app = express();
 
 
@@ -32,6 +33,7 @@ app.use('/results',results);
 app.use('/data',data);
 app.use('/marketdata',marketdata);
 app.use('/admin-login',login);
+app.use('/admin-panel', admins);
 
 var config = {
 		apiKey: app.get('apiKey'),
