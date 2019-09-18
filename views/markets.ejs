@@ -73,7 +73,7 @@
                             <td><%= market.size %></td>
                             <td><%= market.zip %></td>
                             <td><%= market.level %></td>
-                            <td><button class="mapButton" onclick="window.open('https\://www.google.com/maps/dir/?api=1&destination=<%= market.address %>')"><p>Go!</p></button></td>
+                            <td><button class="mapButton"><a href="https://www.google.com/maps/dir/?api=1&destination=<%= market.address %>" target="_blank" style="text-decoration:none"><p>Go!</p></a></button></td>
                         </tr>
                     <% }); %>
 
