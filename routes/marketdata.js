@@ -17,11 +17,6 @@ router.get('/:marketName', function(req, res, next) {
     const marketName = req.params.marketName;
 
     marketsRef.once('value', function(snapshot) {
-		let text_dark = marketName;
-		let text_subdark = "";
-		let text_muted_2 = "";
-		let text_subdark_3 = "";
-		let text_muted_3 = "";
         snapshot.forEach(function(childSnapshot) {
             let childData = childSnapshot.val();
 
@@ -33,45 +28,30 @@ router.get('/:marketName', function(req, res, next) {
             let firstName = childData.personalInfo.firstName;
             let lastName = childData.personalInfo.lastName;
             let email = childData.personalInfo.email;
-
-            let questions = childData.questions;
-            let missed = childData.missedQuestions;
+            
+            let marketStatus = "";
+            let questions = []
+            let missed = [];
 
             if (name === marketName) {
-				text_dark += "<br>";
-				text_dark += "Market Level: " + level;
-                text_dark += "<br>";
-                text_dark += "Address: " + address;
-                text_dark += "<br>";
-                text_dark += "Size: " + size;
-                text_dark += "<br>";
+                marketStatus = "Questions to fix to get to level " + (parseInt(level) + 1);
+                if (level === 3) {
+                    marketStatus = "Market is at Top Level!";
+                }
 
-                text_subdark += "Reviewer: " + firstName + " " + lastName;
-                text_subdark += "<br>";
-                text_subdark += "Email: " + email;
-                text_subdark += "<br>";
-
-                for (let key in questions) {
+                for (let key in childData.questions) {
                     if (key !== "undefined") {
-                        text_muted_2 += key + ": " + "<span class=\"boldanswer\">" + questions[key] + "</span>";
-                        text_muted_2 += "<br>";
+                        questions.push({key: key, answer: childData.questions[key]});
                     }
                 }
 
-                if (level === 3) {
-                    text_subdark_3 += "Market is at Top Level!";
-                } else {
-                    text_subdark_3 += "Questions to fix to get to level " + (parseInt(level) + 1);
+                for (let key in childData.missedQuestions) {
+                    missed.push({key: childData.missedQuestions[key].replace('<span class=\"boldanswer\">', '').replace('</span>', '')});
                 }
 
-                for (let key in missed) {
-                    text_muted_3 += missed[key];
-                    text_muted_3 += "<br>";
-                }
+                res.render('marketdata', {name: marketName, level: level, address: address, size: size, first: firstName, last: lastName, email: email, status: marketStatus, questions: questions, missed: missed});
             }
-        });
-		
-		res.render('marketdata', {td: text_dark, tsd: text_subdark, tm2: text_muted_2, tsd3: text_subdark_3, tm3: text_muted_3});
+        });		
     });
 });
 
