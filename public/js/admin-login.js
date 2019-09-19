@@ -4,23 +4,18 @@ $(document).ready( function () {
     }
 
     $("#submit").on("click", function(event) {
+        event.preventDefault();
         const email = $("#username").val();
         const password = $("#password").val();
+		  $.post('/admin-login', {email, password}, function(data){
+		  	 if(data['success']){
+			 	location.href="/";
+			 }
 
-        firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
-            sessionStorage.setItem('loggedIn', true);
-            location.href="/";
-            event.preventDefault();
-        }).catch(function(error) {
-            sessionStorage.setItem('loggedIn', false);
-            $("#username").val("");
-            $("#password").val("");
-            $(".output").text("Incorrect username or password.");
-            event.preventDefault();
-        });
-
-        event.preventDefault();
-
+			 else{
+			 	alert("Invalid credentials.");
+			 }
+		  });
     });
     
 });

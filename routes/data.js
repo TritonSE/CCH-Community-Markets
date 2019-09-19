@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
+var config = require('./config.js');
 
 if(!firebase.apps.length){
 	firebase.initializeApp(config.config);
