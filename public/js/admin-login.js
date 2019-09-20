@@ -7,13 +7,16 @@ $(document).ready( function () {
         event.preventDefault();
         const email = $("#username").val();
         const password = $("#password").val();
-		  $.post('/admin-login', {email, password}, function(data){
+		  $.post('/admin-login', {email, password}, function(data) {
 		  	 if(data['success']){
 			 	location.href="/";
 			 }
 
 			 else{
-			 	alert("Invalid credentials.");
+			 	$("#username").val("");
+				$("#password").val("");
+				$(".output").text("Incorrect username or password.");
+				event.preventDefault();
 			 }
 		  });
     });
