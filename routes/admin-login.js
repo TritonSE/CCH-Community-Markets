@@ -15,17 +15,17 @@ router.post('/', signIn, function(req, res) {
 	//checks if user is signed in
 	if(firebase.auth().currentUser){
 		res.jsonp({success: true});
-		res.end();
 	}
 
 	//sign in unsuccessful
 	else{
 		res.jsonp({success: false});
-		res.end();
 	}
+
+	res.end();
 });
 
-//this method gets called before function body inside router.post
+//this method gets called before function body inside router.post, attemps to sign in user
 function signIn(req, res, next){
 	const email = req.body.email
 	const password = req.body.password;
@@ -43,13 +43,13 @@ function signIn(req, res, next){
 router.post('/checkIfSignedIn', function(req, res){
 	if(firebase.auth().currentUser){
 		res.jsonp({signedIn: true});
-		res.end();
 	}
 
 	else{
 		res.jsonp({signedIn: false});
-		res.end();
 	}
+
+	res.end();
 });
 
 
@@ -57,4 +57,5 @@ router.post('/checkIfSignedIn', function(req, res){
 router.post('/signOut', function(req, res){
 	firebase.auth().signOut();
 });
+
 module.exports = router;

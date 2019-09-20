@@ -7,8 +7,6 @@ if(!firebase.apps.length){
 	firebase.initializeApp(config.config);
 }
 
-const db = firebase.database();
-
 router.get('/', isAuthorized, function(req, res, next) {
 	res.render('markets');
 });
@@ -23,6 +21,7 @@ function isAuthorized(req, res, next){
 		//not signed in 
 		else{
 			res.render('admin-login');
+			res.end();
 		}
 	});
 }

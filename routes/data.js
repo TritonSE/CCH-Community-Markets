@@ -13,6 +13,7 @@ router.get('/', isAuthorized, function(req, res, next) {
 	res.render('data');
 });
 
+//checks if user is authorized
 function isAuthorized(req, res, next){
 	firebase.auth().onAuthStateChanged(function(user) {
 		//user is signed in
@@ -23,6 +24,7 @@ function isAuthorized(req, res, next){
 		//not signed in
 		else{
 			res.render('admin-login');
+			res.end();
 		}
 	});
 }

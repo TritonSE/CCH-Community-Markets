@@ -7,6 +7,8 @@ $(document).ready( function () {
         event.preventDefault();
         const email = $("#username").val();
         const password = $("#password").val();
+		  
+		  //send request to sign in user
 		  $.post('/admin-login', {email, password}, function(data) {
 		  	 if(data['success']){
 			 	location.href="/";
