@@ -25,7 +25,8 @@ router.get('/', function(req, res, next) {
 				address: childData.address, 
 				size: childData.storeType, 
 				zip: childData.zip,
-				level: childData.marketLevel
+				level: childData.marketLevel,
+				key: childData.marketName.replace(/[^0-9a-zA-Z," ]/gi, '') + ", " + childData.address.replace(/[^0-9a-zA-Z," ]/gi, '')
 			});
 		});
 
