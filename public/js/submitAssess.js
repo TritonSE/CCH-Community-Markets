@@ -329,11 +329,7 @@ $('#assess-button').click(function(event) {
         sendResponses[responses[key].name] = responses[key].value;
     }
 
-    let marketExists = "false";
-
-    if (responses.length === 4) {
-        marketExists = "true";
-    }
+    const marketExists = responses.length === 4 ? "true" : "false";
 
     const sendData = {
         existing: marketExists,
