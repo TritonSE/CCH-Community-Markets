@@ -8,11 +8,11 @@ $(document).ready( function () {
         const password = $("#password").val();
 
         firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
-            sessionStorage.setItem('loggedIn', true);
+            //sessionStorage.setItem('loggedIn', true);
             location.href="/";
             event.preventDefault();
         }).catch(function(error) {
-            sessionStorage.setItem('loggedIn', false);
+            //sessionStorage.setItem('loggedIn', false);
             $("#username").val("");
             $("#password").val("");
             $(".output").text("Incorrect username or password.");
