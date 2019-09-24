@@ -17,22 +17,21 @@ router.get('/:marketKey', function(req, res, next) {
     const market = marketsRef.child(req.params.marketKey);
 
     market.once('value', function(snapshot) {
-        let questions = []
-        let missed = [];
         const childData = snapshot.val();
 
         let status = "Questions to fix to get to level " + (parseInt(childData.marketInfo.marketLevel) + 1);
-                
         if (childData.marketInfo.marketLevel === 3) {
             status = "Market is at Top Level!";
         }
 
+        let questions = []
         for (const key in childData.questions) {
             if (key !== "undefined") {
                 questions.push({key: key, answer: childData.questions[key]});
             }
         }
 
+        let missed = [];
         for (const key in childData.missedQuestions) {
             missed.push({key: childData.missedQuestions[key].replace('<span class=\"boldanswer\">', '').replace('</span>', '')});
         }
