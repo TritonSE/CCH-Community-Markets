@@ -338,20 +338,34 @@ $('#assess-button').click(function(event) {
 
     console.log(questionsList);
     console.log(doBetterQuestions);
-    
-    // Existing market.
-    if (responses.length == 4) {
-        console.log("push existing market");
-        // Check if new market or existing market.
-        sessionStorage.setItem("formname",responses[3].value);
-        sessionStorage.setItem("lvl", marketLevel.toString());
-    } 
-    else { // New market.
-        console.log("push new market");
-        // Check if new market or existing market.
-        sessionStorage.setItem("formname",responses[4].value);
-        sessionStorage.setItem("lvl", marketLevel.toString());
+
+    let sendResponses = {}
+    for (const key in responses) {
+        sendResponses[responses[key].name] = responses[key].value;
     }
+
+    let marketExists = true;
+
+    sessionStorage.setItem("lvl", marketLevel.toString());
+    if (responses.length === 4) {
+        sessionStorage.setItem("formname",responses[3].value);
+    }
+    else {
+        sessionStorage.setItem("formname",responses[4].value);
+        marketExists = false;
+    }
+
+    const sendData = {
+        existing: marketExists,
+        level: marketLevel,
+        betterQuestions: doBetterQuestions, 
+        marketInfo: sendResponses, 
+        questions: questionsList
+    }
+
+    $.post('/submit-assess', {data: JSON.stringify(sendData)}, function(data) {
+        console.log(data.success);
+    });
 
     console.log("switching window");
     location.href='results';
