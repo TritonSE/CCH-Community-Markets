@@ -4,6 +4,7 @@ var config = require('./config.js');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
+	//initializing firebase if its not already
 	if(!firebase.apps.length) {
      firebase.initializeApp(config.info());
 	}
