@@ -7,53 +7,59 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config.config);
 }
 
+const db = firebase.database();
+const ref = db.ref("live_weller");
+const marketsRef = ref.child("markets");
+
 router.post('/', submitMarket, function(req, res) {
-    
+    res.jsonp({success: true});
 });
 
 function submitMarket(req, res, next) {
-    console.log(req.body);
+    const info = JSON.parse(req.body.data);
 
+    if (info.existing == "true") {
+        marketsRef = marketsRef.child(info.marketInfo.marketName);
 
-    // EXISTING
-    // var marketName = responses[3].value;
-    // marketsRef = marketsRef.child(marketName);
+        // Update market level.
+        marketsRef.child("marketInfo").update({
+            marketLevel: info.level
+        });
+        // Update user info.
+        marketsRef.child("personalInfo").update({
+            firstName: info.marketInfo.firstName,
+            lastName: info.marketInfo.lastName,
+            email: info.marketInfo.email
+        });
+        // Update question responses.
+        marketsRef.child("questions").set(info.questions);
+        marketsRef.child("missedQuestions").set(info.betterQuestions);
+    }
+    else {
+        console.log(info);
+        let marketName = info.marketInfo.marketName + ', ' + info.marketInfo.address;
+        // Make sure illegal characters removed from key.
+        marketName = marketName.replace(/[^0-9a-zA-Z," ]/gi, '').trim()
 
-    // // Update market level.
-    // marketsRef.child("marketInfo").update({
-    //     marketLevel: marketLevel
-    // });
-    // // Update user info.
-    // marketsRef.child("personalInfo").update({
-    //     firstName: responses[0].value,
-    //     lastName: responses[1].value,
-    //     email: responses[2].value
-    // });
-    // // Update question responses.
-    // marketsRef.child("questions").set(questionsList);
-    // marketsRef.child("missedQuestions").set(doBetterQuestions);
-
-    // NEW
-    // var marketName = responses[4].value + ', ' + responses[6].value;
-    // // Make sure illegal characters removed from key.
-    // marketName = marketName.replace(/[^0-9a-zA-Z," ]/gi, '').trim()
-
-    // marketsRef.child(marketName).set({
-    //     personalInfo: {
-    //         firstName: responses[0].value,
-    //         lastName: responses[1].value,
-    //         email: responses[2].value,
-    //     },
-    //     marketInfo: {
-    //         marketName: responses[4].value,
-    //         storeType: responses[5].value,
-    //         address: responses[6].value,
-    //         city: responses[7].value,
-    //         state: responses[8].value,
-    //         zip: responses[9].value,
-    //         marketLevel: marketLevel
-    //     },
-    //     questions: questionsList,
-    //     missedQuestions: doBetterQuestions
-    // });
+        marketsRef.child(marketName).set({
+            personalInfo: {
+                firstName: info.marketInfo.firstName,
+                lastName: info.marketInfo.lastName,
+                email: info.marketInfo.email,
+            },
+            marketInfo: {
+                marketName: info.marketInfo.marketName,
+                storeType: info.marketInfo.storeType,
+                address: info.marketInfo.address,
+                city: info.marketInfo.city,
+                state: info.marketInfo.state,
+                zip: info.marketInfo.zip,
+                marketLevel: info.level
+            },
+            questions: info.questions,
+            missedQuestions: info.betterQuestions
+        });
+    }
 }
+
+module.exports = router;
