@@ -9,16 +9,16 @@ if (!firebase.apps.length) {
 
 const db = firebase.database();
 const ref = db.ref("live_weller");
-const marketsRef = ref.child("markets");
+let marketsRef = ref.child("markets");
 
 router.post('/', submitMarket, function(req, res) {
-    res.jsonp({success: true});
+    res.jsonp({success: "true"});
 });
 
 function submitMarket(req, res, next) {
     const info = JSON.parse(req.body.data);
 
-    if (info.existing == "true") {
+    if (info.existing === "true") {
         marketsRef = marketsRef.child(info.marketInfo.marketName);
 
         // Update market level.
@@ -36,10 +36,9 @@ function submitMarket(req, res, next) {
         marketsRef.child("missedQuestions").set(info.betterQuestions);
     }
     else {
-        console.log(info);
         let marketName = info.marketInfo.marketName + ', ' + info.marketInfo.address;
         // Make sure illegal characters removed from key.
-        marketName = marketName.replace(/[^0-9a-zA-Z," ]/gi, '').trim()
+        marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '').trim()
 
         marketsRef.child(marketName).set({
             personalInfo: {
