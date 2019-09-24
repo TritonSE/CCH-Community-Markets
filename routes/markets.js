@@ -14,7 +14,8 @@ const ref = db.ref("live_weller");
 const marketsRef = ref.child("markets");
 
 function generateKey(name, address) {
-	return name.replace(/[^0-9a-zA-Z," ]/gi, '') + ", " + address.replace(/[^0-9a-zA-Z," ]/gi, '')
+	let key = name.replace(/[^0-9a-zA-Z," ]/gi, '') + ", " + address.replace(/[^0-9a-zA-Z," ]/gi, '');
+	return key.trim();
 }
 
 router.get('/', function(req, res, next) {
