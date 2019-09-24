@@ -3,9 +3,8 @@ var router = express.Router();
 var firebase = require('firebase');
 var config = require('./config.js');
 
-if(!firebase.apps.length){
+if(!firebase.apps.length)
 	firebase.initializeApp(config.config);
-}
 
 router.get('/', function(req, res, next) {
 	res.render('admin-login');
@@ -13,16 +12,13 @@ router.get('/', function(req, res, next) {
 
 router.post('/', signIn, function(req, res) {
 	//checks if user is signed in
-	if(firebase.auth().currentUser){
+	if(firebase.auth().currentUser)
 		res.jsonp({success: true});
-	}
 
 	//sign in unsuccessful
-	else{
+	else
 		res.jsonp({success: false});
-	}
 
-	res.end();
 });
 
 //this method gets called before function body inside router.post, attemps to sign in user
@@ -41,15 +37,12 @@ function signIn(req, res, next){
 
 //checks if signed in for the navbar 
 router.post('/checkIfSignedIn', function(req, res){
-	if(firebase.auth().currentUser){
+	if(firebase.auth().currentUser)
 		res.jsonp({signedIn: true});
-	}
 
-	else{
+	else
 		res.jsonp({signedIn: false});
-	}
-
-	res.end();
+	
 });
 
 

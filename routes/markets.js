@@ -3,9 +3,8 @@ var router = express.Router();
 var firebase = require('firebase');
 var config = require('./config.js');
 
-if(!firebase.apps.length){
+if(!firebase.apps.length)
 	firebase.initializeApp(config.config);
-}
 
 router.get('/', isAuthorized, function(req, res, next) {
 	res.render('markets');
@@ -14,15 +13,12 @@ router.get('/', isAuthorized, function(req, res, next) {
 function isAuthorized(req, res, next){
 	firebase.auth().onAuthStateChanged(function(user) {
 		//user is signed in 
-		if(user){
+		if(user)
 			next();
-		}
 		
 		//not signed in 
-		else{
+		else
 			res.render('admin-login');
-			res.end();
-		}
 	});
 }
 module.exports = router;
