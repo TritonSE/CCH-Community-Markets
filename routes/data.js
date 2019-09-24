@@ -58,7 +58,7 @@ router.post('/', function(req, res) {
 
         marketsRef.once('value', function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
-                var childData = childSnapshot.val();
+                const childData = childSnapshot.val();
                 try {
                     uniqueResults[childData.questions[stripKey]] = 0;
                     questionResults.push(childData.questions[stripKey]);
