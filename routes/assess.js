@@ -1,27 +1,27 @@
-var express = require('express');
-var firebase = require('firebase');
-var config = require('./config.js');
-var router = express.Router();
+const express = require('express');
+const firebase = require('firebase');
+const config = require('./config.js');
+const router = express.Router();
+
+//initializing firebase if its not already
+if(!firebase.apps.length) {
+   firebase.initializeApp(config.config);
+}
+
+// Setup database communication.
+const db = firebase.database();
+const ref = db.ref("live_weller");
+
+// Move to sub-directory.
+const marketsRef = ref.child("markets");
 
 router.get('/', function(req, res, next) {
-	//initializing firebase if its not already
-	if(!firebase.apps.length) {
-     firebase.initializeApp(config.info());
-	}
-
-	// Setup database communication.
-	const db = firebase.database();
-	const ref = db.ref("live_weller");
-
-	// Move to sub-directory.
-	const marketsRef = ref.child("markets");
 	let marketOptions = [];
 
 	//add all market names to marketOptions
 	marketsRef.once('value', function(snapshot) {
    	snapshot.forEach(function(childSnapshot) {
-   		let marketName = childSnapshot.key;
-			marketOptions.push({marketName: marketName});
+			marketOptions.push({marketName: childSnapshot.key});
    	});
 		
 		marketOptions.push({marketName: "NEW MARKET"});

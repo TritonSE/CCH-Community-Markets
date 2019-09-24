@@ -8,20 +8,8 @@ if(!firebase.apps.length){
 }
 const db = firebase.database();
 
-router.get('/', isAuthorized, function(req, res, next) {
+router.get('/', function(req, res, next) {
 	res.render('markets');
 });
-
-function isAuthorized(req, res, next){
-	firebase.auth().onAuthStateChanged(function(user) {
-		if(user){
-			next();
-		}
-
-		else{
-			res.render('admin-login');
-		}
-	});
-};
 
 module.exports = router;

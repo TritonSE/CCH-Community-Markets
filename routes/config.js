@@ -7,4 +7,4 @@ config = {
     messagingSenderId: "147602049424"
 };
 
-exports.info = function() {return config;};
+exports.config = config;
