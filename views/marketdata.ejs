@@ -22,6 +22,9 @@
         <!-- JQuery UI -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="/js/marketdata.js"></script>
+
+        <script src="/js/confirm-login.js"></script>
+        <script src="/js/navbar-highlighter.js"></script>
         
     </head>
 
@@ -31,19 +34,52 @@
        <<%- include partials/navbar.ejs %>
         <!-- home caption -->
         <div class="home-caption">
-            <h1 class="text-dark_md"> </h1>
+            <h1 class="text-dark_md">
+                Market: <%= name %>
+                <br>
+                Market Level: <%= level %>
+                <br>
+                Address: <%= address %>
+                <br>
+                Size: <%= size %>
+                <br>
+            </h1>
+
             <hr></hr>
-            <h2 class="text-subdark_md"> </h2>
+
+            <h2 class="text-subdark_md"> 
+                Reviewer: <%= first %> <%= last %>
+                <br>
+                Email: <%= email %>
+                <br>
+            </h2>
+
             <hr></hr>
+
             <h3 class="text-subdark2_md"> Questions and Responses </h3>
+            
             <br>
-            <p class="text-muted2_md"> </p>
+
+            <p class="text-muted2_md">
+                <% questions.forEach(function(question) { %>
+                    <%= question.key %>: 
+                    <span class="boldanswer"><%= question.answer %></span>
+                    <br>
+                <% }); %>
+            </p>
 
             <hr></hr>
 
             <br>
-            <h3 class="text-subdark3_md"> </h3>
-            <p class="text-muted3_md"> </p>
+
+            <h3 class="text-subdark3_md"> <%= status %> </h3>
+
+            <p class="text-muted3_md"> 
+                <% missed.forEach(function(miss) { %>
+                    <%= miss.key %>
+                    <br>
+                <% }); %>    
+            </p>
 
             <hr></hr>
 

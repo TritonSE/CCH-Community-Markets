@@ -21,8 +21,12 @@
 
         <!-- JQuery UI -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+        
         <script src="/js/admin-login.js"></script>
-
+        <script src="/js/confirm-login.js"></script>
+        <script src="/js/config.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+        <script src="/js/navbar-highlighter.js"></script>
 
     </head>
 
@@ -31,7 +35,6 @@
        <!-- navbar -->
        <%- include partials/navbar.ejs %>
 
-
         <!-- home caption -->
         <div class="home-caption">
             <div class="container main" style="height: 100%;">
@@ -39,21 +42,21 @@
                 <div class="admin-login text-center">
                   <label><h3>Administrator Login</h3></label>
             
-                  <form method="get" action="admin-process">
+                  <form class="admin-login-form">
                     <div class="form-group">
-                      <input type="username" name="username" class="form-control form-control-lg"   placeholder="Username">
+                      <input type="username" id="username" class="form-control form-control-lg"   placeholder="Username">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
+                      <input type="password" id="password" class="form-control form-control-lg" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-block btn-lg btn-success">Sign In</button>
+                    <button type="submit" class="btn btn-block btn-lg btn-success" id="submit">Sign In</button>
+                    <br>
+                    <label><h5 class="output"></h5></label>
                   </form>
             
                 </div>
               </div>
             </div>
-            
-            <script type="text/javascript" src="js/admin-login.js"></script>
             
           </div>
     
