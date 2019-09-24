@@ -12,18 +12,6 @@ $('#assess-button').click(function(event) {
     // Pull information from form.
     var responses = $('#pre-assess-form').serializeArray();
 
-    // Create new firebase app if not already created.
-    if (!firebase.apps.length) {
-        firebase.initializeApp(config);
-    }
-    
-    // Setup database communication.
-    var db = firebase.database();
-    var ref = db.ref("live_weller");
-
-    // Move to sub-directory.
-    var marketsRef = ref.child("markets");
-
     event.preventDefault();
 
     //keeps track of current question #
@@ -336,23 +324,15 @@ $('#assess-button').click(function(event) {
      * 
      ****************************************************************/
 
-    console.log(questionsList);
-    console.log(doBetterQuestions);
-
     let sendResponses = {}
     for (const key in responses) {
         sendResponses[responses[key].name] = responses[key].value;
     }
 
-    let marketExists = true;
+    let marketExists = "false";
 
-    sessionStorage.setItem("lvl", marketLevel.toString());
     if (responses.length === 4) {
-        sessionStorage.setItem("formname",responses[3].value);
-    }
-    else {
-        sessionStorage.setItem("formname",responses[4].value);
-        marketExists = false;
+        marketExists = "true";
     }
 
     const sendData = {
@@ -363,10 +343,8 @@ $('#assess-button').click(function(event) {
         questions: questionsList
     }
 
-    $.post('/submit-assess', {data: JSON.stringify(sendData)}, function(data) {
-        console.log(data.success);
-    });
+    $.post('/submit-assess', {data: JSON.stringify(sendData)}, function(callback) {});
 
-    console.log("switching window");
-    location.href='results';
+    const href='results/' + sendResponses.marketName + '/' + marketLevel;
+    location.href=href;
 });
