@@ -52,7 +52,7 @@ $(document).ready( function () {
                 }
             };
     
-            const levelChart = new google.visualization.PieChart(document.getElementById('levelChart'));
+            const levelChart = new google.visualization.PieChart($('#levelChart')[0]);
             levelChart.draw(levelData, levelOptions);
         }
 
@@ -81,7 +81,7 @@ $(document).ready( function () {
                 }
             };
     
-            const typeChart = new google.visualization.PieChart(document.getElementById('typeChart'));
+            const typeChart = new google.visualization.PieChart($('#typeChart')[0]);
             typeChart.draw(typeData, typeOptions);
         }
     });
@@ -92,7 +92,7 @@ function drawQuestion() {
     google.charts.load('current', {'packages':['corechart']});
 
     // Get question to work with.
-    const questionTitle = document.getElementById("question-name-dropdown").value;
+    const questionTitle = $("#question-name-dropdown")[0].value;
     let questionArray = null;
 
     $.post('/data', {type: "question", title: questionTitle}, function(data) {
@@ -138,7 +138,7 @@ function drawQuestion() {
                 }
             };
     
-            const questionChart = new google.visualization.PieChart(document.getElementById('questionChart'));
+            const questionChart = new google.visualization.PieChart($('#questionChart')[0]);
             questionChart.draw(questionData, questionOptions);
         }
     });
