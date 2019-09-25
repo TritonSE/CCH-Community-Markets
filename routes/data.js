@@ -44,7 +44,7 @@ router.post('/', function(req, res) {
 		});
 	}
 	else {
-		const stripKey = req.body.title.replace(/[^0-9a-zA-Z, ]/gi, '');
+		const strippedKey = req.body.title.replace(/[^0-9a-zA-Z, ]/gi, '');
 		let questionResults = [];
 		let uniqueResults = {};
 
@@ -52,8 +52,8 @@ router.post('/', function(req, res) {
             snapshot.forEach(function(childSnapshot) {
                 const childData = childSnapshot.val();
                 try {
-                    uniqueResults[childData.questions[stripKey]] = 0;
-                    questionResults.push(childData.questions[stripKey]);
+                    uniqueResults[childData.questions[strippedKey]] = 0;
+                    questionResults.push(childData.questions[strippedKey]);
                 } catch (err) {}
             });
 
