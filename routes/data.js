@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 	res.render('data');
 });
 
-router.post('/general', function(req, res) {
+router.get('/general', function(req, res) {
 	/* Levels chart */
 	let levels = [0, 0, 0, 0];
 

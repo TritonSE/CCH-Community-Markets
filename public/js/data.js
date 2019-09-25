@@ -6,7 +6,7 @@ $(document).ready( function () {
     let levelArray = null;
     let typeArray = null;
     
-    $.post('/data/general', {type: "general"}, function(data) {
+    $.get('/data/general', function(data) {
         levelArray = [['Market Level', 'Number of Markets']];
         for (let i = 0; i < data.levels.length; i++) {
             levelArray.push(['Level ' + i, data.levels[i]]);
@@ -92,7 +92,7 @@ function drawQuestion() {
     const questionTitle = $("#question-name-dropdown")[0].value;
     let questionArray = null;
 
-    $.post('/data/question', {type: "question", title: questionTitle}, function(data) {
+    $.post('/data/question', {title: questionTitle}, function(data) {
         questionArray = [
             [questionTitle, 'Number of Markets']
         ];
