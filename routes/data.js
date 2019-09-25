@@ -39,7 +39,7 @@ router.post('/general', function(req, res) {
 			stores[type]++;
 		});
 		
-		res.jsonp({levels, stores});
+		res.json({levels, stores});
 	});
 });
 
@@ -57,7 +57,7 @@ router.post('/question', function(req, res) {
 			} catch (err) {}
 		});
 
-		res.jsonp({questionResults, uniqueResults});
+		res.json({questionResults, uniqueResults});
 	});
 });
 
