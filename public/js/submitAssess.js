@@ -339,7 +339,7 @@ $('#assess-button').click(function(event) {
         questions: questionsList
     }
 
-    $.post('/submit-assess', {data: JSON.stringify(sendData)}, function(callback) {});
+    $.post('/submit-assess', {data: JSON.stringify(sendData)});
 
     const href='results/' + sendResponses.marketName + '/' + marketLevel;
     location.href=href;
