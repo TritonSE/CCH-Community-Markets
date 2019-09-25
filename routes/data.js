@@ -51,10 +51,11 @@ router.post('/question', function(req, res) {
 	marketsRef.once('value', function(snapshot) {
 		snapshot.forEach(function(childSnapshot) {
 			const childData = childSnapshot.val();
-			try {
-				uniqueResults[childData.questions[strippedKey]] = 0;
-				questionResults.push(childData.questions[strippedKey]);
-			} catch (err) {}
+			const question = childData.questions[strippedKey];
+			if (question) {
+				uniqueResults[question] = 0;
+				questionResults.push(question);
+			}
 		});
 
 		res.json({questionResults, uniqueResults});
