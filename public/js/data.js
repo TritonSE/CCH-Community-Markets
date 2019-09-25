@@ -3,17 +3,14 @@ if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/admin-login
 $(document).ready( function () {
     google.charts.load('current', {'packages':['corechart']});
     
-    levelArray = null;
-    typeArray = null;
+    let levelArray = null;
+    let typeArray = null;
     
     $.post('/data/general', {type: "general"}, function(data) {
-        levelArray = [
-            ['Market Level', 'Number of Markets'],
-            ['Level 0', data.levels[0]],
-            ['Level 1', data.levels[1]],
-            ['Level 2', data.levels[2]],
-            ['Level 3', data.levels[3]]
-        ];
+        levelArray = [['Market Level', 'Number of Markets']];
+        for (let i = 0; i < data.levels.length; i++) {
+            levelArray.push(['Level ' + i, data.levels[i]]);
+        }
 
         typeArray = [
             ['Market Type', 'Number of Markets'],
