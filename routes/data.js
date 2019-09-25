@@ -20,35 +20,27 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res) {
 	if (req.body.type === "general") {
 		/* Levels chart */
-		let levZero = 0;
-		let levOne = 0;
-		let levTwo = 0;
-		let levThree = 0;
+		let levels = [0, 0, 0, 0];
 
 		/* Store Type chart */
-		let small = 0;
-		let medium = 0;
-		let large = 0;
-		let convenience = 0;
+		let stores =  {
+			"small": 0,
+			"medium": 0,
+			"large": 0,
+			"convenience": 0
+		};
 		
 		marketsRef.once('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
 				const childData = childSnapshot.val();
 				const level = parseInt(childData.marketInfo.marketLevel);
-				const type = childData.marketInfo.storeType;
+				const type = childData.marketInfo.storeType.toLowerCase();
 
-				if (level == 0) {levZero++;}
-				else if (level == 1) {levOne++;}
-				else if (level == 2) {levTwo++;}
-				else if (level == 3) {levThree++;}
-
-				if (type == "Small") {small++;}
-				else if (type == "Medium") {medium++;}
-				else if (type == "Large") {large++;}
-				else if (type == "Convenience") {convenience++;}
+				levels[level]++;
+				stores[type]++;
 			});
 			
-			res.jsonp({levZero, levOne, levTwo, levThree, small, medium, large, convenience});
+			res.jsonp({levels, stores});
 		});
 	}
 	else {

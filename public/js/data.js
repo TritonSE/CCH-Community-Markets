@@ -9,18 +9,18 @@ $(document).ready( function () {
     $.post('/data', {type: "general"}, function(data) {
         levelArray = [
             ['Market Level', 'Number of Markets'],
-            ['Level 0', data.levZero],
-            ['Level 1', data.levOne],
-            ['Level 2', data.levTwo],
-            ['Level 3', data.levThree]
+            ['Level 0', data.levels[0]],
+            ['Level 1', data.levels[1]],
+            ['Level 2', data.levels[2]],
+            ['Level 3', data.levels[3]]
         ];
 
         typeArray = [
             ['Market Type', 'Number of Markets'],
-            ['Convenience', data.convenience],
-            ['Small', data.small],
-            ['Medium', data.medium],
-            ['Large', data.large]
+            ['Convenience', data.stores['convenience']],
+            ['Small', data.stores['small']],
+            ['Medium', data.stores['medium']],
+            ['Large', data.stores['large']]
         ];
     
         /* Render chart */
