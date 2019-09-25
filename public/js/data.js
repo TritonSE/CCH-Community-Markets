@@ -6,7 +6,7 @@ $(document).ready( function () {
     levelArray = null;
     typeArray = null;
     
-    $.post('/data', {type: "general"}, function(data) {
+    $.post('/data/general', {type: "general"}, function(data) {
         levelArray = [
             ['Market Level', 'Number of Markets'],
             ['Level 0', data.levels[0]],
@@ -95,7 +95,7 @@ function drawQuestion() {
     const questionTitle = $("#question-name-dropdown")[0].value;
     let questionArray = null;
 
-    $.post('/data', {type: "question", title: questionTitle}, function(data) {
+    $.post('/data/question', {type: "question", title: questionTitle}, function(data) {
         questionArray = [
             [questionTitle, 'Number of Markets']
         ];

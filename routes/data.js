@@ -17,49 +17,48 @@ router.get('/', function(req, res, next) {
 	res.render('data');
 });
 
-router.post('/', function(req, res) {
-	if (req.body.type === "general") {
-		/* Levels chart */
-		let levels = [0, 0, 0, 0];
+router.post('/general', function(req, res) {
+	/* Levels chart */
+	let levels = [0, 0, 0, 0];
 
-		/* Store Type chart */
-		let stores =  {
-			"small": 0,
-			"medium": 0,
-			"large": 0,
-			"convenience": 0
-		};
-		
-		marketsRef.once('value', function(snapshot) {
-			snapshot.forEach(function(childSnapshot) {
-				const childData = childSnapshot.val();
-				const level = parseInt(childData.marketInfo.marketLevel);
-				const type = childData.marketInfo.storeType.toLowerCase();
+	/* Store Type chart */
+	let stores =  {
+		"small": 0,
+		"medium": 0,
+		"large": 0,
+		"convenience": 0
+	};
+	
+	marketsRef.once('value', function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			const childData = childSnapshot.val();
+			const level = parseInt(childData.marketInfo.marketLevel);
+			const type = childData.marketInfo.storeType.toLowerCase();
 
-				levels[level]++;
-				stores[type]++;
-			});
-			
-			res.jsonp({levels, stores});
+			levels[level]++;
+			stores[type]++;
 		});
-	}
-	else {
-		const strippedKey = req.body.title.replace(/[^0-9a-zA-Z, ]/gi, '');
-		let questionResults = [];
-		let uniqueResults = {};
+		
+		res.jsonp({levels, stores});
+	});
+});
 
-        marketsRef.once('value', function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                const childData = childSnapshot.val();
-                try {
-                    uniqueResults[childData.questions[strippedKey]] = 0;
-                    questionResults.push(childData.questions[strippedKey]);
-                } catch (err) {}
-            });
+router.post('/question', function(req, res) {
+	const strippedKey = req.body.title.replace(/[^0-9a-zA-Z, ]/gi, '');
+	let questionResults = [];
+	let uniqueResults = {};
 
-            res.jsonp({questionResults, uniqueResults});
-        });
-	}
+	marketsRef.once('value', function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			const childData = childSnapshot.val();
+			try {
+				uniqueResults[childData.questions[strippedKey]] = 0;
+				questionResults.push(childData.questions[strippedKey]);
+			} catch (err) {}
+		});
+
+		res.jsonp({questionResults, uniqueResults});
+	});
 });
 
 module.exports = router;
