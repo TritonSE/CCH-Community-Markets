@@ -1,7 +1,7 @@
 $('#assess-button').click(function(event) {
     
     //gets form
-    var myForm = $('#assessment-form');
+    const myForm = $('#assessment-form');
 
     if(! myForm[0].checkValidity()) {
         // If the form is invalid, submit it. The form won't actually submit;
@@ -10,7 +10,16 @@ $('#assess-button').click(function(event) {
     }
 
     // Pull information from form.
-    var responses = $('#pre-assess-form').serializeArray();
+    const responses = $('#assessment-form').serializeArray();
+
+    // Get first 4 values if market exists, first 10 values otherwise.
+    const userVals = responses[3].name === "NEW MARKET" ? 10 : 4;
+    let userInfo = {};
+    for (let i = 0; i < userVals; i++) {
+        userInfo[responses[i].name] = responses[i].value;
+    }
+
+    console.log(userInfo);
 
     event.preventDefault();
 
@@ -324,18 +333,13 @@ $('#assess-button').click(function(event) {
      * 
      ****************************************************************/
 
-    let sendResponses = {}
-    for (const key in responses) {
-        sendResponses[responses[key].name] = responses[key].value;
-    }
-
-    const marketExists = responses.length === 4 ? "true" : "false";
+    const marketExists = userVals === 4 ? "true" : "false";
 
     const sendData = {
         existing: marketExists,
         level: marketLevel,
         betterQuestions: doBetterQuestions, 
-        marketInfo: sendResponses, 
+        marketInfo: userInfo, 
         questions: questionsList
     }
 
