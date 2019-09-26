@@ -1,73 +1,34 @@
 if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/admin-login";}
 
 $(document).ready( function () {
-
-    /* Levels chart */
-    var levZero = 0;
-    var levOne = 0;
-    var levTwo = 0;
-    var levThree = 0;
-
-    /* Store Type chart */
-    let small = 0;
-    let medium = 0;
-    let large = 0;
-    let convenience = 0;
-
-    levelArray = null;
-    typeArray = null;
-
-
-    if (!firebase.apps.length) {
-        firebase.initializeApp(config);
-    }
-
     google.charts.load('current', {'packages':['corechart']});
     
-    // Creates connection to database.
-    var db = firebase.database();
-
-    // Links to head of database.
-    var ref = db.ref("live_weller");
-
-    // Links to markets list.
-    var marketsRef = ref.child("markets");
-
-
-    // Call async function
-    callFirebase(loadCharts);
-
-
-
-    // Start of callback
-    function loadCharts() {
-        levelArray = [
-            ['Market Level', 'Number of Markets'],
-            ['Level 0', levZero],
-            ['Level 1', levOne],
-            ['Level 2', levTwo],
-            ['Level 3', levThree]
-        ];
+    let levelArray = null;
+    let typeArray = null;
+    
+    $.get('/data/general', function(data) {
+        levelArray = [['Market Level', 'Number of Markets']];
+        for (let i = 0; i < data.levels.length; i++) {
+            levelArray.push(['Level ' + i, data.levels[i]]);
+        }
 
         typeArray = [
             ['Market Type', 'Number of Markets'],
-            ['Convenience', convenience],
-            ['Small', small],
-            ['Medium', medium],
-            ['Large', large]
+            ['Convenience', data.stores['convenience']],
+            ['Small', data.stores['small']],
+            ['Medium', data.stores['medium']],
+            ['Large', data.stores['large']]
         ];
     
         /* Render chart */
         google.charts.setOnLoadCallback(drawLevelChart);
         google.charts.setOnLoadCallback(drawTypeChart);
-        
-        
 
         function drawLevelChart() {
     
-            var levelData = google.visualization.arrayToDataTable(levelArray);
+            const levelData = google.visualization.arrayToDataTable(levelArray);
     
-            var levelOptions = {
+            const levelOptions = {
                 title: 'Market Level',
                 chartArea: {left: 73},
                 legend: {
@@ -88,18 +49,15 @@ $(document).ready( function () {
                 }
             };
     
-            var levelChart = new google.visualization.PieChart(document.getElementById('levelChart'));
+            const levelChart = new google.visualization.PieChart($('#levelChart')[0]);
             levelChart.draw(levelData, levelOptions);
         }
 
-
-
         function drawTypeChart() {
 
-            var typeData = google.visualization.arrayToDataTable(
-                typeArray);
+            const typeData = google.visualization.arrayToDataTable(typeArray);
     
-            var typeOptions = {
+            const typeOptions = {
                 title: 'Market Type',
                 chartArea: {left: 73},
                 legend: {
@@ -120,75 +78,32 @@ $(document).ready( function () {
                 }
             };
     
-            var typeChart = new google.visualization.PieChart(document.getElementById('typeChart'));
+            const typeChart = new google.visualization.PieChart($('#typeChart')[0]);
             typeChart.draw(typeData, typeOptions);
         }
-    }
-
-
-    // Start of async
-    function callFirebase(loadCharts) {
-        marketsRef.once('value', function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                var childKey = childSnapshot.key;
-                var childData = childSnapshot.val();
-                var level = parseInt(childData.marketInfo.marketLevel);
-                var type = childData.marketInfo.storeType;
-    
-                if (level == 0) {levZero++;}
-                else if (level == 1) {levOne++;}
-                else if (level == 2) {levTwo++;}
-                else if (level == 3) {levThree++;}
-
-                if (type == "Small") {small++;}
-                else if (type == "Medium") {medium++;}
-                else if (type == "Large") {large++;}
-                else if (type == "Convenience") {convenience++;}
-            });
-            
-            // Callback
-            loadCharts();
-        });
-    }
+    });
 });
 
 /* Question Chart */
 function drawQuestion() {
-
-    if (!firebase.apps.length) {
-        firebase.initializeApp(config);
-    }
-    
-    // Creates connection to database.
-    var db = firebase.database();
-
-    // Links to head of database.
-    var ref = db.ref("live_weller");
-
-    // Links to markets list.
-    var marketsRef = ref.child("markets");
-
     google.charts.load('current', {'packages':['corechart']});
-    
+
     // Get question to work with.
-    var questionTitle = document.getElementById("question-name-dropdown").value;
-    var questionResults = [];
-    var uniqueResults = {};
+    const questionTitle = $("#question-name-dropdown")[0].value;
+    let questionArray = null;
 
-    getQuestionAnswers(drawChart);
-
-    function drawChart() {
+    $.post('/data/question', {title: questionTitle}, function(data) {
         questionArray = [
             [questionTitle, 'Number of Markets']
         ];
 
-        for (var answer in questionResults) {
-            uniqueResults[questionResults[answer]] += 1;
+        for (const answer in data.questionResults) {
+            data.uniqueResults[data.questionResults[answer]] += 1;
         }
 
-        for (var key in uniqueResults) {
+        for (const key in data.uniqueResults) {
             if (key != "undefined") {
-                questionArray.push([key, uniqueResults[key]]);
+                questionArray.push([key, data.uniqueResults[key]]);
             }
         }
 
@@ -197,9 +112,9 @@ function drawQuestion() {
 
         function drawQuestionChart() {
     
-            var questionData = google.visualization.arrayToDataTable(questionArray);
+            const questionData = google.visualization.arrayToDataTable(questionArray);
     
-            var questionOptions = {
+            const questionOptions = {
                 title: questionTitle,
                 chartArea: {left: 73},
                 legend: {
@@ -220,26 +135,8 @@ function drawQuestion() {
                 }
             };
     
-            var questionChart = new google.visualization.PieChart(document.getElementById('questionChart'));
+            const questionChart = new google.visualization.PieChart($('#questionChart')[0]);
             questionChart.draw(questionData, questionOptions);
         }
-    }
-
-    function getQuestionAnswers(drawChart) {
-
-        var stripKey = questionTitle.replace(/[^0-9a-zA-Z, ]/gi, '');
-
-        marketsRef.once('value', function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                var childKey = childSnapshot.key;
-                var childData = childSnapshot.val();
-                try {
-                    uniqueResults[childData.questions[stripKey]] = 0;
-                    questionResults.push(childData.questions[stripKey]);
-                } catch (err) {}
-            });
-
-            drawChart();
-        });
-    }
+    });
 };
