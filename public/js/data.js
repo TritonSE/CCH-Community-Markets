@@ -1,4 +1,4 @@
-if (sessionStorage.getItem('loggedIn') != true) {location.href = "/admin-login";}
+if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/admin-login";}
 
 $(document).ready( function () {
 
