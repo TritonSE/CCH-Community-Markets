@@ -11,7 +11,7 @@ router.get('/', isAuthorized, function(req, res, next) {
 });
 
 function isAuthorized(req, res, next){
-	if(req.cookies.token != undefined)
+	if(req.cookies.token)
 		next();
 		
 	else
