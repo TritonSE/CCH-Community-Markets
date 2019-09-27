@@ -23,7 +23,7 @@ router.post('/login', function(req, res, next) {
 });
 
 //checks if signed in for the navbar 
-router.post('/checkIfSignedIn', function(req, res) {
+router.get('/checkIfSignedIn', function(req, res, next) {
 	if(req.cookies.token)
 		res.jsonp({signedIn: true});
 
