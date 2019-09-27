@@ -1,7 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var firebase = require('firebase');
-var config = require('./config.js');
+const express = require('express');
+const router = express.Router();
+const firebase = require('firebase');
+const config = require('./config.js');
+const cookieParser = require('cookie-parser');
+const cookies = require('cookies');
 
 if(!firebase.apps.length)
 	firebase.initializeApp(config.config);
@@ -10,45 +12,30 @@ router.get('/', function(req, res, next) {
 	res.render('admin-login');
 });
 
-router.post('/', signIn, function(req, res) {
-	//checks if user is signed in
-	if(firebase.auth().currentUser)
+router.post('/login', function(req, res, next) {
+	firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function() {
+		res.cookie('token', req.body.email, {httpOnly: true});
 		res.jsonp({success: true});
-
-	//sign in unsuccessful
-	else
+	}).catch(function(error) {
+		console.log("invalid credentials");
 		res.jsonp({success: false});
-
+	});
 });
 
-//this method gets called before function body inside router.post, attemps to sign in user
-function signIn(req, res, next){
-	const email = req.body.email
-	const password = req.body.password;
-
-	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-		//sign in unsuccessful
-		console.log("invalid credential")
-	});
-
-	//set 1.2 second timeout so that above method can finish before moving on
-	setTimeout(next, 1200);
-}
-
 //checks if signed in for the navbar 
-router.post('/checkIfSignedIn', function(req, res){
-	if(firebase.auth().currentUser)
+router.post('/checkIfSignedIn', function(req, res) {
+	if(req.cookies.token != undefined)
 		res.jsonp({signedIn: true});
 
 	else
 		res.jsonp({signedIn: false});
-	
 });
 
 
 //logs out user
-router.post('/signOut', function(req, res){
-	firebase.auth().signOut();
+router.post('/signOut', function(req, res, next){
+	res.clearCookie('token');
+	console.log(res.cookies.token);
 });
 
 module.exports = router;

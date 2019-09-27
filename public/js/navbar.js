@@ -1,6 +1,6 @@
 function logout(){
 	//send request to logout user
-	$.post('/admin-login/signOut', function(data) {
+	$.post({'url' : '/admin-login/signOut', credentials: 'include', withCredentials: true}, function(data) {
 		location.href='/';
 	});
 }

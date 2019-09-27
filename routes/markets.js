@@ -11,14 +11,12 @@ router.get('/', isAuthorized, function(req, res, next) {
 });
 
 function isAuthorized(req, res, next){
-	firebase.auth().onAuthStateChanged(function(user) {
-		//user is signed in 
-		if(user)
-			next();
-		
-		//not signed in 
-		else
-			res.render('admin-login');
-	});
+	if(req.cookies.token != undefined) {
+		next();
+	}
+
+	else{
+		res.render('admin-login');
+	}
 }
 module.exports = router;

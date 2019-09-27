@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var firebase = require('firebase');
 var config = require('./config.js');
+var cookieParser = require('cookie-parser');
 
 if(!firebase.apps.length)
 	firebase.initializeApp(config.config);
@@ -11,14 +12,11 @@ router.get('/', isAuthorized, function(req, res, next) {
 });
 
 function isAuthorized(req, res, next){
-	firebase.auth().onAuthStateChanged(function(user) {
-		//user is signed in
-		if(user)
-			next();
+	if(res.cookies.token != undefined)
+		next();
 
-		else
-			res.render('admin-login');
-	});
+	else
+		res.render('admin-login');
 }
 
 module.exports = router;

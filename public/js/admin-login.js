@@ -9,11 +9,12 @@ $(document).ready( function () {
         const password = $("#password").val();
 		  
 		  //send request to sign in user
-		  $.post('/admin-login', {email, password}, function(data) {
+		  $.post('/admin-login/login', {email, password}, function(data) {
 			 //if sign in was successful
 		  	 if(data['success']){
 			 	location.href="/";
 			 }
+
 			 //sign in not successful
 			 else{
 			 	$("#username").val("");
