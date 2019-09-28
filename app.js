@@ -13,8 +13,6 @@ var marketdata = require('./routes/marketdata');
 var login = require('./routes/admin-login');
 var app = express();
 
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -32,16 +30,5 @@ app.use('/results',results);
 app.use('/data',data);
 app.use('/marketdata',marketdata);
 app.use('/admin-login',login);
-
-var config = {
-		apiKey: app.get('apiKey'),
-		authDomain: app.get('authDomain'),
-		databaseURL: app.get('databaseURL'),
-		projectId: app.get('projectId'),
-		storageBucket: app.get('storageBucket'),
-		messagingSenderId: app.get('messagingSenderId')
-};
-
-app.set("test", "test2");
 
 module.exports = app;
