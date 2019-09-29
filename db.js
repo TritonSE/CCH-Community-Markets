@@ -11,12 +11,12 @@ function exportAllMarkets() {
     return db.once('value');
 }
 
-function addNewMarket() {
+function addNewMarket(info) {
     let marketName = info.marketInfo.marketName + ', ' + info.marketInfo.address;
     // Make sure illegal characters removed from key.
     marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '').trim()
 
-    marketsRef.child(marketName).set({
+    db.child(marketName).set({
         personalInfo: {
             firstName: info.marketInfo.firstName,
             lastName: info.marketInfo.lastName,
@@ -37,7 +37,7 @@ function addNewMarket() {
 }
 
 function updateExistingMarket(info) {
-    marketsRef = db.child(info.marketInfo.marketName);
+    const marketsRef = db.child(info.marketInfo.marketName);
 
     // Update market level.
     marketsRef.child("marketInfo").update({
