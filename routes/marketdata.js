@@ -12,7 +12,7 @@ router.get('/', isAuthorized, function(req, res, next) {
 });
 
 function isAuthorized(req, res, next){
-	if(res.cookies.token)
+	if(req.cookies.token)
 		next();
 
 	else

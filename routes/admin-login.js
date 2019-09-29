@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/login', function(req, res, next) {
 	firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function() {
-		res.cookie('token', req.body.email, {httpOnly: true});
+		res.cookie('token', req.body.email, {path: '/'});
 		res.jsonp({success: true});
 	}).catch(function(error) {
 		console.log("invalid credentials");
@@ -34,8 +34,7 @@ router.get('/checkIfSignedIn', function(req, res, next) {
 
 //logs out user
 router.post('/signOut', function(req, res, next){
-	res.clearCookie('token');
-	console.log(res.cookies.token);
+	res.clearCookie('token', {path: '/'}).send("logged out");
 });
 
 module.exports = router;
