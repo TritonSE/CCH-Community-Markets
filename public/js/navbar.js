@@ -2,8 +2,8 @@ function logout(){
     sessionStorage.setItem("loggedIn","false");
     console.log(sessionStorage.getItem("loggedIn"));
 }
-const loginButton = "<a role=\"button\" href='/admin-login' class='btn btn-outline-warning'>Admin Login</a>"
-const logoutButton = "<a role='button' onclick='logout()' href='/' class='btn btn-outline-warning'>Logout</a>"
+var loginButton = "<a role=\"button\" href='/admin-login' class='btn btn-outline-warning'>Admin Login</a>"
+var logoutButton = "<a role='button' onclick='logout()' href='/' class='btn btn-outline-warning'>Logout</a>"
 $(document).ready(function() {
     if (sessionStorage.getItem("loggedIn") == "true"){
         $('.ml-auto').append(logoutButton);

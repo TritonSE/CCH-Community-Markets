@@ -1,7 +1,7 @@
 $('#assess-button').click(function(event) {
     
     //gets form
-    const myForm = $('#assessment-form');
+    var myForm = $('#assessment-form');
 
     if(! myForm[0].checkValidity()) {
         // If the form is invalid, submit it. The form won't actually submit;
@@ -10,49 +10,49 @@ $('#assess-button').click(function(event) {
     }
 
     // Pull information from form.
-    const responses = $('#assessment-form').serializeArray();
+    var responses = $('#assessment-form').serializeArray();
 
     // Get first 4 values if market exists, first 10 values otherwise.
-    const userVals = responses[3].value === "NEW MARKET" ? 10 : 4;
-    let userInfo = {};
-    for (let i = 0; i < userVals; i++) {
+    var userVals = responses[3].value === "NEW MARKET" ? 10 : 4;
+    var userInfo = {};
+    for (var i = 0; i < userVals; i++) {
         userInfo[responses[i].name] = responses[i].value;
     }
 
     event.preventDefault();
 
     //keeps track of current question #
-    let count = 1;
+    var count = 1;
 
     //each index represents the amount of times a level occurs.
     // [level 1, level 2, level 3]
-    let  levelArr = [0,0,0];
+    var  levelArr = [0,0,0];
 
-    let levelPotential = [0,0,0]
+    var levelPotential = [0,0,0]
 
-    let disqualified = false;
+    var disqualified = false;
 
-    let questionsList = {}
-    let doBetterQuestions = []
+    var questionsList = {}
+    var doBetterQuestions = []
 
     //for when questions hit level zero
-    let increaseZeroCase = 0;
+    var increaseZeroCase = 0;
     
     //loops through all questions, executes the following function for each question one at a time. 
     $('.answers').each(function(){
-        let currentQuestion = $(this);
+        var currentQuestion = $(this);
 
         //finds checked label
-        let answer = currentQuestion.find(':checked');
+        var answer = currentQuestion.find(':checked');
 
-        let questionKey = answer.attr('name');
+        var questionKey = answer.attr('name');
         if (typeof questionKey != "undefined") {
             questionKey = questionKey.replace(/[^0-9a-zA-Z, ]/gi, '');
         } else {
             questionKey = "undefined";
         }
 
-        let answerText = answer.val();
+        var answerText = answer.val();
         if (typeof answerText != "undefined") {
             answerText = answerText
         } else {
@@ -76,7 +76,7 @@ $('#assess-button').click(function(event) {
         else{
 
             //grabs level hidden input corresponding with label in assess.ejs
-            let level = answer.parent().find('.points-input').val();
+            var level = answer.parent().find('.points-input').val();
             
             
             if(level == 1){
@@ -110,13 +110,13 @@ $('#assess-button').click(function(event) {
         }
         
         //make sure only to increase potential once for each section
-        let has0 = false;
-        let has1 = false;
-        let has2 = false;
-        let has3 = false;
+        var has0 = false;
+        var has1 = false;
+        var has2 = false;
+        var has3 = false;
         
         currentQuestion.find('.points-input').each(function() {
-                let pointlevel = $(this).val()
+                var pointlevel = $(this).val()
                 
                 if(pointlevel == 1 && !has1){
                     levelPotential[0]++;
@@ -142,7 +142,7 @@ $('#assess-button').click(function(event) {
     });
     
     //increasing potential to account for questions where zero option was selected 
-    for(let z = 0; z < increaseZeroCase; z++){
+    for(var z = 0; z < increaseZeroCase; z++){
         levelPotential[0]++;
         levelPotential[1]++;
         levelPotential[2]++;
@@ -150,9 +150,9 @@ $('#assess-button').click(function(event) {
 
 
     //grab final market value.
-    let marketLevel = 0;
+    var marketLevel = 0;
 
-    for(let i = 0; i < levelArr.length; i++){
+    for(var i = 0; i < levelArr.length; i++){
         console.log("total for market " + (i+1) + " is " + levelArr[i])
         console.log("total potential is " + levelPotential[i])
         if(levelArr[i] >= levelPotential[i]){
@@ -176,24 +176,24 @@ $('#assess-button').click(function(event) {
     }
 
     //the next level of the market assuming it's been hit.
-    let potentialLevel = marketLevel + 1;
+    var potentialLevel = marketLevel + 1;
 
     //grabing missed numbers from each section
 
-    let missedSections = [[],[],[],[]]
+    var missedSections = [[],[],[],[]]
 
     //keep track of current question
-    let count =1;
+    var count =1;
         
     //count of potential market level 
-    let countPotential = 0;
+    var countPotential = 0;
 
     //loop through questions again
     $('.answers').each(function(){
-        let currentQuestion = $(this);
+        var currentQuestion = $(this);
 
         //finds checked label
-        let answer = currentQuestion.find(':checked');
+        var answer = currentQuestion.find(':checked');
     
         //if no input
         if(typeof answer.val() == "undefined"){
@@ -210,7 +210,7 @@ $('#assess-button').click(function(event) {
         else{
 
             //grabs level hidden input corresponding with label in assess.ejs
-            let level = answer.parent().find('.points-input').val();
+            var level = answer.parent().find('.points-input').val();
                 
             if(level >= marketLevel + 1){
                 count++;
@@ -225,9 +225,9 @@ $('#assess-button').click(function(event) {
             //case when question has value that isn't equal to the marketlevel + 1
             else{
                 
-                let alreadyPushed = false;
+                var alreadyPushed = false;
                 currentQuestion.find('.points-input').each(function() {
-                    let pointlevel = $(this).val()
+                    var pointlevel = $(this).val()
 
                     //for when more than one options satisfy marketLevel + 1, no need to push the count twice 
 
@@ -269,11 +269,11 @@ $('#assess-button').click(function(event) {
     
     // make sure print statements are only called once
     console.log("Checking for questions to fix");
-    let section1Echoed = false;
-    let section2Echoed = false;
-    let section3Echoed = false;
-    let section4Echoed = false;
-    for(let j = 0; j < missedSections.length; j++){
+    var section1Echoed = false;
+    var section2Echoed = false;
+    var section3Echoed = false;
+    var section4Echoed = false;
+    for(var j = 0; j < missedSections.length; j++){
         if(missedSections[j].length == 0){
             continue;
         }
@@ -302,9 +302,9 @@ $('#assess-button').click(function(event) {
                     }
                 }
 
-                let lis = document.getElementById("assessment-q-list").getElementsByTagName("li");
-                for(let k = 0; k < missedSections[j].length; k++){
-                    let index = missedSections[j][k]
+                var lis = document.getElementById("assessment-q-list").getElementsByTagName("li");
+                for(var k = 0; k < missedSections[j].length; k++){
+                    var index = missedSections[j][k]
                     console.log(index);
                     doBetterQuestions.push("<span class=\"boldanswer\">" + index.toString() + "</span>" + ": " + lis[index - 1].getElementsByTagName("p")[0].innerText)
                 }
@@ -312,7 +312,7 @@ $('#assess-button').click(function(event) {
     }
     
     if(marketLevel == 0){
-        for(let x = 0; x < levelArr.length; x++){
+        for(var x = 0; x < levelArr.length; x++){
             if(levelArr[x] >= levelPotential[x]){
                 marketLevel = x + 1;
             }
@@ -331,9 +331,9 @@ $('#assess-button').click(function(event) {
      * 
      ****************************************************************/
 
-    const marketExists = userVals === 4 ? "true" : "false";
+    var marketExists = userVals === 4 ? "true" : "false";
 
-    const sendData = {
+    var sendData = {
         existing: marketExists,
         level: marketLevel,
         betterQuestions: doBetterQuestions, 
@@ -343,6 +343,6 @@ $('#assess-button').click(function(event) {
 
     $.post('/submit-assess', {data: JSON.stringify(sendData)});
 
-    const href='results/' + userInfo.marketName + '/' + marketLevel;
+    var href='results/' + userInfo.marketName + '/' + marketLevel;
     location.href=href;
 });
