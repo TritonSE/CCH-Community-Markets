@@ -27,4 +27,18 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+
+router.post('/addUser', function(req, res, next){
+	admin.auth().createUser({
+		email: req.body.email, 
+		emailVerified: false, 
+		password: req.body.password
+	}).then(function() {
+		res.jsonp({success: true});
+	}).catch(function(error) {
+		res.jsonp({success: false});
+		console.log('Error creating new user:', error);
+	});
+});
+
 module.exports = router;
