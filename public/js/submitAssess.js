@@ -12,8 +12,10 @@ $('#assess-button').click(function(event) {
     // Pull information from form.
     const responses = $('#assessment-form').serializeArray();
 
+    console.log(responses);
+
     // Get first 4 values if market exists, first 10 values otherwise.
-    const userVals = responses[3].name === "NEW MARKET" ? 10 : 4;
+    const userVals = responses[3].value === "NEW MARKET" ? 10 : 4;
     let userInfo = {};
     for (let i = 0; i < userVals; i++) {
         userInfo[responses[i].name] = responses[i].value;
@@ -345,6 +347,6 @@ $('#assess-button').click(function(event) {
 
     $.post('/submit-assess', {data: JSON.stringify(sendData)});
 
-    const href='results/' + sendResponses.marketName + '/' + marketLevel;
+    const href='results/' + userInfo.marketName + '/' + marketLevel;
     location.href=href;
 });
