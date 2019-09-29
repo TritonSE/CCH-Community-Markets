@@ -1,18 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var index = require('./routes/index');
-var assess = require('./routes/assess');
-var markets = require('./routes/markets');
-var results = require('./routes/results');
-var data = require('./routes/data');
-var marketdata = require('./routes/marketdata');
-var login = require('./routes/admin-login');
-var submitassess = require('./routes/submit-assess');
-var app = express();
+const index = require('./routes/index');
+const assess = require('./routes/assess');
+const markets = require('./routes/markets');
+const results = require('./routes/results');
+const data = require('./routes/data');
+const marketdata = require('./routes/marketdata');
+const login = require('./routes/admin-login');
+const submitassess = require('./routes/submit-assess');
+const app = express();
 
 
 
@@ -35,7 +35,7 @@ app.use('/marketdata',marketdata);
 app.use('/admin-login',login);
 app.use('/submit-assess', submitassess);
 
-var config = {
+const config = {
 		apiKey: app.get('apiKey'),
 		authDomain: app.get('authDomain'),
 		databaseURL: app.get('databaseURL'),

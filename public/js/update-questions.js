@@ -2,9 +2,9 @@
 //questions that say if no, skip to ... on the spreadsheet 
 //questions are 1, 8, 11, 25, 28, 36
 $('input').change(function(){
-    var id = $(this).attr("id");
-    var currentNumber = id.match(/\d+/g);
-    var currentNumber = parseInt(currentNumber);
+    const id = $(this).attr("id");
+    const currentNumber = id.match(/\d+/g);
+    const currentNumber = parseInt(currentNumber);
     
     //map with questions that require greying out as keys and end markers as values
     const options = new Map([

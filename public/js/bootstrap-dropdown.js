@@ -6,9 +6,9 @@
  /* DROPDOWN CLASS DEFINITION
   * ========================= */
 
-  var toggle = '[data-toggle="dropdown"]'
+  let toggle = '[data-toggle="dropdown"]'
     , Dropdown = function ( element ) {
-        var $el = $(element).on('click.dropdown.data-api', this.toggle)
+        let $el = $(element).on('click.dropdown.data-api', this.toggle)
         $('html').on('click.dropdown.data-api', function () {
           $el.parent().removeClass('open')
         })
@@ -19,7 +19,7 @@
     constructor: Dropdown
 
   , toggle: function ( e ) {
-      var $this = $(this)
+      let $this = $(this)
         , selector = $this.attr('data-target')
         , $parent
         , isActive
@@ -52,7 +52,7 @@
 
   $.fn.dropdown = function ( option ) {
     return this.each(function () {
-      var $this = $(this)
+      let $this = $(this)
         , data = $this.data('dropdown')
       if (!data) $this.data('dropdown', (data = new Dropdown(this)))
       if (typeof option == 'string') data[option].call($this)
@@ -73,9 +73,9 @@
  /* DROPDOWN CLASS DEFINITION
   * ========================= */
 
-  var toggle = '[data-toggle="dropdown"]'
+  let toggle = '[data-toggle="dropdown"]'
     , Dropdown = function ( element ) {
-        var $el = $(element).on('click.dropdown.data-api', this.toggle)
+        let $el = $(element).on('click.dropdown.data-api', this.toggle)
         $('html').on('click.dropdown.data-api', function () {
           $el.parent().removeClass('open')
         })
@@ -86,7 +86,7 @@
     constructor: Dropdown
 
   , toggle: function ( e ) {
-      var $this = $(this)
+      let $this = $(this)
         , selector = $this.attr('data-target')
         , $parent
         , isActive
@@ -119,7 +119,7 @@
 
   $.fn.dropdown = function ( option ) {
     return this.each(function () {
-      var $this = $(this)
+      let $this = $(this)
         , data = $this.data('dropdown')
       if (!data) $this.data('dropdown', (data = new Dropdown(this)))
       if (typeof option == 'string') data[option].call($this)

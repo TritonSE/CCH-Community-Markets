@@ -22,21 +22,21 @@ $('#assess-button').click(function(event) {
     event.preventDefault();
 
     //keeps track of current question #
-    var count = 1;
+    let count = 1;
 
     //each index represents the amount of times a level occurs.
     // [level 1, level 2, level 3]
-    var  levelArr = [0,0,0];
+    let  levelArr = [0,0,0];
 
-    var levelPotential = [0,0,0]
+    let levelPotential = [0,0,0]
 
-    var disqualified = false;
+    let disqualified = false;
 
-    var questionsList = {}
-    var doBetterQuestions = []
+    let questionsList = {}
+    let doBetterQuestions = []
 
     //for when questions hit level zero
-    var increaseZeroCase = 0;
+    let increaseZeroCase = 0;
     
     //loops through all questions, executes the following function for each question one at a time. 
     $('.answers').each(function(){
@@ -76,7 +76,7 @@ $('#assess-button').click(function(event) {
         else{
 
             //grabs level hidden input corresponding with label in assess.ejs
-            var level = answer.parent().find('.points-input').val();
+            let level = answer.parent().find('.points-input').val();
             
             
             if(level == 1){
@@ -110,10 +110,10 @@ $('#assess-button').click(function(event) {
         }
         
         //make sure only to increase potential once for each section
-        var has0 = false;
-        var has1 = false;
-        var has2 = false;
-        var has3 = false;
+        let has0 = false;
+        let has1 = false;
+        let has2 = false;
+        let has3 = false;
         
         currentQuestion.find('.points-input').each(function() {
                 let pointlevel = $(this).val()
@@ -150,7 +150,7 @@ $('#assess-button').click(function(event) {
 
 
     //grab final market value.
-    var marketLevel = 0;
+    let marketLevel = 0;
 
     for(let i = 0; i < levelArr.length; i++){
         console.log("total for market " + (i+1) + " is " + levelArr[i])
@@ -176,17 +176,17 @@ $('#assess-button').click(function(event) {
     }
 
     //the next level of the market assuming it's been hit.
-    var potentialLevel = marketLevel + 1;
+    let potentialLevel = marketLevel + 1;
 
     //grabing missed numbers from each section
 
-    var missedSections = [[],[],[],[]]
+    let missedSections = [[],[],[],[]]
 
     //keep track of current question
-    var count =1;
+    let count =1;
         
     //count of potential market level 
-    var countPotential = 0;
+    let countPotential = 0;
 
     //loop through questions again
     $('.answers').each(function(){
@@ -210,7 +210,7 @@ $('#assess-button').click(function(event) {
         else{
 
             //grabs level hidden input corresponding with label in assess.ejs
-            var level = answer.parent().find('.points-input').val();
+            let level = answer.parent().find('.points-input').val();
                 
             if(level >= marketLevel + 1){
                 count++;
@@ -225,7 +225,7 @@ $('#assess-button').click(function(event) {
             //case when question has value that isn't equal to the marketlevel + 1
             else{
                 
-                var alreadyPushed = false;
+                let alreadyPushed = false;
                 currentQuestion.find('.points-input').each(function() {
                     let pointlevel = $(this).val()
 
@@ -269,10 +269,10 @@ $('#assess-button').click(function(event) {
     
     // make sure print statements are only called once
     console.log("Checking for questions to fix");
-    var section1Echoed = false;
-    var section2Echoed = false;
-    var section3Echoed = false;
-    var section4Echoed = false;
+    let section1Echoed = false;
+    let section2Echoed = false;
+    let section3Echoed = false;
+    let section4Echoed = false;
     for(let j = 0; j < missedSections.length; j++){
         if(missedSections[j].length == 0){
             continue;
@@ -302,9 +302,9 @@ $('#assess-button').click(function(event) {
                     }
                 }
 
-                var lis = document.getElementById("assessment-q-list").getElementsByTagName("li");
+                let lis = document.getElementById("assessment-q-list").getElementsByTagName("li");
                 for(let k = 0; k < missedSections[j].length; k++){
-                    var index = missedSections[j][k]
+                    let index = missedSections[j][k]
                     console.log(index);
                     doBetterQuestions.push("<span class=\"boldanswer\">" + index.toString() + "</span>" + ": " + lis[index - 1].getElementsByTagName("p")[0].innerText)
                 }
