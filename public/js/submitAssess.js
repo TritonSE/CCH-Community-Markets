@@ -333,7 +333,7 @@ $('#assess-button').click(function(event) {
      * 
      ****************************************************************/
 
-    const marketExists = userVals === 4 ? "true" : "false";
+    const route = userVals === 4 ? "existing-market" : "new-market";
 
     const sendData = {
         existing: marketExists,
@@ -343,7 +343,7 @@ $('#assess-button').click(function(event) {
         questions: questionsList
     }
 
-    $.post('/submit-assess', {data: JSON.stringify(sendData)});
+    $.post('/submit-assess/' + route, {data: JSON.stringify(sendData)});
 
     const href='results/' + sendResponses.marketName + '/' + marketLevel;
     location.href=href;
