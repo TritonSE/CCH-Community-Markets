@@ -1,7 +1,7 @@
 $('#assess-button').click(function(event) {
     
     //gets form
-    var myForm = $('#assessment-form');
+    const myForm = $('#assessment-form');
 
     if(! myForm[0].checkValidity()) {
         // If the form is invalid, submit it. The form won't actually submit;
@@ -10,19 +10,16 @@ $('#assess-button').click(function(event) {
     }
 
     // Pull information from form.
-    var responses = $('#pre-assess-form').serializeArray();
+    const responses = $('#assessment-form').serializeArray();
 
-    // Create new firebase app if not already created.
-    if (!firebase.apps.length) {
-        firebase.initializeApp(config);
+    // Get first 4 values if market exists, first 10 values otherwise.
+    const userVals = responses[3].name === "NEW MARKET" ? 10 : 4;
+    let userInfo = {};
+    for (let i = 0; i < userVals; i++) {
+        userInfo[responses[i].name] = responses[i].value;
     }
-    
-    // Setup database communication.
-    var db = firebase.database();
-    var ref = db.ref("live_weller");
 
-    // Move to sub-directory.
-    var marketsRef = ref.child("markets");
+    console.log(userInfo);
 
     event.preventDefault();
 
@@ -336,64 +333,18 @@ $('#assess-button').click(function(event) {
      * 
      ****************************************************************/
 
-    console.log(questionsList);
-    console.log(doBetterQuestions);
-    
-    // Existing market.
-    if (responses.length == 4) {
-        console.log("push existing market");
-        // Check if new market or existing market.
-        sessionStorage.setItem("formname",responses[3].value);
-        sessionStorage.setItem("lvl", marketLevel.toString());
+    const marketExists = userVals === 4 ? "true" : "false";
 
-        var marketName = responses[3].value;
-
-        marketsRef = marketsRef.child(marketName);
-
-        // Update market level.
-        marketsRef.child("marketInfo").update({
-            marketLevel: marketLevel
-        });
-        // Update user info.
-        marketsRef.child("personalInfo").update({
-            firstName: responses[0].value,
-            lastName: responses[1].value,
-            email: responses[2].value
-        });
-        // Update question responses.
-        marketsRef.child("questions").set(questionsList);
-        marketsRef.child("missedQuestions").set(doBetterQuestions);
-
-    } else { // New market.
-        console.log("push new market");
-        // Check if new market or existing market.
-        sessionStorage.setItem("formname",responses[4].value);
-        sessionStorage.setItem("lvl", marketLevel.toString());
-
-        var marketName = responses[4].value + ', ' + responses[6].value;
-        // Make sure illegal characters removed from key.
-        marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '')
-
-        marketsRef.child(marketName).set({
-            personalInfo: {
-                firstName: responses[0].value,
-                lastName: responses[1].value,
-                email: responses[2].value,
-            },
-            marketInfo: {
-                marketName: responses[4].value,
-                storeType: responses[5].value,
-                address: responses[6].value,
-                city: responses[7].value,
-                state: responses[8].value,
-                zip: responses[9].value,
-                marketLevel: marketLevel
-            },
-            questions: questionsList,
-            missedQuestions: doBetterQuestions
-        });
+    const sendData = {
+        existing: marketExists,
+        level: marketLevel,
+        betterQuestions: doBetterQuestions, 
+        marketInfo: userInfo, 
+        questions: questionsList
     }
 
-    console.log("switching window");
-    location.href='results';
+    $.post('/submit-assess', {data: JSON.stringify(sendData)});
+
+    const href='results/' + sendResponses.marketName + '/' + marketLevel;
+    location.href=href;
 });

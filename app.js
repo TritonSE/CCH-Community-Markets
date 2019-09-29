@@ -11,6 +11,7 @@ var results = require('./routes/results');
 var data = require('./routes/data');
 var marketdata = require('./routes/marketdata');
 var login = require('./routes/admin-login');
+var submitassess = require('./routes/submit-assess');
 var app = express();
 
 
@@ -32,6 +33,7 @@ app.use('/results',results);
 app.use('/data',data);
 app.use('/marketdata',marketdata);
 app.use('/admin-login',login);
+app.use('/submit-assess', submitassess);
 
 var config = {
 		apiKey: app.get('apiKey'),
