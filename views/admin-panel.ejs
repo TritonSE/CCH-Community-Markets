@@ -38,7 +38,7 @@
 						<% admins.forEach(function(admins) { %>
 							<tr>
 								<th> <%= admins.email %> </th>
-								<th> <button value="<%=admins.email%>"> Remove </button> </th>
+								<th> <button id="removeAdmin-button" value="<%=admins.email%>"> Remove </button> </th>
 							</tr>
 						<% }); %>
 					</tbody>
@@ -73,6 +73,7 @@
 
 
 			<script src="/js/addAdmin.js"></script>
+			<script src="/js/removeAdmin.js"></script>
 			<script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
 	</body>
 
