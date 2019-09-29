@@ -13,6 +13,11 @@ const ref = db.ref("live_weller");
 // Links to markets list.
 const marketsRef = ref.child("markets");
 
+function generateKey(name, address) {
+	let key = name.replace(/[^0-9a-zA-Z, ]/gi, '') + ", " + address.replace(/[^0-9a-zA-Z, ]/gi, '');
+	return key.trim();
+}
+
 router.get('/', function(req, res, next) {
 	let markets = [];
 
@@ -25,7 +30,8 @@ router.get('/', function(req, res, next) {
 				address: childData.address, 
 				size: childData.storeType, 
 				zip: childData.zip,
-				level: childData.marketLevel
+				level: childData.marketLevel,
+				key: generateKey(childData.marketName, childData.address)
 			});
 		});
 
