@@ -345,6 +345,6 @@ $('#assess-button').click(function(event) {
 
     $.post('/submit-assess/' + route, {data: JSON.stringify(sendData)});
 
-    const href='results/' + sendResponses.marketName + '/' + marketLevel;
+    const href='results/' + userInfo.marketName + '/' + marketLevel;
     location.href=href;
 });
