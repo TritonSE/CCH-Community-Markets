@@ -325,14 +325,6 @@ $('#assess-button').click(function(event) {
         marketLevel = marketLevel + 1;
     }
 
-    console.log("fix these questions to become market level: " + marketLevel);
-
-    /*****************************************************************
-     * 
-     * ---------------------> SEND TO DATABASE <---------------------
-     * 
-     ****************************************************************/
-
     const route = userVals === 4 ? "existing-market" : "new-market";
 
     const sendData = {
