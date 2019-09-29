@@ -326,7 +326,6 @@ $('#assess-button').click(function(event) {
     const route = userVals === 4 ? "existing-market" : "new-market";
 
     const sendData = {
-        existing: marketExists,
         level: marketLevel,
         betterQuestions: doBetterQuestions, 
         marketInfo: userInfo, 
