@@ -10,7 +10,7 @@ function generateKey(name, address) {
 router.get('/', function(req, res, next) {
 	let markets = [];
 
-	db.exportAllMarkets().then(function(result) {
+	db.getAllMarkets().then(function(result) {
 		const allMarkets = result.val();
 		
 		for (const key in allMarkets) {

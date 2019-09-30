@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db.js');
 
 router.get('/:marketKey', function(req, res, next) {
-    db.exportAllMarkets().then(function(result) {
+    db.getAllMarkets().then(function(result) {
         const markets = result.val();
         const market = markets[req.params.marketKey];
 

@@ -12,7 +12,7 @@ const db = firebase.database().ref("live_weller").child("markets");
  * Using the result of this method and .val(), you can access the entire
  * list of markets in JSON format.
  */
-function exportAllMarkets() {
+function getAllMarkets() {
     return db.once('value');
 }
 
@@ -72,4 +72,4 @@ function updateExistingMarket(info) {
     marketsRef.child("missedQuestions").set(info.betterQuestions);
 }
 
-module.exports = {exportAllMarkets, addNewMarket, updateExistingMarket};
+module.exports = {getAllMarkets, addNewMarket, updateExistingMarket};

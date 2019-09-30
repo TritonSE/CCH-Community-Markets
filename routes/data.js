@@ -18,7 +18,7 @@ router.get('/general', function(req, res) {
 		"convenience": 0
 	};
 
-	db.exportAllMarkets().then(function(result) {
+	db.getAllMarkets().then(function(result) {
 		const markets = result.val();
 
 		for (const key in markets) {
@@ -35,7 +35,7 @@ router.post('/question', function(req, res) {
 	let questionResults = [];
 	let uniqueResults = {};
 
-	db.exportAllMarkets().then(function(result) {
+	db.getAllMarkets().then(function(result) {
 		const markets = result.val();
 		
 		for (const key in markets) {
