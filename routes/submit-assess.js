@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db.js');
+const db = require('../db');
 
 router.post('/', function(req, res) {
     const info = JSON.parse(req.body.data);

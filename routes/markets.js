@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db.js');
+const db = require('../db');
 
 function generateKey(name, address) {
 	let key = name.replace(/[^0-9a-zA-Z, ]/gi, '') + ", " + address.replace(/[^0-9a-zA-Z, ]/gi, '');
