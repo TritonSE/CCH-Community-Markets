@@ -4,8 +4,7 @@ const db = require('../db.js');
 
 router.get('/:marketKey', function(req, res, next) {
     db.getAllMarkets().then(function(result) {
-        const markets = result.val();
-        const market = markets[req.params.marketKey];
+        const market = result.val()[req.params.marketKey];
 
         let status = "Questions to fix to get to level " + (parseInt(market.marketInfo.marketLevel) + 1);
         if (market.marketInfo.marketLevel === 3) {
