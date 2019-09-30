@@ -2,14 +2,10 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db.js');
 
-router.post('/new-market', function(req, res) {
+router.post('/', function(req, res) {
     const info = JSON.parse(req.body.data);
-    db.addNewMarket(info);
-});
-
-router.post('/existing-market', function(req, res) {
-    const info = JSON.parse(req.body.data);
-    db.updateExistingMarket(info);
+    if (info.new === "true") db.addNewMarket(info);
+    else db.updateExistingMarket(info);
 });
 
 module.exports = router;
