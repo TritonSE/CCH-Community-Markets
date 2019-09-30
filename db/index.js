@@ -16,6 +16,10 @@ function getAllMarkets() {
     return db.once('value');
 }
 
+function getSpecificMarket(market) {
+    return db.child(market).once('value');
+}
+
 /**
  * If the user selected "NEW MARKET" on the assessment page, this method is
  * called to upload the market to the database.
@@ -72,4 +76,4 @@ function updateExistingMarket(info) {
     marketsRef.child("missedQuestions").set(info.betterQuestions);
 }
 
-module.exports = {getAllMarkets, addNewMarket, updateExistingMarket};
+module.exports = {getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket};
