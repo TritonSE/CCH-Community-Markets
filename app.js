@@ -1,18 +1,9 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-
-const index = require('./routes/index');
-const assess = require('./routes/assess');
-const markets = require('./routes/markets');
-const results = require('./routes/results');
-const data = require('./routes/data');
-const marketdata = require('./routes/marketdata');
-const login = require('./routes/admin-login');
-const submitassess = require('./routes/submit-assess');
-const app = express();
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var app = express();
 
 
 
@@ -26,14 +17,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/assess', assess);
-app.use('/markets', markets);
-app.use('/results',results);
-app.use('/data',data);
-app.use('/marketdata',marketdata);
-app.use('/admin-login',login);
-app.use('/submit-assess', submitassess);
+app.use('/', require('./routes/index'));
+app.use('/assess', require('./routes/assess'));
+app.use('/markets', require('./routes/markets'));
+app.use('/results', require('./routes/results'));
+app.use('/data', require('./routes/data'));
+app.use('/marketdata', require('./routes/marketdata'));
+app.use('/admin-login', require('./routes/admin-login'));
+app.use('/submit-assess', require('./routes/submit-assess'));
 
 const config = {
 		apiKey: app.get('apiKey'),
