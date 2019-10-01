@@ -3,12 +3,12 @@ if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/admin-login
 $(document).ready( function () {
     google.charts.load('current', {'packages':['corechart']});
     
-    let levelArray = null;
-    let typeArray = null;
+    var levelArray = null;
+    var typeArray = null;
     
     $.get('/data/general', function(data) {
         levelArray = [['Market Level', 'Number of Markets']];
-        for (let i = 0; i < data.levels.length; i++) {
+        for (var i = 0; i < data.levels.length; i++) {
             levelArray.push(['Level ' + i, data.levels[i]]);
         }
 
@@ -26,9 +26,9 @@ $(document).ready( function () {
 
         function drawLevelChart() {
     
-            const levelData = google.visualization.arrayToDataTable(levelArray);
+            var levelData = google.visualization.arrayToDataTable(levelArray);
     
-            const levelOptions = {
+            var levelOptions = {
                 title: 'Market Level',
                 chartArea: {left: 73},
                 legend: {
@@ -49,15 +49,15 @@ $(document).ready( function () {
                 }
             };
     
-            const levelChart = new google.visualization.PieChart($('#levelChart')[0]);
+            var levelChart = new google.visualization.PieChart($('#levelChart')[0]);
             levelChart.draw(levelData, levelOptions);
         }
 
         function drawTypeChart() {
 
-            const typeData = google.visualization.arrayToDataTable(typeArray);
+            var typeData = google.visualization.arrayToDataTable(typeArray);
     
-            const typeOptions = {
+            var typeOptions = {
                 title: 'Market Type',
                 chartArea: {left: 73},
                 legend: {
@@ -78,7 +78,7 @@ $(document).ready( function () {
                 }
             };
     
-            const typeChart = new google.visualization.PieChart($('#typeChart')[0]);
+            var typeChart = new google.visualization.PieChart($('#typeChart')[0]);
             typeChart.draw(typeData, typeOptions);
         }
     });
@@ -89,19 +89,19 @@ function drawQuestion() {
     google.charts.load('current', {'packages':['corechart']});
 
     // Get question to work with.
-    const questionTitle = $("#question-name-dropdown")[0].value;
-    let questionArray = null;
+    var questionTitle = $("#question-name-dropdown")[0].value;
+    var questionArray = null;
 
     $.post('/data/question', {title: questionTitle}, function(data) {
         questionArray = [
             [questionTitle, 'Number of Markets']
         ];
 
-        for (const answer in data.questionResults) {
+        for (var answer in data.questionResults) {
             data.uniqueResults[data.questionResults[answer]] += 1;
         }
 
-        for (const key in data.uniqueResults) {
+        for (var key in data.uniqueResults) {
             if (key != "undefined") {
                 questionArray.push([key, data.uniqueResults[key]]);
             }
@@ -112,9 +112,9 @@ function drawQuestion() {
 
         function drawQuestionChart() {
     
-            const questionData = google.visualization.arrayToDataTable(questionArray);
+            var questionData = google.visualization.arrayToDataTable(questionArray);
     
-            const questionOptions = {
+            var questionOptions = {
                 title: questionTitle,
                 chartArea: {left: 73},
                 legend: {
@@ -135,7 +135,7 @@ function drawQuestion() {
                 }
             };
     
-            const questionChart = new google.visualization.PieChart($('#questionChart')[0]);
+            var questionChart = new google.visualization.PieChart($('#questionChart')[0]);
             questionChart.draw(questionData, questionOptions);
         }
     });
