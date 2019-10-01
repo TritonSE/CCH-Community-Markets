@@ -66,19 +66,26 @@
                 </thead>
                 <tbody>
 
-                    
+                    <% markets.forEach(function(market) { %>
+                        <tr>
+                            <td><a id='turnblue' href='marketdata/<%= market.key %>'><%= market.name %></a></td>
+                            <td><%= market.address %></td>
+                            <td><%= market.size %></td>
+                            <td><%= market.zip %></td>
+                            <td><%= market.level %></td>
+                            <td><button class="mapButton"><a href="https://www.google.com/maps/dir/?api=1&destination=<%= market.address %>" target="_blank" style="text-decoration:none"><p>Go!</p></a></button></td>
+                        </tr>
+                    <% }); %>
 
                 </tbody>
             </table>
+
        </div>
     </div>
+
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
 <script type="text/javascript" src="js/markets.js"></script>
-<script src="/js/config.js"></script>
-
-
 
 </body>
 </html>

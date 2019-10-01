@@ -1,6 +1,5 @@
-var express = require('express');
-var router = express.Router();
-var app = express();
+const express = require('express');
+const router = express.Router();
 
 router.get('/', function(req, res, next) {
 	res.render('index');

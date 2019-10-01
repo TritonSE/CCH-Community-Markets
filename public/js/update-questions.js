@@ -7,7 +7,7 @@ $('input').change(function(){
     var currentNumber = parseInt(currentNumber);
     
     //map with questions that require greying out as keys and end markers as values
-    const options = new Map([
+    var options = new Map([
       [1,11],
       [8,11],
       [11, 17],
@@ -17,20 +17,20 @@ $('input').change(function(){
     ]);
     
     //checks to see whether current number requires greying out 
-    const end = options.has(currentNumber) ? options.get(currentNumber) : -1;
+    var end = options.has(currentNumber) ? options.get(currentNumber) : -1;
     
     //if the current number requires greying out
     if(end != -1){
       
       //booleans for reversing numOptions (grey/ungrey) and "Skip to ..." label (show/hide)
-      let reverseLabel = false;
-      let reverseNumOptions = false;
+      var reverseLabel = false;
+      var reverseNumOptions = false;
 
       //loops through affected questions 
-      for(let i = currentNumber + 1; i < end; i++){
+      for(var i = currentNumber + 1; i < end; i++){
         
         //sees whether no options was selected for current number
-        const  response = ($('#No-' + currentNumber).is(":checked")) ? true : null;
+        var  response = ($('#No-' + currentNumber).is(":checked")) ? true : null;
         
         //shows "Skip to ..." label 
         if(!reverseLabel){

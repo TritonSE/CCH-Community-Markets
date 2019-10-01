@@ -3,7 +3,6 @@ const router = express.Router();
 const firebase = require('firebase');
 const config = require('./config.js');
 const cookieParser = require('cookie-parser');
-const cookies = require('cookies');
 
 if(!firebase.apps.length)
 	firebase.initializeApp(config.config);
