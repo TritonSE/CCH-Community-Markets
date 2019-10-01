@@ -1,5 +1,5 @@
 const firebase = require('firebase');
-const config = require('./config.js');
+const config = require('../config.js');
 
 if (!firebase.apps.length) {
 	firebase.initializeApp(config.config);
