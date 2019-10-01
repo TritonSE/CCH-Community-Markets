@@ -4,8 +4,8 @@ $(document).ready( function () {
     }
 
     $("#submit").on("click", function(event) {
-        const email = $("#username").val();
-        const password = $("#password").val();
+        var email = $("#username").val();
+        var password = $("#password").val();
 
         firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
             sessionStorage.setItem('loggedIn', true);

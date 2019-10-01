@@ -26,7 +26,7 @@ app.use('/marketdata', require('./routes/marketdata'));
 app.use('/admin-login', require('./routes/admin-login'));
 app.use('/submit-assess', require('./routes/submit-assess'));
 
-var config = {
+const config = {
 		apiKey: app.get('apiKey'),
 		authDomain: app.get('authDomain'),
 		databaseURL: app.get('databaseURL'),
