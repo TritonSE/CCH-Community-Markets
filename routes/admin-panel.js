@@ -41,4 +41,8 @@ router.post('/addUser', function(req, res, next){
 	});
 });
 
+router.post('/removeAdmin', function(req, res, next){
+	console.log(req.body.email);
+});
+
 module.exports = router;
