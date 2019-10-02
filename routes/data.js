@@ -18,15 +18,15 @@ router.get('/general', function(req, res) {
 		"convenience": 0
 	};
 
-	db.getAllMarkets().then(function(result) {
-		const markets = result.val();
-
+	db.getAllMarkets().then(markets => {
 		for (const key in markets) {
 			levels[parseInt(markets[key].marketInfo.marketLevel)]++;
 			stores[markets[key].marketInfo.storeType.toLowerCase()]++;
 		}
 	
 		res.json({levels, stores});
+	}).catch(error => {
+		console.log(error);
 	});
 });
 
@@ -35,9 +35,7 @@ router.post('/question', function(req, res) {
 	let questionResults = [];
 	let uniqueResults = {};
 
-	db.getAllMarkets().then(function(result) {
-		const markets = result.val();
-		
+	db.getAllMarkets().then(markets => {
 		for (const key in markets) {
 			const question = markets[key].questions[strippedKey];
 			if (question) {
@@ -47,6 +45,8 @@ router.post('/question', function(req, res) {
 		}
 	
 		res.json({questionResults, uniqueResults});
+	}).catch(error => {
+		console.log(error);
 	});
 });
 

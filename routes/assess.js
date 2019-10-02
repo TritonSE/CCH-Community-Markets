@@ -3,8 +3,7 @@ const router = express.Router();
 const db = require('../db');
 
 router.get('/', function(req, res, next) {
-	db.getAllMarkets().then(function(result) {
-		const markets = result.val();
+	db.getAllMarkets().then(markets => {
 		let marketOptions = [];
 
 		for (const key in markets) {
@@ -13,6 +12,8 @@ router.get('/', function(req, res, next) {
 
 		marketOptions.push({marketName: "NEW MARKET"});
 		res.render('assess', {marketOptions});
+	}).catch(error => {
+		console.log(error);
 	});
 });
 

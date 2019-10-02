@@ -10,9 +10,7 @@ function generateKey(name, address) {
 router.get('/', function(req, res, next) {
 	let markets = [];
 
-	db.getAllMarkets().then(function(result) {
-		const allMarkets = result.val();
-		
+	db.getAllMarkets().then(allMarkets => {
 		for (const key in allMarkets) {
 			const childData = allMarkets[key].marketInfo;
 			markets.push({
@@ -26,6 +24,8 @@ router.get('/', function(req, res, next) {
 		}
 	
 		res.render('markets', {markets});
+	}).catch(error => {
+		console.log(error);
 	});
 });
 
