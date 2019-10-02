@@ -1,11 +1,9 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var app = express();
-
-
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,16 +23,5 @@ app.use('/data', require('./routes/data'));
 app.use('/marketdata', require('./routes/marketdata'));
 app.use('/admin-login', require('./routes/admin-login'));
 app.use('/submit-assess', require('./routes/submit-assess'));
-
-const config = {
-		apiKey: app.get('apiKey'),
-		authDomain: app.get('authDomain'),
-		databaseURL: app.get('databaseURL'),
-		projectId: app.get('projectId'),
-		storageBucket: app.get('storageBucket'),
-		messagingSenderId: app.get('messagingSenderId')
-};
-
-app.set("test", "test2");
 
 module.exports = app;
