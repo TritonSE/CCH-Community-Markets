@@ -8,9 +8,11 @@ if (!firebase.apps.length) {
 const db = firebase.database().ref("live_weller").child("markets");
 
 /**
- * This method returns a reference to the most recent version of the database.
- * Using the result of this method and .val(), you can access the entire
- * list of markets in JSON format.
+ * By calling this method and using .then() for the callback, you can access 
+ * the entire list of markets in JSON format.
+ * 
+ * This returns a Promise so that once the database values are secured, they can
+ * be worked with in a different location/file.
  */
 function getAllMarkets() {
     return new Promise((resolve, reject) => {
@@ -18,16 +20,21 @@ function getAllMarkets() {
             .then(result => resolve(result.val()))
             .catch(err => reject(err));
     })
-    // return db.once('value');
 }
 
+/**
+ * By calling this method and using .then() for the callback, you can access 
+ * a single market's information in JSON format.
+ * 
+ * This returns a Promise so that once the database values are secured, they can
+ * be worked with in a different location/file.
+ */
 function getSpecificMarket(market) {
     return new Promise((resolve, reject) => {
         db.child(market).once('value')
             .then(result => resolve(result.val()))
             .catch(err => reject(err));
     })
-    // return db.child(market).once('value');
 }
 
 /**
