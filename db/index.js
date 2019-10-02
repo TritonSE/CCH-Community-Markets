@@ -13,11 +13,21 @@ const db = firebase.database().ref("live_weller").child("markets");
  * list of markets in JSON format.
  */
 function getAllMarkets() {
-    return db.once('value');
+    return new Promise((resolve, reject) => {
+        db.once('value')
+            .then(result => resolve(result.val()))
+            .catch(err => reject(err));
+    })
+    // return db.once('value');
 }
 
 function getSpecificMarket(market) {
-    return db.child(market).once('value');
+    return new Promise((resolve, reject) => {
+        db.child(market).once('value')
+            .then(result => resolve(result.val()))
+            .catch(err => reject(err));
+    })
+    // return db.child(market).once('value');
 }
 
 /**
