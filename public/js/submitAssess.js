@@ -323,18 +323,10 @@ $('#assess-button').click(function(event) {
         marketLevel = marketLevel + 1;
     }
 
-    console.log("fix these questions to become market level: " + marketLevel);
+    const newMarket = userVals === 4 ? false : true;
 
-    /*****************************************************************
-     * 
-     * ---------------------> SEND TO DATABASE <---------------------
-     * 
-     ****************************************************************/
-
-    var marketExists = userVals === 4 ? "true" : "false";
-
-    var sendData = {
-        existing: marketExists,
+    const sendData = {
+        new: newMarket,
         level: marketLevel,
         betterQuestions: doBetterQuestions, 
         marketInfo: userInfo, 

@@ -1,17 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const firebase = require('firebase');
-
-if (!firebase.apps.length) {
-	firebase.initializeApp(config);
-}
-
-// Creates connection to database.
-const db = firebase.database();
-// Links to head of database.
-const ref = db.ref("live_weller");
-// Links to markets list.
-const marketsRef = ref.child("markets");
+const db = require('../db');
 
 router.get('/', function(req, res, next) {
 	res.render('data');
@@ -28,18 +17,16 @@ router.get('/general', function(req, res) {
 		"large": 0,
 		"convenience": 0
 	};
-	
-	marketsRef.once('value', function(snapshot) {
-		snapshot.forEach(function(childSnapshot) {
-			const childData = childSnapshot.val();
-			const level = parseInt(childData.marketInfo.marketLevel);
-			const type = childData.marketInfo.storeType.toLowerCase();
 
-			levels[level]++;
-			stores[type]++;
-		});
-		
+	db.getAllMarkets().then(markets => {
+		for (const key in markets) {
+			levels[parseInt(markets[key].marketInfo.marketLevel)]++;
+			stores[markets[key].marketInfo.storeType.toLowerCase()]++;
+		}
+	
 		res.json({levels, stores});
+	}).catch(error => {
+		console.log(error);
 	});
 });
 
@@ -48,17 +35,18 @@ router.post('/question', function(req, res) {
 	let questionResults = [];
 	let uniqueResults = {};
 
-	marketsRef.once('value', function(snapshot) {
-		snapshot.forEach(function(childSnapshot) {
-			const childData = childSnapshot.val();
-			const question = childData.questions[strippedKey];
+	db.getAllMarkets().then(markets => {
+		for (const key in markets) {
+			const question = markets[key].questions[strippedKey];
 			if (question) {
 				uniqueResults[question] = 0;
 				questionResults.push(question);
 			}
-		});
-
+		}
+	
 		res.json({questionResults, uniqueResults});
+	}).catch(error => {
+		console.log(error);
 	});
 });
 
