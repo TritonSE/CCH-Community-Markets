@@ -323,7 +323,7 @@ $('#assess-button').click(function(event) {
         marketLevel = marketLevel + 1;
     }
 
-    const newMarket = userVals === 4 ? "false" : "true";
+    const newMarket = userVals === 4 ? false : true;
 
     const sendData = {
         new: newMarket,

@@ -4,7 +4,7 @@ const db = require('../db');
 
 router.post('/', function(req, res) {
     const info = JSON.parse(req.body.data);
-    if (info.new === "true") db.addNewMarket(info);
+    if (info.new === true) db.addNewMarket(info);
     else db.updateExistingMarket(info);
 });
 
