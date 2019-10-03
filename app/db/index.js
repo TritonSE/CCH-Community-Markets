@@ -1,5 +1,5 @@
 const firebase = require('firebase');
-const config = require('../config.js');
+const config = require('../config');
 
 if (!firebase.apps.length) {
 	firebase.initializeApp(config.config);
@@ -8,9 +8,9 @@ if (!firebase.apps.length) {
 const db = firebase.database().ref("live_weller").child("markets");
 
 /**
- * By calling this method and using .then() for the callback, you can access 
+ * By calling this method and using .then() for the callback, you can access
  * the entire list of markets in JSON format.
- * 
+ *
  * This returns a Promise so that once the database values are secured, they can
  * be worked with in a different location/file.
  */
@@ -23,9 +23,9 @@ function getAllMarkets() {
 }
 
 /**
- * By calling this method and using .then() for the callback, you can access 
+ * By calling this method and using .then() for the callback, you can access
  * a single market's information in JSON format.
- * 
+ *
  * This returns a Promise so that once the database values are secured, they can
  * be worked with in a different location/file.
  */

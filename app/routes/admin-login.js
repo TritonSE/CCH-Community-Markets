@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const firebase = require('firebase');
-const config = require('../config.js');
+const config = require('../config');
 const cookieParser = require('cookie-parser');
 
 if(!firebase.apps.length)
@@ -21,7 +21,7 @@ router.post('/login', function(req, res, next) {
 	});
 });
 
-//checks if signed in for the navbar 
+//checks if signed in for the navbar
 router.get('/checkIfSignedIn', function(req, res, next) {
 	if(req.cookies.token)
 		res.jsonp({signedIn: true});
