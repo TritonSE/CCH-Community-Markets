@@ -2,31 +2,32 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const app = require('./app');
 
-const app = express();
+const log = app.logger;
+const server = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'app/views'));
-app.set('view engine', 'ejs');
+server.set('views', path.join(__dirname, 'app/views'));
+server.set('view engine', 'ejs');
 
 // middleware
-app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'app/public')));
+server.use(morgan('dev'));
+server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
+server.use(cookieParser());
+server.use(express.static(path.join(__dirname, 'app/public')));
 
 // app routes
-app.use('/', require('./app/routes/index'));
-app.use('/assess', require('./app/routes/assess'));
-app.use('/markets', require('./app/routes/markets'));
-app.use('/results', require('./app/routes/results'));
-app.use('/data', require('./app/routes/data'));
-app.use('/marketdata', require('./app/routes/marketdata'));
-app.use('/admin-login', require('./app/routes/admin-login'));
-app.use('/submit-assess', require('./app/routes/submit-assess'));
+server.use('/', require('./app/routes/index'));
+server.use('/assess', require('./app/routes/assess'));
+server.use('/markets', require('./app/routes/markets'));
+server.use('/results', require('./app/routes/results'));
+server.use('/data', require('./app/routes/data'));
+server.use('/marketdata', require('./app/routes/marketdata'));
+server.use('/admin-login', require('./app/routes/admin-login'));
+server.use('/submit-assess', require('./app/routes/submit-assess'));
 
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Started server on port ${port}`);
+server.listen(app.config.port, () => {
+    log.info(`Started server on port ${app.config.port}`);
 });

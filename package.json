@@ -3,7 +3,10 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"start": "node app.js"
+		"start": "node app.js",
+		"dev": "./node_modules/.bin/nodemon -L -e js -i node_modules -i .git -V index.js",
+		"lint": "./node_modules/.bin/eslint ./ --ext .js --ignore-path ./app/public/js/*",
+		"lint:fix": "./node_modules/.bin/eslint ./ --ext .js --ignore-path ./app/public/ --fix"
 	},
 	"dependencies": {
 		"body-parser": "^1.18.2",
@@ -14,7 +17,8 @@
 		"express": "4.16.4",
 		"firebase": "^6.6.1",
 		"http-errors": "~1.6.2",
-		"morgan": "^1.9.0"
+		"morgan": "^1.9.1",
+		"winston": "^3.2.1"
 	},
 	"devDependencies": {
 		"eslint": "^6.5.1",
