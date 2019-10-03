@@ -1,5 +1,3 @@
-if (sessionStorage.getItem('loggedIn') != "true") {location.href = "/admin-login";}
-
 $(document).ready( function () {
     google.charts.load('current', {'packages':['corechart']});
     

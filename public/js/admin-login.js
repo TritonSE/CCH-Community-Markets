@@ -4,23 +4,25 @@ $(document).ready( function () {
     }
 
     $("#submit").on("click", function(event) {
-        var email = $("#username").val();
-        var password = $("#password").val();
-
-        firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
-            sessionStorage.setItem('loggedIn', true);
-            location.href="/";
-            event.preventDefault();
-        }).catch(function(error) {
-            sessionStorage.setItem('loggedIn', false);
-            $("#username").val("");
-            $("#password").val("");
-            $(".output").text("Incorrect username or password.");
-            event.preventDefault();
-        });
-
         event.preventDefault();
+        const email = $("#username").val();
+        const password = $("#password").val();
+		  
+		  //send request to sign in user
+		  $.post('/admin-login/login', {email, password}, function(data) {
+			 //if sign in was successful
+		  	 if(data['success']){
+			 	location.href="/";
+			 }
 
+			 //sign in not successful
+			 else{
+			 	$("#username").val("");
+				$("#password").val("");
+				$(".output").text("Incorrect username or password.");
+				event.preventDefault();
+			 }
+		  });
     });
     
 });

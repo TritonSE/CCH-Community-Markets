@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const cookieParser = require('cookie-parser');
 const db = require('../db');
 
 router.get('/:marketKey', function(req, res, next) {
@@ -37,5 +38,13 @@ router.get('/:marketKey', function(req, res, next) {
         console.log(error);
     });
 });
+
+function isAuthorized(req, res, next){
+	if(req.cookies.token)
+		next();
+
+	else
+		res.render('admin-login');
+}
 
 module.exports = router;

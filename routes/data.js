@@ -2,9 +2,17 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-router.get('/', function(req, res, next) {
+router.get('/', isAuthorized, function(req, res, next) {
 	res.render('data');
 });
+
+function isAuthorized(req, res, next){
+	if(req.cookies.token)
+		next();
+		
+	else
+		res.render('admin-login');
+}
 
 router.get('/general', function(req, res) {
 	/* Levels chart */

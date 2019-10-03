@@ -7,7 +7,7 @@ function generateKey(name, address) {
 	return key.trim();
 }
 
-router.get('/', function(req, res, next) {
+router.get('/', isAuthorized, function(req, res, next) {
 	let markets = [];
 
 	db.getAllMarkets().then(allMarkets => {
@@ -29,4 +29,13 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+function isAuthorized(req, res, next){
+	if(req.cookies.token) {
+		next();
+	}
+
+	else{
+		res.render('admin-login');
+	}
+}
 module.exports = router;
