@@ -1,35 +1,20 @@
 const express = require('express');
-const firebase = require('firebase');
-const config = require('./config.js');
 const router = express.Router();
-
-//initializing firebase if its not already
-if(!firebase.apps.length) {
-   firebase.initializeApp(config.config);
-}
-
-// Setup database communication.
-const db = firebase.database();
-const ref = db.ref("live_weller");
-
-// Move to sub-directory.
-const marketsRef = ref.child("markets");
+const db = require('../db');
 
 router.get('/', function(req, res, next) {
-	let marketOptions = [];
+	db.getAllMarkets().then(markets => {
+		let marketOptions = [];
 
-	//add all market names to marketOptions
-	marketsRef.once('value', function(snapshot) {
-   	snapshot.forEach(function(childSnapshot) {
-			marketOptions.push({marketName: childSnapshot.key});
-   	});
-		
+		for (const key in markets) {
+			marketOptions.push({marketName: key});
+		}
+
 		marketOptions.push({marketName: "NEW MARKET"});
-
-		//send marketOptions to assess.ejs
 		res.render('assess', {marketOptions});
+	}).catch(error => {
+		console.log(error);
 	});
-
 });
 
 module.exports = router;
