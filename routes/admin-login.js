@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const firebase = require('firebase');
-const config = require('./config.js');
+const config = require('../config.js');
 const cookieParser = require('cookie-parser');
 
 if(!firebase.apps.length)
