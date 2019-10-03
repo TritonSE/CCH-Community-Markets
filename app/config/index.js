@@ -1,4 +1,10 @@
+const env = process.env.NODE_ENV || 'development';
+const isDevelopment = env !== 'production';
+if (isDevelopment) require('dotenv').config();
+
 module.exports = {
+    isDevelopment,
+
     apiKey: "AIzaSyB33kxrp6W3dihuRRFhgk2UFI9VSHCQvtI",
     authDomain: "live-weller.firebaseapp.com",
     databaseURL: "https://live-weller.firebaseio.com",
