@@ -29,5 +29,5 @@ server.use('/admin-login', require('./app/routes/admin-login'));
 server.use('/submit-assess', require('./app/routes/submit-assess'));
 
 server.listen(app.config.port, () => {
-    log.info(`Started server on port ${app.config.port}`);
+  log.info(`Started server on port ${app.config.port}`);
 });
