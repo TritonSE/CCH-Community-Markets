@@ -39,9 +39,4 @@ router.get('/:marketKey', (req, res, next) => {
   });
 });
 
-function isAuthorized(req, res, next) {
-  if (req.cookies.token) next();
-  else res.render('admin-login');
-}
-
 module.exports = router;

@@ -1,7 +1,8 @@
 const express = require('express');
+const db = require('../db');
+const log = require('../logger');
 
 const router = express.Router();
-const db = require('../db');
 
 router.get('/', (req, res, next) => {
   db.getAllMarkets().then((markets) => {

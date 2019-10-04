@@ -3,6 +3,11 @@ const db = require('../db');
 
 const router = express.Router();
 
+function isAuthorized(req, res, next) {
+  if (req.cookies.token) next();
+  else res.render('admin-login');
+}
+
 function generateKey(name, address) {
   const key = `${name.replace(/[^0-9a-zA-Z, ]/gi, '')}, ${address.replace(/[^0-9a-zA-Z, ]/gi, '')}`;
   return key.trim();
@@ -28,12 +33,4 @@ router.get('/', isAuthorized, (req, res, next) => {
     console.log(error);
   });
 });
-
-function isAuthorized(req, res, next) {
-  if (req.cookies.token) {
-    next();
-  } else {
-    res.render('admin-login');
-  }
-}
 module.exports = router;

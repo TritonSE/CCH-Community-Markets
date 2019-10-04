@@ -3,14 +3,14 @@ const db = require('../db');
 
 const router = express.Router();
 
-router.get('/', isAuthorized, (req, res, next) => {
-  res.render('data');
-});
-
 function isAuthorized(req, res, next) {
   if (req.cookies.token) next();
   else res.render('admin-login');
 }
+
+router.get('/', isAuthorized, (req, res, next) => {
+  res.render('data');
+});
 
 router.get('/general', (req, res) => {
   /* Levels chart */
