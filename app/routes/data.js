@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../db');
+const log = require('../logger');
 
 const router = express.Router();
 
@@ -26,13 +27,13 @@ router.get('/general', (req, res) => {
 
   db.getAllMarkets().then((markets) => {
     for (const key in markets) {
-      levels[parseInt(markets[key].marketInfo.marketLevel)]++;
-      stores[markets[key].marketInfo.storeType.toLowerCase()]++;
+      levels[parseInt(markets[key].marketInfo.marketLevel, 10)] += 1;
+      stores[markets[key].marketInfo.storeType.toLowerCase()] += 1;
     }
 
     res.json({ levels, stores });
   }).catch((error) => {
-    console.log(error);
+    log.error(error);
   });
 });
 
@@ -52,7 +53,7 @@ router.post('/question', (req, res) => {
 
     res.json({ questionResults, uniqueResults });
   }).catch((error) => {
-    console.log(error);
+    log.error(error);
   });
 });
 

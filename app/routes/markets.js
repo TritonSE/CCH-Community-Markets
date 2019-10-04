@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../db');
+const log = require('../logger');
 
 const router = express.Router();
 
@@ -30,7 +31,7 @@ router.get('/', isAuthorized, (req, res, next) => {
 
     res.render('markets', { markets });
   }).catch((error) => {
-    console.log(error);
+    log.error(error);
   });
 });
 module.exports = router;

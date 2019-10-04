@@ -1,6 +1,7 @@
 const express = require('express');
 const firebase = require('firebase');
 const config = require('../config');
+const log = require('../logger');
 
 const router = express.Router();
 
@@ -14,8 +15,8 @@ router.post('/login', (req, res, next) => {
   firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(() => {
     res.cookie('token', req.body.email, { path: '/' });
     res.jsonp({ success: true });
-  }).catch((error) => {
-    console.log('invalid credentials');
+  }).catch(() => {
+    log.error('invalid credentials');
     res.jsonp({ success: false });
   });
 });

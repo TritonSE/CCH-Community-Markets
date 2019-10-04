@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
     marketOptions.push({ marketName: 'NEW MARKET' });
     res.render('assess', { marketOptions });
   }).catch((error) => {
-    console.log(error);
+    log.error(error);
   });
 });
 

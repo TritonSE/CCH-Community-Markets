@@ -1,11 +1,12 @@
 const express = require('express');
 const db = require('../db');
+const log = require('../logger');
 
 const router = express.Router();
 
 router.get('/:marketKey', (req, res, next) => {
   db.getSpecificMarket(req.params.marketKey).then((market) => {
-    let status = `Questions to fix to get to level ${parseInt(market.marketInfo.marketLevel) + 1}`;
+    let status = `Questions to fix to get to level ${parseInt(market.marketInfo.marketLevel, 10) + 1}`;
     if (market.marketInfo.marketLevel === 3) {
       status = 'Market is at Top Level!';
     }
@@ -19,7 +20,8 @@ router.get('/:marketKey', (req, res, next) => {
 
     const missed = [];
     for (const key in market.missedQuestions) {
-      missed.push({ key: market.missedQuestions[key].replace('<span class=\"boldanswer\">', '').replace('</span>', '') });
+      const question = market.missedQuestions[key].replace('<span class="boldanswer">', '').replace('</span>', '');
+      missed.push({ key: question });
     }
 
     res.render('marketdata', {
@@ -35,7 +37,7 @@ router.get('/:marketKey', (req, res, next) => {
       missed,
     });
   }).catch((error) => {
-    console.log(error);
+    log.error(error);
   });
 });
 
