@@ -13,10 +13,6 @@ rules:
   max-len:
     - "error"
     - code: 120
-  no-bitwise:
-    - "error"
-    - allow:
-        - "^"
   no-param-reassign: "off"
   no-unused-vars:
     - "error"
@@ -24,3 +20,6 @@ rules:
   object-curly-newline:
     - "error"
     - consistent: true
+  guard-for-in: "off"
+  # I'd recommend re enabling this
+  no-restricted-syntax: "off"
