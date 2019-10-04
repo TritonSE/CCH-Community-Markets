@@ -5,8 +5,8 @@
 	"scripts": {
 		"start": "node index.js",
 		"dev": "./node_modules/.bin/nodemon -L -e js -i node_modules -i .git -V index.js",
-		"lint": "./node_modules/.bin/eslint ./ --ext .js --ignore-path ./app/public/js/*",
-		"lint:fix": "./node_modules/.bin/eslint ./ --ext .js --ignore-path ./app/public/ --fix"
+		"lint": "./node_modules/.bin/eslint ./ --ext .js --ignore-path .eslintignore",
+		"lint:fix": "./node_modules/.bin/eslint ./ --ext .js --ignore-path .eslintignore --fix"
 	},
 	"dependencies": {
 		"body-parser": "^1.18.2",
