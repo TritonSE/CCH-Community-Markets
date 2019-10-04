@@ -2,7 +2,7 @@ const firebase = require('firebase');
 const config = require('../config');
 
 if (!firebase.apps.length) {
-	firebase.initializeApp(config.config);
+	firebase.initializeApp(config.firebase);
 }
 
 const db = firebase.database().ref("live_weller").child("markets");

@@ -5,7 +5,7 @@ const config = require('../config');
 const cookieParser = require('cookie-parser');
 
 if(!firebase.apps.length)
-	firebase.initializeApp(config.config);
+	firebase.initializeApp(config.firebase);
 
 router.get('/', function(req, res, next) {
 	res.render('admin-login');

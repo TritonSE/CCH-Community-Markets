@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"start": "node app.js",
+		"start": "node index.js",
 		"dev": "./node_modules/.bin/nodemon -L -e js -i node_modules -i .git -V index.js",
 		"lint": "./node_modules/.bin/eslint ./ --ext .js --ignore-path ./app/public/js/*",
 		"lint:fix": "./node_modules/.bin/eslint ./ --ext .js --ignore-path ./app/public/ --fix"
