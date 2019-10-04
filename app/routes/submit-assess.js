@@ -4,7 +4,7 @@ const db = require('../db');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  const info = JSON.parse(req.body.data);
+  const info = req.body.data;
   if (info.new === true) db.addNewMarket(info);
   else db.updateExistingMarket(info);
   res.json({ error: null });
