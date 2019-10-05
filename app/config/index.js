@@ -11,6 +11,10 @@ module.exports = {
     level: 'info',
   },
 
+  db: {
+    uri: process.env.MONGO_URI,
+  },
+
   firebase: {
     apiKey: 'AIzaSyB33kxrp6W3dihuRRFhgk2UFI9VSHCQvtI',
     authDomain: 'live-weller.firebaseapp.com',
