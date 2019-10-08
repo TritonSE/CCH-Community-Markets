@@ -1,18 +1,20 @@
 function logout(){
-    sessionStorage.setItem("loggedIn","false");
-    console.log(sessionStorage.getItem("loggedIn"));
+	//send request to logout user
+	$.post({'url' : '/admin-login/signOut', credentials: 'same-origin', withCredentials: true}, function() {
+		location.href='/';
+	});
 }
+
 var loginButton = "<a role=\"button\" href='/admin-login' class='btn btn-outline-warning'>Admin Login</a>"
 var logoutButton = "<a role='button' onclick='logout()' href='/' class='btn btn-outline-warning'>Logout</a>"
 $(document).ready(function() {
-    if (sessionStorage.getItem("loggedIn") == "true"){
-        $('.ml-auto').append(logoutButton);
-    }
-    else if (sessionStorage.getItem("loggedIn") == "false"){
-        $('.ml-auto').append(loginButton);
-    }
-    else{
-        $('.ml-auto').append(loginButton);
-    }
+	//send request to check if user is signed in
+	$.get('/admin-login/checkIfSignedIn', function(data) {
+		if(data['signedIn'])
+			$('.ml-auto').append(logoutButton);
+
+		else
+			$('.ml-auto').append(loginButton);
+	});
 });
 
