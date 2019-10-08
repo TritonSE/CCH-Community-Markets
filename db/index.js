@@ -1,11 +1,19 @@
-const firebase = require('firebase');
-const config = require('../config.js');
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://tseucsd:abctse@live-weller-5tgkd.mongodb.net/admin?retryWrites=true&w=majority";
 
-if (!firebase.apps.length) {
-	firebase.initializeApp(config.config);
+let db = null;
+setupReference().then(ref => db = ref);
+
+/**
+ * Call this method to return a Promise to retrieve a reference to MongoDB.
+ */
+function setupReference() {
+    return new Promise((resolve, reject) => {
+        MongoClient.connect(uri)
+            .then(result => resolve(result))
+            .catch(function(err) { console.log(err); })
+    });
 }
-
-const db = firebase.database().ref("live_weller").child("markets");
 
 /**
  * By calling this method and using .then() for the callback, you can access 
@@ -16,10 +24,11 @@ const db = firebase.database().ref("live_weller").child("markets");
  */
 function getAllMarkets() {
     return new Promise((resolve, reject) => {
-        db.once('value')
-            .then(result => resolve(result.val()))
+        db.db('live-weller-test').collection('markets')
+            .find({}).toArray()
+            .then(result => resolve(result))
             .catch(err => reject(err));
-    })
+    });
 }
 
 /**
@@ -31,10 +40,11 @@ function getAllMarkets() {
  */
 function getSpecificMarket(market) {
     return new Promise((resolve, reject) => {
-        db.child(market).once('value')
-            .then(result => resolve(result.val()))
+        db.db('live-weller-test').collection('markets')
+            .findOne({"_id": market})
+            .then(result => resolve(result))
             .catch(err => reject(err));
-    })
+    });
 }
 
 /**
@@ -48,24 +58,24 @@ function addNewMarket(info) {
     marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '').trim()
 
     // Add a new child to the markets reference in the database.
-    db.child(marketName).set({
-        personalInfo: {
-            firstName: info.marketInfo.firstName,
-            lastName: info.marketInfo.lastName,
-            email: info.marketInfo.email,
-        },
-        marketInfo: {
-            marketName: info.marketInfo.marketName,
-            storeType: info.marketInfo.storeType,
-            address: info.marketInfo.address,
-            city: info.marketInfo.city,
-            state: info.marketInfo.state,
-            zip: info.marketInfo.zip,
-            marketLevel: info.level
-        },
-        questions: info.questions,
-        missedQuestions: info.betterQuestions
-    });
+    // db.child(marketName).set({
+    //     personalInfo: {
+    //         firstName: info.marketInfo.firstName,
+    //         lastName: info.marketInfo.lastName,
+    //         email: info.marketInfo.email,
+    //     },
+    //     marketInfo: {
+    //         marketName: info.marketInfo.marketName,
+    //         storeType: info.marketInfo.storeType,
+    //         address: info.marketInfo.address,
+    //         city: info.marketInfo.city,
+    //         state: info.marketInfo.state,
+    //         zip: info.marketInfo.zip,
+    //         marketLevel: info.level
+    //     },
+    //     questions: info.questions,
+    //     missedQuestions: info.betterQuestions
+    // });
 }
 
 /**
@@ -74,23 +84,23 @@ function addNewMarket(info) {
  * @param {*} info All question answers from the assessment page.
  */
 function updateExistingMarket(info) {
-    const marketsRef = db.child(info.marketInfo.marketName);
+    // const marketsRef = db.child(info.marketInfo.marketName);
 
-    // Update market level.
-    marketsRef.child("marketInfo").update({
-        marketLevel: info.level
-    });
+    // // Update market level.
+    // marketsRef.child("marketInfo").update({
+    //     marketLevel: info.level
+    // });
 
-    // Update user info.
-    marketsRef.child("personalInfo").update({
-        firstName: info.marketInfo.firstName,
-        lastName: info.marketInfo.lastName,
-        email: info.marketInfo.email
-    });
+    // // Update user info.
+    // marketsRef.child("personalInfo").update({
+    //     firstName: info.marketInfo.firstName,
+    //     lastName: info.marketInfo.lastName,
+    //     email: info.marketInfo.email
+    // });
 
-    // Update question responses.
-    marketsRef.child("questions").set(info.questions);
-    marketsRef.child("missedQuestions").set(info.betterQuestions);
+    // // Update question responses.
+    // marketsRef.child("questions").set(info.questions);
+    // marketsRef.child("missedQuestions").set(info.betterQuestions);
 }
 
 module.exports = {getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket};
