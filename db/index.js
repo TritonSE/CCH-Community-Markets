@@ -9,7 +9,7 @@ setupReference().then(ref => db = ref);
  */
 function setupReference() {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(uri)
+        MongoClient.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true })
             .then(result => resolve(result))
             .catch(function(err) { console.log(err); })
     });
@@ -40,7 +40,7 @@ function getAllMarkets() {
  */
 function getSpecificMarket(market) {
     return new Promise((resolve, reject) => {
-        db.db('live-weller-test').collection('markets')
+        db.db('live-weller').collection('markets')
             .findOne({"_id": market})
             .then(result => resolve(result))
             .catch(err => reject(err));
@@ -55,27 +55,30 @@ function getSpecificMarket(market) {
 function addNewMarket(info) {
     let marketName = info.marketInfo.marketName + ', ' + info.marketInfo.address;
     // Make sure illegal characters removed from key.
-    marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '').trim()
+    marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '').trim();
+
+    const insert = {
+        _id: marketName,
+        personalInfo: {
+            firstName: info.marketInfo.firstName,
+            lastName: info.marketInfo.lastName,
+            email: info.marketInfo.email,
+        },
+        marketInfo: {
+            marketName: info.marketInfo.marketName,
+            storeType: info.marketInfo.storeType,
+            address: info.marketInfo.address,
+            city: info.marketInfo.city,
+            state: info.marketInfo.state,
+            zip: info.marketInfo.zip,
+            marketLevel: info.level
+        },
+        questions: info.questions,
+        missedQuestions: info.betterQuestions
+    }
 
     // Add a new child to the markets reference in the database.
-    // db.child(marketName).set({
-    //     personalInfo: {
-    //         firstName: info.marketInfo.firstName,
-    //         lastName: info.marketInfo.lastName,
-    //         email: info.marketInfo.email,
-    //     },
-    //     marketInfo: {
-    //         marketName: info.marketInfo.marketName,
-    //         storeType: info.marketInfo.storeType,
-    //         address: info.marketInfo.address,
-    //         city: info.marketInfo.city,
-    //         state: info.marketInfo.state,
-    //         zip: info.marketInfo.zip,
-    //         marketLevel: info.level
-    //     },
-    //     questions: info.questions,
-    //     missedQuestions: info.betterQuestions
-    // });
+    db.db('live-weller-test').collection('markets').insertOne(insert);
 }
 
 /**
@@ -84,23 +87,34 @@ function addNewMarket(info) {
  * @param {*} info All question answers from the assessment page.
  */
 function updateExistingMarket(info) {
-    // const marketsRef = db.child(info.marketInfo.marketName);
+    // Get current values to avoid overwriting current values.
+    getSpecificMarket(info.marketInfo.marketName).then(market => {
+        const update = {
+            $set: {
+                personalInfo: {
+                    firstName: info.marketInfo.firstName,
+                    lastName: info.marketInfo.lastName,
+                    email: info.marketInfo.email,
+                },
+                marketInfo: {
+                    marketName: market.marketInfo.marketName,
+                    storeType: market.marketInfo.storeType,
+                    address: market.marketInfo.address,
+                    city: market.marketInfo.city,
+                    state: market.marketInfo.state,
+                    zip: market.marketInfo.zip,
+                    marketLevel: info.level
+                },
+                questions: info.questions,
+                missedQuestions: info.betterQuestions
+            }
+        }
 
-    // // Update market level.
-    // marketsRef.child("marketInfo").update({
-    //     marketLevel: info.level
-    // });
+        // Send new and old values to update.
+        db.db('live-weller-test').collection('markets')
+            .findOneAndUpdate({"_id": info.marketInfo.marketName}, update);
+    });
 
-    // // Update user info.
-    // marketsRef.child("personalInfo").update({
-    //     firstName: info.marketInfo.firstName,
-    //     lastName: info.marketInfo.lastName,
-    //     email: info.marketInfo.email
-    // });
-
-    // // Update question responses.
-    // marketsRef.child("questions").set(info.questions);
-    // marketsRef.child("missedQuestions").set(info.betterQuestions);
 }
 
 module.exports = {getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket};
