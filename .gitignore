@@ -74,10 +74,10 @@ typings/
 *.sar
 *.class
 
-# Maven 
+# Maven
 target/
 
-# IntelliJ project files 
+# IntelliJ project files
 *.iml
 *.iws
 *.ipr
@@ -97,6 +97,8 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
+## VSCode
+.vscode/
 
 # OS
 .DS_Store

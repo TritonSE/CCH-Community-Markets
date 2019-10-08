@@ -1,0 +1,25 @@
+extends:
+  - "eslint:recommended"
+  - "airbnb-base"
+env:
+  browser: true
+  node: true
+  jest: true
+rules:
+  consistent-return: off
+  func-names: "off"
+  global-require: "off"
+  max-classes-per-file: "warn"
+  max-len:
+    - "error"
+    - code: 120
+  no-param-reassign: "off"
+  no-unused-vars:
+    - "error"
+    - argsIgnorePattern: "next|transaction"
+  object-curly-newline:
+    - "error"
+    - consistent: true
+  guard-for-in: "off"
+  # I'd recommend re enabling this
+  no-restricted-syntax: "off"

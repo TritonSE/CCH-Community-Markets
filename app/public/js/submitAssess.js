@@ -1,5 +1,5 @@
 $('#assess-button').click(function(event) {
-    
+
     //gets form
     var myForm = $('#assessment-form');
 
@@ -37,8 +37,8 @@ $('#assess-button').click(function(event) {
 
     //for when questions hit level zero
     var increaseZeroCase = 0;
-    
-    //loops through all questions, executes the following function for each question one at a time. 
+
+    //loops through all questions, executes the following function for each question one at a time.
     $('.answers').each(function(){
         var currentQuestion = $(this);
 
@@ -60,7 +60,7 @@ $('#assess-button').click(function(event) {
         }
 
         questionsList[questionKey] = answerText;
-    
+
         //if no input
         if(typeof answer.val() == "undefined"){
             count++;
@@ -72,13 +72,13 @@ $('#assess-button').click(function(event) {
             count++;
             return;
         }
-        
+
         else{
 
             //grabs level hidden input corresponding with label in assess.ejs
             var level = answer.parent().find('.points-input').val();
-            
-            
+
+
             if(level == 1){
                 levelArr[0]++;
             }
@@ -98,7 +98,7 @@ $('#assess-button').click(function(event) {
                 count++;
                 return;
             }
-            
+
             //case when 0
             else{
                 levelArr[0]++;
@@ -108,16 +108,16 @@ $('#assess-button').click(function(event) {
             }
 
         }
-        
+
         //make sure only to increase potential once for each section
         var has0 = false;
         var has1 = false;
         var has2 = false;
         var has3 = false;
-        
+
         currentQuestion.find('.points-input').each(function() {
                 var pointlevel = $(this).val()
-                
+
                 if(pointlevel == 1 && !has1){
                     levelPotential[0]++;
                     has1 = true;
@@ -135,13 +135,13 @@ $('#assess-button').click(function(event) {
 
 
 		});
-        
+
         //increase question count
         count++;
 
     });
-    
-    //increasing potential to account for questions where zero option was selected 
+
+    //increasing potential to account for questions where zero option was selected
     for(var z = 0; z < increaseZeroCase; z++){
         levelPotential[0]++;
         levelPotential[1]++;
@@ -184,8 +184,8 @@ $('#assess-button').click(function(event) {
 
     //keep track of current question
     var count =1;
-        
-    //count of potential market level 
+
+    //count of potential market level
     var countPotential = 0;
 
     //loop through questions again
@@ -194,7 +194,7 @@ $('#assess-button').click(function(event) {
 
         //finds checked label
         var answer = currentQuestion.find(':checked');
-    
+
         //if no input
         if(typeof answer.val() == "undefined"){
             count++;
@@ -206,30 +206,30 @@ $('#assess-button').click(function(event) {
             count++;
             return;
         }
-        
+
         else{
 
             //grabs level hidden input corresponding with label in assess.ejs
             var level = answer.parent().find('.points-input').val();
-                
+
             if(level >= marketLevel + 1){
                 count++;
                 return;
             }
-            
+
             else if(level == -1){
                 count++;
                 return;
             }
-            
+
             //case when question has value that isn't equal to the marketlevel + 1
             else{
-                
+
                 var alreadyPushed = false;
                 currentQuestion.find('.points-input').each(function() {
                     var pointlevel = $(this).val()
 
-                    //for when more than one options satisfy marketLevel + 1, no need to push the count twice 
+                    //for when more than one options satisfy marketLevel + 1, no need to push the count twice
 
                     if(pointlevel == marketLevel + 1){
                         if(count < 17 && !alreadyPushed){
@@ -241,7 +241,7 @@ $('#assess-button').click(function(event) {
                             missedSections[1].push(count);
                             alreadyPushed = true;
                         }
-    
+
                         else if(count > 38 && count < 59 && !alreadyPushed){
                             missedSections[2].push(count);
                             alreadyPushed = true;
@@ -253,7 +253,7 @@ $('#assess-button').click(function(event) {
                                 alreadyPushed = true;
                             }
                         }
-                    
+
                     }
 
 
@@ -266,7 +266,7 @@ $('#assess-button').click(function(event) {
 
     });
 
-    
+
     // make sure print statements are only called once
     console.log("Checking for questions to fix");
     var section1Echoed = false;
@@ -295,7 +295,7 @@ $('#assess-button').click(function(event) {
 
                 }
 
-                else{   
+                else{
                     if(!section4Echoed){
                         console.log("Questions that need to be fixed for fourth section:");
                         section4Echoed = true;
@@ -310,7 +310,7 @@ $('#assess-button').click(function(event) {
                 }
         }
     }
-    
+
     if(marketLevel == 0){
         for(var x = 0; x < levelArr.length; x++){
             if(levelArr[x] >= levelPotential[x]){
@@ -328,12 +328,12 @@ $('#assess-button').click(function(event) {
     const sendData = {
         new: newMarket,
         level: marketLevel,
-        betterQuestions: doBetterQuestions, 
-        marketInfo: userInfo, 
+        betterQuestions: doBetterQuestions,
+        marketInfo: userInfo,
         questions: questionsList
     }
 
-    $.post('/submit-assess', {data: JSON.stringify(sendData)});
+    $.post('/submit-assess', {data: sendData});
 
     var href='results/' + userInfo.marketName + '/' + marketLevel;
     location.href=href;
