@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     const marketOptions = [];
 
     for (const key in markets) {
-      marketOptions.push({ marketName: key });
+      marketOptions.push({ marketName: markets[key]._id });
     }
 
     marketOptions.push({ marketName: 'NEW MARKET' });
