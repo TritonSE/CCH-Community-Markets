@@ -6,11 +6,11 @@ const router = express.Router();
 
 function isAuthorized(req, res, next) {
   if (req.cookies.token) next();
-  else res.render('admin-login');
+  else res.render('login');
 }
 
 router.get('/', isAuthorized, (req, res, next) => {
-  res.render('data');
+  res.render('visualize-markets');
 });
 
 router.get('/general', (req, res) => {
