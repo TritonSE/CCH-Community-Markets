@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     }
 
     marketOptions.push({ marketName: 'NEW MARKET' });
-    res.render('assess', { marketOptions });
+    res.render('assess-market', { marketOptions });
   }).catch((error) => {
     log.error(error);
   });
