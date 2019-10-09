@@ -8,7 +8,7 @@ const router = express.Router();
 if (!firebase.apps.length) firebase.initializeApp(config.firebase);
 
 router.get('/', (req, res, next) => {
-  res.render('admin-login');
+  res.render('login');
 });
 
 router.post('/login', (req, res, next) => {
