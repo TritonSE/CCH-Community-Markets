@@ -13,6 +13,9 @@ module.exports = {
 
   db: {
     uri: process.env.MONGO_URI,
+    db: process.env.MONGO_DB,
+    markets: process.env.MARKETS_COLLECTION,
+    users: process.env.USERS_COLLECTION
   },
 
   firebase: {
