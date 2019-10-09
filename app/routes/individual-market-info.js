@@ -20,11 +20,11 @@ router.get('/:marketKey', (req, res, next) => {
 
     const missed = [];
     for (const key in market.missedQuestions) {
-      const question = market.missedQuestions[key].replace('<span class="boldanswer">', '').replace('</span>', '');
+      const question = market.missedQuestions[key];
       missed.push({ key: question });
     }
 
-    res.render('marketdata', {
+    res.render('individual-market-info', {
       name: market.marketInfo.marketName,
       level: market.marketInfo.marketLevel,
       address: market.marketInfo.address,
