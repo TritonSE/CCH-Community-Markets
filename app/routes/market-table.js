@@ -6,7 +6,7 @@ const router = express.Router();
 
 function isAuthorized(req, res, next) {
   if (req.cookies.token) next();
-  else res.render('admin-login');
+  else res.render('login');
 }
 
 function generateKey(name, address) {
@@ -29,7 +29,7 @@ router.get('/', isAuthorized, (req, res, next) => {
       });
     }
 
-    res.render('markets', { markets });
+    res.render('market-table', { markets });
   }).catch((error) => {
     log.error(error);
   });

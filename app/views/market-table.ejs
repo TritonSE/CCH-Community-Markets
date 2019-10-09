@@ -63,7 +63,7 @@
 
                     <% markets.forEach(function(market) { %>
                         <tr>
-                            <td><a id='turnblue' href='marketdata/<%= market.key %>'><%= market.name %></a></td>
+                            <td><a id='turnblue' href='market/<%= market.key %>'><%= market.name %></a></td>
                             <td><%= market.address %></td>
                             <td><%= market.size %></td>
                             <td><%= market.zip %></td>
@@ -83,6 +83,6 @@
 </body>
 
 <script src="/js/navbar-highlighter.js"></script>
-<script type="text/javascript" src="js/markets.js"></script>
+<script type="text/javascript" src="js/market-table.js"></script>
 
 </html>
