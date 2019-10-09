@@ -1,5 +1,5 @@
+const config = require('../config');
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://tseucsd:abctse@live-weller-5tgkd.mongodb.net/admin?retryWrites=true&w=majority";
 
 let db = null;
 setupReference().then(ref => db = ref);
@@ -9,9 +9,9 @@ setupReference().then(ref => db = ref);
  */
 function setupReference() {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true })
+        MongoClient.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true })
             .then(result => resolve(result))
-            .catch(function(err) { console.log(err); })
+            .catch(err => reject(err));
     });
 }
 
@@ -24,7 +24,7 @@ function setupReference() {
  */
 function getAllMarkets() {
     return new Promise((resolve, reject) => {
-        db.db('live-weller-test').collection('markets')
+        db.db(config.db.db).collection(config.db.markets)
             .find({}).toArray()
             .then(result => resolve(result))
             .catch(err => reject(err));
@@ -40,11 +40,16 @@ function getAllMarkets() {
  */
 function getSpecificMarket(market) {
     return new Promise((resolve, reject) => {
-        db.db('live-weller').collection('markets')
+        db.db(config.db.db).collection(config.db.markets)
             .findOne({"_id": market})
             .then(result => resolve(result))
             .catch(err => reject(err));
     });
+}
+
+function generateKey(name, address) {
+    // Make sure illegal characters removed from key.
+    return (name + ', ' + address).replace(/[^0-9a-zA-Z, ]/gi, '').trim();
 }
 
 /**
@@ -53,9 +58,7 @@ function getSpecificMarket(market) {
  * @param {*} info All question answers from the assessment page.
  */
 function addNewMarket(info) {
-    let marketName = info.marketInfo.marketName + ', ' + info.marketInfo.address;
-    // Make sure illegal characters removed from key.
-    marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '').trim();
+    const marketName = generateKey(info.marketInfo.marketName, info.marketInfo.address);
 
     const insert = {
         _id: marketName,
@@ -78,7 +81,7 @@ function addNewMarket(info) {
     }
 
     // Add a new child to the markets reference in the database.
-    db.db('live-weller-test').collection('markets').insertOne(insert);
+    db.db(config.db.db).collection(config.db.markets).insertOne(insert);
 }
 
 /**
@@ -90,29 +93,27 @@ function updateExistingMarket(info) {
     // Get current values to avoid overwriting current values.
     getSpecificMarket(info.marketInfo.marketName).then(market => {
         const update = {
-            $set: {
-                personalInfo: {
-                    firstName: info.marketInfo.firstName,
-                    lastName: info.marketInfo.lastName,
-                    email: info.marketInfo.email,
-                },
-                marketInfo: {
-                    marketName: market.marketInfo.marketName,
-                    storeType: market.marketInfo.storeType,
-                    address: market.marketInfo.address,
-                    city: market.marketInfo.city,
-                    state: market.marketInfo.state,
-                    zip: market.marketInfo.zip,
-                    marketLevel: info.level
-                },
-                questions: info.questions,
-                missedQuestions: info.betterQuestions
-            }
+            personalInfo: {
+                firstName: info.marketInfo.firstName,
+                lastName: info.marketInfo.lastName,
+                email: info.marketInfo.email,
+            },
+            marketInfo: {
+                marketName: market.marketInfo.marketName,
+                storeType: market.marketInfo.storeType,
+                address: market.marketInfo.address,
+                city: market.marketInfo.city,
+                state: market.marketInfo.state,
+                zip: market.marketInfo.zip,
+                marketLevel: info.level
+            },
+            questions: info.questions,
+            missedQuestions: info.betterQuestions
         }
 
         // Send new and old values to update.
-        db.db('live-weller-test').collection('markets')
-            .findOneAndUpdate({"_id": info.marketInfo.marketName}, update);
+        db.db(config.db.db).collection(config.db.markets)
+            .findOneAndUpdate({"_id": info.marketInfo.marketName}, {$set: update});
     });
 
 }
