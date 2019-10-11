@@ -11,8 +11,8 @@ function isAuthorized(req, res, next) {
 
 /**
  * Generate key to access markets by.
- * @param { Market Name } name 
- * @param { Market Address } address 
+ * @param { Market Name } name
+ * @param { Market Address } address
  */
 function generateKey(name, address) {
   const key = `${name.replace(/[^0-9a-zA-Z, ]/gi, '')}, ${address.replace(/[^0-9a-zA-Z, ]/gi, '')}`;
