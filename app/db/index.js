@@ -94,14 +94,14 @@ function updateExistingMarket(info) {
         city: market.marketInfo.city,
         state: market.marketInfo.state,
         zip: market.marketInfo.zip,
-        marketLevel: info.level,
+        marketLevel: parseInt(info.level),
       },
       questions: info.questions,
       missedQuestions: info.betterQuestions,
     };
 
     // Send new and old values to update.
-    Market.findOneAndUpdate.findOneAndUpdate({ _id: info.marketInfo.marketName }, { $set: update });
+    Market.updateOne({ _id: info.marketInfo.marketName }, { $set: update });
   });
 }
 
