@@ -20,13 +20,10 @@ server.use(express.static(path.join(__dirname, 'app/public')));
 
 // app routes
 server.use('/', require('./app/routes/index'));
-server.use('/assess', require('./app/routes/begin-assessment'));
-server.use('/markets', require('./app/routes/market-table'));
-server.use('/results', require('./app/routes/assessment-results'));
-server.use('/data', require('./app/routes/visualize-markets'));
-server.use('/market', require('./app/routes/individual-market-info'));
+server.use('/assess', require('./app/routes/assessment'));
+server.use('/markets', require('./app/routes/markets'));
+server.use('/data', require('./app/routes/statistics'));
 server.use('/login', require('./app/routes/login'));
-server.use('/submit-assessment', require('./app/routes/submit-assessment'));
 
 server.listen(app.config.port, () => {
   log.info(`Started server on port ${app.config.port}`);
