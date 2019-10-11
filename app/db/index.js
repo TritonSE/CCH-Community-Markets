@@ -94,7 +94,7 @@ function updateExistingMarket(info) {
         city: market.marketInfo.city,
         state: market.marketInfo.state,
         zip: market.marketInfo.zip,
-        marketLevel: parseInt(info.level),
+        marketLevel: parseInt(info.level, 10),
       },
       questions: info.questions,
       missedQuestions: info.betterQuestions,

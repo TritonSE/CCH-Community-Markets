@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
   const info = req.body.data;
-  if (info.new === "true") db.addNewMarket(info);
+  if (info.new === 'true') db.addNewMarket(info);
   else db.updateExistingMarket(info);
   res.json({ error: null });
 });
