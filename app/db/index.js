@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('../config');
-const market = require('./models').Market;
+const { Market } = require('./models');
 
 mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true });
 
@@ -13,7 +13,7 @@ mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: tru
  */
 function getAllMarkets() {
   return new Promise((resolve, reject) => {
-    market
+    Market
       .find({})
       .then((result) => resolve(result))
       .catch((err) => reject(err));
@@ -29,7 +29,7 @@ function getAllMarkets() {
  */
 function getSpecificMarket(name) {
   return new Promise((resolve, reject) => {
-    market
+    Market
       .findOne({ _id: name })
       .then((result) => resolve(result))
       .catch((err) => reject(err));
@@ -70,7 +70,7 @@ function addNewMarket(info) {
   };
 
   // Add a new child to the markets reference in the database.
-  db.db(config.db.db).collection(config.db.markets).insertOne(insert);
+  Market.create(insert);
 }
 
 /**
@@ -101,8 +101,7 @@ function updateExistingMarket(info) {
     };
 
     // Send new and old values to update.
-    db.db(config.db.db).collection(config.db.markets)
-      .findOneAndUpdate({ _id: info.marketInfo.marketName }, { $set: update });
+    Market.findOneAndUpdate.findOneAndUpdate({ _id: info.marketInfo.marketName }, { $set: update });
   });
 }
 
