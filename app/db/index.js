@@ -2,27 +2,7 @@ const mongoose = require('mongoose');
 const config = require('../config');
 const market = require('./models').Market;
 
-/**
- * Call this method to return a Promise to retrieve a reference to MongoDB.
- */
-function setupReference() {
-  return new Promise((resolve, reject) => {
-    mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true })
-      .then((result) => resolve(result))
-      .catch((err) => reject(err));
-  });
-}
-
-setupReference().then((ref) => {
-
-  market.find({}).then(function(data) {
-    for (const key in data) {
-      console.log(generateKey(data[key].marketInfo.marketName, data[key].marketInfo.address));
-    }
-  })
-
-  return null;
-});
+mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true });
 
 /**
  * By calling this method and using .then() for the callback, you can access
@@ -33,9 +13,8 @@ setupReference().then((ref) => {
  */
 function getAllMarkets() {
   return new Promise((resolve, reject) => {
-    market.find()
-    // db.db(config.db.db).collection(config.db.markets)
-    //   .find({}).toArray()
+    market
+      .find({})
       .then((result) => resolve(result))
       .catch((err) => reject(err));
   });
@@ -48,10 +27,10 @@ function getAllMarkets() {
  * This returns a Promise so that once the database values are secured, they can
  * be worked with in a different location/file.
  */
-function getSpecificMarket(market) {
+function getSpecificMarket(name) {
   return new Promise((resolve, reject) => {
-    db.db(config.db.db).collection(config.db.markets)
-      .findOne({ _id: market })
+    market
+      .findOne({ _id: name })
       .then((result) => resolve(result))
       .catch((err) => reject(err));
   });
