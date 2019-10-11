@@ -1,20 +1,26 @@
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 const config = require('../config');
+const market = require('./models').Market;
 
 /**
  * Call this method to return a Promise to retrieve a reference to MongoDB.
  */
 function setupReference() {
   return new Promise((resolve, reject) => {
-    MongoClient.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true })
+    mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true })
       .then((result) => resolve(result))
       .catch((err) => reject(err));
   });
 }
 
-let db = null;
 setupReference().then((ref) => {
-  db = ref;
+
+  market.find({}).then(function(data) {
+    for (const key in data) {
+      console.log(generateKey(data[key].marketInfo.marketName, data[key].marketInfo.address));
+    }
+  })
+
   return null;
 });
 
@@ -27,8 +33,9 @@ setupReference().then((ref) => {
  */
 function getAllMarkets() {
   return new Promise((resolve, reject) => {
-    db.db(config.db.db).collection(config.db.markets)
-      .find({}).toArray()
+    market.find()
+    // db.db(config.db.db).collection(config.db.markets)
+    //   .find({}).toArray()
       .then((result) => resolve(result))
       .catch((err) => reject(err));
   });
