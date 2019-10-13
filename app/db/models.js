@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
-
-const { Schema } = mongoose;
-
-const marketSchema = new Schema({
+const marketSchema = new mongoose.Schema({
   _id: String,
   personalInfo: {
     firstName: String,
@@ -21,7 +18,6 @@ const marketSchema = new Schema({
   questions: Object,
   missedQuestions: [String],
 });
-
 const Market = mongoose.model('Market', marketSchema);
 
 module.exports = { Market };
