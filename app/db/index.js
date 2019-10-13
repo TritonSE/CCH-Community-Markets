@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('../config');
-const { Market } = require('./models');
+const { Market } = require('./models/market');
 
 mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true });
 
