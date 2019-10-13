@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const marketSchema = new mongoose.Schema({
   _id: String,
-  personalInfo: {
+  lastAssessedBy: {
     firstName: String,
     lastName: String,
     email: String,
