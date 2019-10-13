@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     const marketOptions = [];
 
     for (const key in markets) {
-      marketOptions.push({ marketName: key });
+      marketOptions.push({ marketName: markets[key]._id });
     }
 
     marketOptions.push({ marketName: 'NEW MARKET' });
@@ -28,7 +28,7 @@ router.get('/results/:name/:level', (req, res, next) => {
 // Post request to update database.
 router.post('/', (req, res) => {
   const info = req.body.data;
-  if (info.new === true) db.addNewMarket(info);
+  if (info.new === 'true') db.addNewMarket(info);
   else db.updateExistingMarket(info);
   res.json({ error: null });
 });
