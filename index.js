@@ -18,15 +18,8 @@ server.use(express.json());
 server.use(cookieParser());
 server.use(express.static(path.join(__dirname, 'app/public')));
 
-// app routes
-server.use('/', require('./app/routes/index'));
-server.use('/assess', require('./app/routes/assess'));
-server.use('/markets', require('./app/routes/markets'));
-server.use('/results', require('./app/routes/results'));
-server.use('/data', require('./app/routes/data'));
-server.use('/marketdata', require('./app/routes/marketdata'));
-server.use('/admin-login', require('./app/routes/admin-login'));
-server.use('/submit-assess', require('./app/routes/submit-assess'));
+// routing
+server.use('/', app.routes);
 
 server.listen(app.config.port, () => {
   log.info(`Started server on port ${app.config.port}`);

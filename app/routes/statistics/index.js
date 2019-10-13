@@ -1,16 +1,16 @@
 const express = require('express');
-const db = require('../db');
-const log = require('../logger');
+const db = require('../../db');
+const log = require('../../logger');
 
 const router = express.Router();
 
 function isAuthorized(req, res, next) {
   if (req.cookies.token) next();
-  else res.render('admin-login');
+  else res.render('auth');
 }
 
 router.get('/', isAuthorized, (req, res, next) => {
-  res.render('data');
+  res.render('statistics');
 });
 
 router.get('/general', (req, res) => {
