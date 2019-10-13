@@ -1,14 +1,14 @@
 const express = require('express');
 const firebase = require('firebase');
-const config = require('../config');
-const log = require('../logger');
+const config = require('../../config');
+const log = require('../../logger');
 
 const router = express.Router();
 
 if (!firebase.apps.length) firebase.initializeApp(config.firebase);
 
 router.get('/', (req, res, next) => {
-  res.render('admin-login');
+  res.render('auth');
 });
 
 router.post('/login', (req, res, next) => {
