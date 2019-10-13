@@ -27,4 +27,3 @@ rules:
   guard-for-in: "off"
   # I'd recommend re enabling this
   no-restricted-syntax: "off"
-  
