@@ -73,7 +73,7 @@ function updateExistingMarket(info) {
       lastAssessedBy: {
         firstName: info.marketInfo.firstName,
         lastName: info.marketInfo.lastName,
-        email: info.marketInfo.email
+        email: info.marketInfo.email,
       },
       'marketInfo.marketLevel': parseInt(info.level, 10),
       questions: info.questions,
