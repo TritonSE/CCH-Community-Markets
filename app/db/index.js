@@ -43,7 +43,7 @@ function addNewMarket(info) {
   // Add a new child to the markets reference in the database.
   Market.create({
     _id: marketName,
-    personalInfo: {
+    lastAssessedBy: {
       firstName: info.marketInfo.firstName,
       lastName: info.marketInfo.lastName,
       email: info.marketInfo.email,
@@ -70,7 +70,7 @@ function addNewMarket(info) {
 function updateExistingMarket(info) {
   Market.findOneAndUpdate({ _id: info.marketInfo.marketName },
     { $set: {
-      personalInfo: {
+      lastAssessedBy: {
         firstName: info.marketInfo.firstName,
         lastName: info.marketInfo.lastName,
         email: info.marketInfo.email
