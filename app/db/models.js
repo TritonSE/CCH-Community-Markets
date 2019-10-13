@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const marketSchema = new mongoose.Schema({
   _id: String,
   personalInfo: {

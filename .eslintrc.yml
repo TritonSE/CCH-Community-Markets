@@ -8,11 +8,8 @@ env:
 rules:
   no-underscore-dangle:
     - "error"
-    # either
     - allow:
       - "_id"
-    # or
-    - allow: [ "_id" ]
   consistent-return: off
   func-names: "off"
   global-require: "off"

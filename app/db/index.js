@@ -80,17 +80,18 @@ function addNewMarket(info) {
  */
 function updateExistingMarket(info) {
   // Get current values to avoid overwriting current values.
-  console.log("updaing");
-  Market.findOneAndUpdate({ _id: info.marketInfo.marketName }, 
+  Market.findOneAndUpdate({ _id: info.marketInfo.marketName },
     { $set: {
-      "personalInfo.firstName": info.marketInfo.firstName,
-      "personalInfo.lastName": info.marketInfo.lastName,
-      "personalInfo.email": info.marketInfo.email,
-      "marketInfo.marketLevel": parseInt(info.level, 10),
-      "questions": info.questions,
-      "missedQuestions": info.betterQuestions
-    }
-  }, function(error, doc) {});
+      'personalInfo.firstName': info.marketInfo.firstName,
+      'personalInfo.lastName': info.marketInfo.lastName,
+      'personalInfo.email': info.marketInfo.email,
+      'marketInfo.marketLevel': parseInt(info.level, 10),
+      questions: info.questions,
+      missedQuestions: info.betterQuestions,
+    } }, (error, doc) => {
+      if (error) return error;
+      return doc;
+    });
 }
 
 module.exports = { getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket };
