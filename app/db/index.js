@@ -4,6 +4,7 @@ const { Market } = require('./models');
 
 mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true });
 
+
 /**
  * By calling this method and using .then() for the callback, you can access
  * the entire list of markets in JSON format.
@@ -12,12 +13,7 @@ mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: tru
  * be worked with in a different location/file.
  */
 function getAllMarkets() {
-  return new Promise((resolve, reject) => {
-    Market
-      .find({})
-      .then((result) => resolve(result))
-      .catch((err) => reject(err));
-  });
+  return Market.find({}).exec();
 }
 
 /**
@@ -28,12 +24,7 @@ function getAllMarkets() {
  * be worked with in a different location/file.
  */
 function getSpecificMarket(name) {
-  return new Promise((resolve, reject) => {
-    Market
-      .findOne({ _id: name })
-      .then((result) => resolve(result))
-      .catch((err) => reject(err));
-  });
+  return Market.findOne({ _id: name }).exec();
 }
 
 function generateKey(name, address) {
@@ -49,7 +40,8 @@ function generateKey(name, address) {
 function addNewMarket(info) {
   const marketName = generateKey(info.marketInfo.marketName, info.marketInfo.address);
 
-  const insert = {
+  // Add a new child to the markets reference in the database.
+  Market.create({
     _id: marketName,
     personalInfo: {
       firstName: info.marketInfo.firstName,
@@ -67,10 +59,7 @@ function addNewMarket(info) {
     },
     questions: info.questions,
     missedQuestions: info.betterQuestions,
-  };
-
-  // Add a new child to the markets reference in the database.
-  Market.create(insert);
+  });
 }
 
 /**
@@ -79,19 +68,17 @@ function addNewMarket(info) {
  * @param {*} info All question answers from the assessment page.
  */
 function updateExistingMarket(info) {
-  // Get current values to avoid overwriting current values.
   Market.findOneAndUpdate({ _id: info.marketInfo.marketName },
     { $set: {
-      'personalInfo.firstName': info.marketInfo.firstName,
-      'personalInfo.lastName': info.marketInfo.lastName,
-      'personalInfo.email': info.marketInfo.email,
+      personalInfo: {
+        firstName: info.marketInfo.firstName,
+        lastName: info.marketInfo.lastName,
+        email: info.marketInfo.email
+      },
       'marketInfo.marketLevel': parseInt(info.level, 10),
       questions: info.questions,
       missedQuestions: info.betterQuestions,
-    } }, (error, doc) => {
-      if (error) return error;
-      return doc;
-    });
+    } }).exec();
 }
 
 module.exports = { getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket };
