@@ -18,12 +18,8 @@ server.use(express.json());
 server.use(cookieParser());
 server.use(express.static(path.join(__dirname, 'app/public')));
 
-// app routes
-server.use('/', require('./app/routes/index'));
-server.use('/assess', require('./app/routes/assessment'));
-server.use('/markets', require('./app/routes/markets'));
-server.use('/data', require('./app/routes/statistics'));
-server.use('/login', require('./app/routes/login'));
+// routing
+server.use('/', app.routes);
 
 server.listen(app.config.port, () => {
   log.info(`Started server on port ${app.config.port}`);
