@@ -333,6 +333,6 @@ $('#assess-button').click(function(event) {
         questions: questionsList
     }
 
-    $.post('/assessment/assessment', {data: sendData});
+    $.post('/assessment', {data: sendData});
     location.href = '/assessment/results/' + userInfo.marketName + '/' + marketLevel;
 });

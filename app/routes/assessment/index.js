@@ -26,7 +26,7 @@ router.get('/results/:name/:level', (req, res, next) => {
 });
 
 // Post request to update database.
-router.post('/assessment', (req, res) => {
+router.post('/', (req, res) => {
   const info = req.body.data;
   if (info.new === true) db.addNewMarket(info);
   else db.updateExistingMarket(info);
