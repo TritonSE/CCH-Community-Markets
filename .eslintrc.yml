@@ -6,7 +6,13 @@ env:
   node: true
   jest: true
 rules:
-  no-underscore-dangle: ["error", { "allow": ["_id"] }]
+  no-underscore-dangle:
+    - "error"
+    # either
+    - allow:
+      - "_id"
+    # or
+    - allow: [ "_id" ]
   consistent-return: off
   func-names: "off"
   global-require: "off"
@@ -24,3 +30,4 @@ rules:
   guard-for-in: "off"
   # I'd recommend re enabling this
   no-restricted-syntax: "off"
+  
