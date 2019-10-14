@@ -1,11 +1,9 @@
-const firebase = require('firebase');
+const mongoose = require('mongoose');
 const config = require('../config');
+const { Market } = require('./models/market');
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(config.firebase);
-}
+mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true });
 
-const db = firebase.database().ref('live_weller').child('markets');
 
 /**
  * By calling this method and using .then() for the callback, you can access
@@ -15,11 +13,7 @@ const db = firebase.database().ref('live_weller').child('markets');
  * be worked with in a different location/file.
  */
 function getAllMarkets() {
-  return new Promise((resolve, reject) => {
-    db.once('value')
-      .then((result) => resolve(result.val()))
-      .catch((err) => reject(err));
-  });
+  return Market.find({}).exec();
 }
 
 /**
@@ -29,12 +23,13 @@ function getAllMarkets() {
  * This returns a Promise so that once the database values are secured, they can
  * be worked with in a different location/file.
  */
-function getSpecificMarket(market) {
-  return new Promise((resolve, reject) => {
-    db.child(market).once('value')
-      .then((result) => resolve(result.val()))
-      .catch((err) => reject(err));
-  });
+function getSpecificMarket(name) {
+  return Market.findOne({ _id: name }).exec();
+}
+
+function generateKey(name, address) {
+  // Make sure illegal characters removed from key.
+  return (`${name}, ${address}`).replace(/[^0-9a-zA-Z, ]/gi, '').trim();
 }
 
 /**
@@ -43,13 +38,12 @@ function getSpecificMarket(market) {
  * @param {*} info All question answers from the assessment page.
  */
 function addNewMarket(info) {
-  let marketName = `${info.marketInfo.marketName}, ${info.marketInfo.address}`;
-  // Make sure illegal characters removed from key.
-  marketName = marketName.replace(/[^0-9a-zA-Z, ]/gi, '').trim();
+  const marketName = generateKey(info.marketInfo.marketName, info.marketInfo.address);
 
   // Add a new child to the markets reference in the database.
-  db.child(marketName).set({
-    personalInfo: {
+  Market.create({
+    _id: marketName,
+    lastAssessedBy: {
       firstName: info.marketInfo.firstName,
       lastName: info.marketInfo.lastName,
       email: info.marketInfo.email,
@@ -74,23 +68,17 @@ function addNewMarket(info) {
  * @param {*} info All question answers from the assessment page.
  */
 function updateExistingMarket(info) {
-  const marketsRef = db.child(info.marketInfo.marketName);
-
-  // Update market level.
-  marketsRef.child('marketInfo').update({
-    marketLevel: info.level,
-  });
-
-  // Update user info.
-  marketsRef.child('personalInfo').update({
-    firstName: info.marketInfo.firstName,
-    lastName: info.marketInfo.lastName,
-    email: info.marketInfo.email,
-  });
-
-  // Update question responses.
-  marketsRef.child('questions').set(info.questions);
-  marketsRef.child('missedQuestions').set(info.betterQuestions);
+  Market.findOneAndUpdate({ _id: info.marketInfo.marketName },
+    { $set: {
+      lastAssessedBy: {
+        firstName: info.marketInfo.firstName,
+        lastName: info.marketInfo.lastName,
+        email: info.marketInfo.email,
+      },
+      'marketInfo.marketLevel': parseInt(info.level, 10),
+      questions: info.questions,
+      missedQuestions: info.betterQuestions,
+    } }).exec();
 }
 
 module.exports = { getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket };

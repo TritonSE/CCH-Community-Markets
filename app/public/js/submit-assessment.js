@@ -306,7 +306,7 @@ $('#assess-button').click(function(event) {
                 for(var k = 0; k < missedSections[j].length; k++){
                     var index = missedSections[j][k]
                     console.log(index);
-                    doBetterQuestions.push("<span class=\"boldanswer\">" + index.toString() + "</span>" + ": " + lis[index - 1].getElementsByTagName("p")[0].innerText)
+                    doBetterQuestions.push(index.toString() + ": " + lis[index - 1].getElementsByTagName("p")[0].innerText)
                 }
         }
     }
