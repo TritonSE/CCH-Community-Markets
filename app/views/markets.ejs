@@ -43,6 +43,17 @@
 
   <<%- include partials/navbar.ejs %>
     
+<div id="marketModal" class="market-modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <p id="market-to-delete"></p>
+        <div class="modal-buttons">
+            <div class="modal-button yes" id="yes">Yes</div>
+            <div class="modal-button no" id="no">No</div>
+        </div>
+    </div>
+</div>
+
 <div class="container main">
     
     <h2>Market List</h2>
@@ -57,6 +68,7 @@
                         <th>Zip Code</th>
                         <th>Level</th>
                         <th>Map</th>
+                        <th>Delete Market</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +81,7 @@
                             <td><%= market.zip %></td>
                             <td><%= market.level %></td>
                             <td><button class="mapButton"><a href="https://www.google.com/maps/dir/?api=1&destination=<%= market.address %>" target="_blank" style="text-decoration:none"><p>Go!</p></a></button></td>
+                            <td style="text-align: left;"><span class="close">&times;</span></td>
                         </tr>
                     <% }); %>
 
