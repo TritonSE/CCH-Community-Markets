@@ -83,7 +83,7 @@ function updateExistingMarket(info) {
 
 /**
  * Given a key, delete it from the list of markets.
- * @param {*} marketKey 
+ * @param {*} marketKey
  */
 function deleteMarket(marketKey) {
   Market.findByIdAndDelete({ _id: marketKey }).exec();
