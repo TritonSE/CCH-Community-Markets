@@ -3,10 +3,6 @@ function generateKey(name, address) {
   return (`${name}, ${address}`).replace(/[^0-9a-zA-Z, ]/gi, '').trim();
 }
 
-// window.onclick(function(event) {
-//   if (event.target == modal) modal.style.display = "none";
-// });
-
 $(document).ready( function () {
   $('#table_id').DataTable();
   var modal = document.getElementById('marketModal');
@@ -28,9 +24,14 @@ $(document).ready( function () {
     document.getElementById('market-to-delete').textContent = "Are you sure you want to delete " + market + "?";
     
     yes.onclick = function() {
-      $.post('/markets/delete', { name: market });
-      modal.style.display = "none";
-      location.href = "/markets";
+      $.ajax({
+        url: '/markets/' + market,
+        type: 'DELETE',
+        success: function(result) {
+          modal.style.display = "none";
+          location.href = "/markets";
+        }
+      });
     }
   
     no.onclick = function() {
