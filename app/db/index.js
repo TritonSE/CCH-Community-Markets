@@ -81,4 +81,12 @@ function updateExistingMarket(info) {
     } }).exec();
 }
 
-module.exports = { getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket };
+/**
+ * Given a key, delete it from the list of markets.
+ * @param {*} marketKey
+ */
+function deleteMarket(marketKey) {
+  Market.findByIdAndDelete({ _id: marketKey }).exec();
+}
+
+module.exports = { getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket, deleteMarket };

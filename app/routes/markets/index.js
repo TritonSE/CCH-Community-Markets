@@ -79,4 +79,9 @@ router.get('/:marketKey', (req, res, next) => {
   });
 });
 
+router.delete('/:marketKey', (req, res, next) => {
+  db.deleteMarket(req.params.marketKey);
+  res.sendStatus(200);
+});
+
 module.exports = router;
