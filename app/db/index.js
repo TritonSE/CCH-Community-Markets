@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 const { Market } = require('./models/market');
+const { Users } = require('./models/users');
 
 mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: true });
 
@@ -14,6 +15,12 @@ mongoose.connect(config.db.uri, { useUnifiedTopology: true, useNewUrlParser: tru
  */
 function getAllMarkets() {
   return Market.find({}).exec();
+}
+
+/** checks if a user is signed in */
+function signInUser(creds) {
+  return Users.find({_id: creds}).exec();
+	//return Users.findOne({_id: creds}).exec();
 }
 
 /**
@@ -89,4 +96,4 @@ function deleteMarket(marketKey) {
   Market.findByIdAndDelete({ _id: marketKey }).exec();
 }
 
-module.exports = { getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket, deleteMarket };
+module.exports = { getAllMarkets, getSpecificMarket, addNewMarket, updateExistingMarket, deleteMarket, signInUser };

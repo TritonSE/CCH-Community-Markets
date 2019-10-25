@@ -1,24 +1,29 @@
 const express = require('express');
-const firebase = require('firebase');
-const config = require('../../config');
+const db = require('../../db');
 const log = require('../../logger');
 
 const router = express.Router();
-
-if (!firebase.apps.length) firebase.initializeApp(config.firebase);
 
 router.get('/', (req, res, next) => {
   res.render('auth');
 });
 
 router.post('/login', (req, res, next) => {
-  firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(() => {
-    res.cookie('token', req.body.email, { path: '/' });
-    res.jsonp({ success: true });
-  }).catch(() => {
-    log.error('invalid credentials');
-    res.jsonp({ success: false });
-  });
+	const credentials = "" + req.body.email + req.body.password;
+	db.signInUser(credentials).then((userDetails) => {
+		//user found
+		if(userDetails.length != 0) {
+			res.cookie('token', req.body.email, {path: '/'});
+			res.jsonp({ success: true });
+		}
+
+		else{
+			res.jsonp({ success: false });
+		}
+
+	}).catch((error) => {
+		log.error(error);
+	});
 });
 
 // checks if signed in for the navbar
