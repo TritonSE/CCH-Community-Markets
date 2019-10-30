@@ -12,11 +12,6 @@ div.home-caption{
     left: 50%;
 }
 
-div.home-caption.auth {
-    padding: 0;
-
-}
-
 h1.text-dark{
     color: #343a40;
     font-size: 35px;
