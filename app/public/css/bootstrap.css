@@ -1,3 +1,1093 @@
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0; }
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */ }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent; }
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+  /* 2 */ }
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder; }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sub {
+  bottom: -0.25em; }
+
+sup {
+  top: -0.5em; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none; }
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */ }
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible; }
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none; }
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; }
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0; }
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText; }
+
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em; }
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */ }
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline; }
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto; }
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */ }
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */ }
+
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block; }
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item; }
+
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none; }
+
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none; }
+
+.close {
+  cursor: pointer;
+  width: 100%;
+  padding: 4px 0px;
+  text-align: center;
+}
+
+.close:hover {background: #bbb;}
+
+.market-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content-mark {
+  width: 50%; /* Could be more or less, depending on screen size */
+  text-align: center;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+}
+
+.modal-button {
+  width: 15%;
+  display: inline-block;
+  position: relative;
+  margin: 0px 10px 10px 0px;
+  padding: 5px 5px 5px 5px;
+}
+
+.modal-button.yes {
+  background: #ff8080;
+  border: 2px solid#ff8080;
+}
+
+.modal-button.no {
+  background: #b0e0a8;
+  border: 2px solid#b0e0a8;
+}
+
+.modal-button:hover {
+  cursor: pointer;
+  transition-duration: 0.4s;
+  background: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.modal-button.yes:hover {
+}
+
+.modal-button.no:hover {
+}
+
+.close-modal {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Bootstrap */
+/* Override Bootstrap default variable */
+@font-face {
+  font-family: 'Icons';
+  src: url("../fonts/open-iconic.eot");
+  src: url("../fonts/open-iconic.eot?#iconic-sm") format("embedded-opentype"), url("../fonts/open-iconic.woff") format("woff"), url("../fonts/open-iconic.ttf") format("truetype"), url("../fonts/open-iconic.svg#iconic-sm") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.oi {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Icons';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+  .oi:empty:before {
+    width: 1em;
+    text-align: center;
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box; }
+  .oi.oi-align-center:before {
+    text-align: center; }
+  .oi.oi-align-left:before {
+    text-align: left; }
+  .oi.oi-align-right:before {
+    text-align: right; }
+  .oi.oi-flip-horizontal:before {
+    -webkit-transform: scale(-1, 1);
+    transform: scale(-1, 1); }
+  .oi.oi-flip-vertical:before {
+    -webkit-transform: scale(1, -1);
+    transform: scale(1, -1); }
+  .oi.oi-flip-horizontal-vertical:before {
+    -webkit-transform: scale(-1, -1);
+    transform: scale(-1, -1); }
+
+.oi-account-login:before {
+  content: '\e000'; }
+
+.oi-account-logout:before {
+  content: '\e001'; }
+
+.oi-action-redo:before {
+  content: '\e002'; }
+
+.oi-action-undo:before {
+  content: '\e003'; }
+
+.oi-align-center:before {
+  content: '\e004'; }
+
+.oi-align-left:before {
+  content: '\e005'; }
+
+.oi-align-right:before {
+  content: '\e006'; }
+
+.oi-aperture:before {
+  content: '\e007'; }
+
+.oi-arrow-bottom:before {
+  content: '\e008'; }
+
+.oi-arrow-circle-bottom:before {
+  content: '\e009'; }
+
+.oi-arrow-circle-left:before {
+  content: '\e00a'; }
+
+.oi-arrow-circle-right:before {
+  content: '\e00b'; }
+
+.oi-arrow-circle-top:before {
+  content: '\e00c'; }
+
+.oi-arrow-left:before {
+  content: '\e00d'; }
+
+.oi-arrow-right:before {
+  content: '\e00e'; }
+
+.oi-arrow-thick-bottom:before {
+  content: '\e00f'; }
+
+.oi-arrow-thick-left:before {
+  content: '\e010'; }
+
+.oi-arrow-thick-right:before {
+  content: '\e011'; }
+
+.oi-arrow-thick-top:before {
+  content: '\e012'; }
+
+.oi-arrow-top:before {
+  content: '\e013'; }
+
+.oi-audio-spectrum:before {
+  content: '\e014'; }
+
+.oi-audio:before {
+  content: '\e015'; }
+
+.oi-badge:before {
+  content: '\e016'; }
+
+.oi-ban:before {
+  content: '\e017'; }
+
+.oi-bar-chart:before {
+  content: '\e018'; }
+
+.oi-basket:before {
+  content: '\e019'; }
+
+.oi-battery-empty:before {
+  content: '\e01a'; }
+
+.oi-battery-full:before {
+  content: '\e01b'; }
+
+.oi-beaker:before {
+  content: '\e01c'; }
+
+.oi-bell:before {
+  content: '\e01d'; }
+
+.oi-bluetooth:before {
+  content: '\e01e'; }
+
+.oi-bold:before {
+  content: '\e01f'; }
+
+.oi-bolt:before {
+  content: '\e020'; }
+
+.oi-book:before {
+  content: '\e021'; }
+
+.oi-bookmark:before {
+  content: '\e022'; }
+
+.oi-box:before {
+  content: '\e023'; }
+
+.oi-briefcase:before {
+  content: '\e024'; }
+
+.oi-british-pound:before {
+  content: '\e025'; }
+
+.oi-browser:before {
+  content: '\e026'; }
+
+.oi-brush:before {
+  content: '\e027'; }
+
+.oi-bug:before {
+  content: '\e028'; }
+
+.oi-bullhorn:before {
+  content: '\e029'; }
+
+.oi-calculator:before {
+  content: '\e02a'; }
+
+.oi-calendar:before {
+  content: '\e02b'; }
+
+.oi-camera-slr:before {
+  content: '\e02c'; }
+
+.oi-caret-bottom:before {
+  content: '\e02d'; }
+
+.oi-caret-left:before {
+  content: '\e02e'; }
+
+.oi-caret-right:before {
+  content: '\e02f'; }
+
+.oi-caret-top:before {
+  content: '\e030'; }
+
+.oi-cart:before {
+  content: '\e031'; }
+
+.oi-chat:before {
+  content: '\e032'; }
+
+.oi-check:before {
+  content: '\e033'; }
+
+.oi-chevron-bottom:before {
+  content: '\e034'; }
+
+.oi-chevron-left:before {
+  content: '\e035'; }
+
+.oi-chevron-right:before {
+  content: '\e036'; }
+
+.oi-chevron-top:before {
+  content: '\e037'; }
+
+.oi-circle-check:before {
+  content: '\e038'; }
+
+.oi-circle-x:before {
+  content: '\e039'; }
+
+.oi-clipboard:before {
+  content: '\e03a'; }
+
+.oi-clock:before {
+  content: '\e03b'; }
+
+.oi-cloud-download:before {
+  content: '\e03c'; }
+
+.oi-cloud-upload:before {
+  content: '\e03d'; }
+
+.oi-cloud:before {
+  content: '\e03e'; }
+
+.oi-cloudy:before {
+  content: '\e03f'; }
+
+.oi-code:before {
+  content: '\e040'; }
+
+.oi-cog:before {
+  content: '\e041'; }
+
+.oi-collapse-down:before {
+  content: '\e042'; }
+
+.oi-collapse-left:before {
+  content: '\e043'; }
+
+.oi-collapse-right:before {
+  content: '\e044'; }
+
+.oi-collapse-up:before {
+  content: '\e045'; }
+
+.oi-command:before {
+  content: '\e046'; }
+
+.oi-comment-square:before {
+  content: '\e047'; }
+
+.oi-compass:before {
+  content: '\e048'; }
+
+.oi-contrast:before {
+  content: '\e049'; }
+
+.oi-copywriting:before {
+  content: '\e04a'; }
+
+.oi-credit-card:before {
+  content: '\e04b'; }
+
+.oi-crop:before {
+  content: '\e04c'; }
+
+.oi-dashboard:before {
+  content: '\e04d'; }
+
+.oi-data-transfer-download:before {
+  content: '\e04e'; }
+
+.oi-data-transfer-upload:before {
+  content: '\e04f'; }
+
+.oi-delete:before {
+  content: '\e050'; }
+
+.oi-dial:before {
+  content: '\e051'; }
+
+.oi-document:before {
+  content: '\e052'; }
+
+.oi-dollar:before {
+  content: '\e053'; }
+
+.oi-double-quote-sans-left:before {
+  content: '\e054'; }
+
+.oi-double-quote-sans-right:before {
+  content: '\e055'; }
+
+.oi-double-quote-serif-left:before {
+  content: '\e056'; }
+
+.oi-double-quote-serif-right:before {
+  content: '\e057'; }
+
+.oi-droplet:before {
+  content: '\e058'; }
+
+.oi-eject:before {
+  content: '\e059'; }
+
+.oi-elevator:before {
+  content: '\e05a'; }
+
+.oi-ellipses:before {
+  content: '\e05b'; }
+
+.oi-envelope-closed:before {
+  content: '\e05c'; }
+
+.oi-envelope-open:before {
+  content: '\e05d'; }
+
+.oi-euro:before {
+  content: '\e05e'; }
+
+.oi-excerpt:before {
+  content: '\e05f'; }
+
+.oi-expand-down:before {
+  content: '\e060'; }
+
+.oi-expand-left:before {
+  content: '\e061'; }
+
+.oi-expand-right:before {
+  content: '\e062'; }
+
+.oi-expand-up:before {
+  content: '\e063'; }
+
+.oi-external-link:before {
+  content: '\e064'; }
+
+.oi-eye:before {
+  content: '\e065'; }
+
+.oi-eyedropper:before {
+  content: '\e066'; }
+
+.oi-file:before {
+  content: '\e067'; }
+
+.oi-fire:before {
+  content: '\e068'; }
+
+.oi-flag:before {
+  content: '\e069'; }
+
+.oi-flash:before {
+  content: '\e06a'; }
+
+.oi-folder:before {
+  content: '\e06b'; }
+
+.oi-fork:before {
+  content: '\e06c'; }
+
+.oi-fullscreen-enter:before {
+  content: '\e06d'; }
+
+.oi-fullscreen-exit:before {
+  content: '\e06e'; }
+
+.oi-globe:before {
+  content: '\e06f'; }
+
+.oi-graph:before {
+  content: '\e070'; }
+
+.oi-grid-four-up:before {
+  content: '\e071'; }
+
+.oi-grid-three-up:before {
+  content: '\e072'; }
+
+.oi-grid-two-up:before {
+  content: '\e073'; }
+
+.oi-hard-drive:before {
+  content: '\e074'; }
+
+.oi-header:before {
+  content: '\e075'; }
+
+.oi-headphones:before {
+  content: '\e076'; }
+
+.oi-heart:before {
+  content: '\e077'; }
+
+.oi-home:before {
+  content: '\e078'; }
+
+.oi-image:before {
+  content: '\e079'; }
+
+.oi-inbox:before {
+  content: '\e07a'; }
+
+.oi-infinity:before {
+  content: '\e07b'; }
+
+.oi-info:before {
+  content: '\e07c'; }
+
+.oi-italic:before {
+  content: '\e07d'; }
+
+.oi-justify-center:before {
+  content: '\e07e'; }
+
+.oi-justify-left:before {
+  content: '\e07f'; }
+
+.oi-justify-right:before {
+  content: '\e080'; }
+
+.oi-key:before {
+  content: '\e081'; }
+
+.oi-laptop:before {
+  content: '\e082'; }
+
+.oi-layers:before {
+  content: '\e083'; }
+
+.oi-lightbulb:before {
+  content: '\e084'; }
+
+.oi-link-broken:before {
+  content: '\e085'; }
+
+.oi-link-intact:before {
+  content: '\e086'; }
+
+.oi-list-rich:before {
+  content: '\e087'; }
+
+.oi-list:before {
+  content: '\e088'; }
+
+.oi-location:before {
+  content: '\e089'; }
+
+.oi-lock-locked:before {
+  content: '\e08a'; }
+
+.oi-lock-unlocked:before {
+  content: '\e08b'; }
+
+.oi-loop-circular:before {
+  content: '\e08c'; }
+
+.oi-loop-square:before {
+  content: '\e08d'; }
+
+.oi-loop:before {
+  content: '\e08e'; }
+
+.oi-magnifying-glass:before {
+  content: '\e08f'; }
+
+.oi-map-marker:before {
+  content: '\e090'; }
+
+.oi-map:before {
+  content: '\e091'; }
+
+.oi-media-pause:before {
+  content: '\e092'; }
+
+.oi-media-play:before {
+  content: '\e093'; }
+
+.oi-media-record:before {
+  content: '\e094'; }
+
+.oi-media-skip-backward:before {
+  content: '\e095'; }
+
+.oi-media-skip-forward:before {
+  content: '\e096'; }
+
+.oi-media-step-backward:before {
+  content: '\e097'; }
+
+.oi-media-step-forward:before {
+  content: '\e098'; }
+
+.oi-media-stop:before {
+  content: '\e099'; }
+
+.oi-medical-cross:before {
+  content: '\e09a'; }
+
+.oi-menu:before {
+  content: '\e09b'; }
+
+.oi-microphone:before {
+  content: '\e09c'; }
+
+.oi-minus:before {
+  content: '\e09d'; }
+
+.oi-monitor:before {
+  content: '\e09e'; }
+
+.oi-moon:before {
+  content: '\e09f'; }
+
+.oi-move:before {
+  content: '\e0a0'; }
+
+.oi-musical-note:before {
+  content: '\e0a1'; }
+
+.oi-paperclip:before {
+  content: '\e0a2'; }
+
+.oi-pencil:before {
+  content: '\e0a3'; }
+
+.oi-people:before {
+  content: '\e0a4'; }
+
+.oi-person:before {
+  content: '\e0a5'; }
+
+.oi-phone:before {
+  content: '\e0a6'; }
+
+.oi-pie-chart:before {
+  content: '\e0a7'; }
+
+.oi-pin:before {
+  content: '\e0a8'; }
+
+.oi-play-circle:before {
+  content: '\e0a9'; }
+
+.oi-plus:before {
+  content: '\e0aa'; }
+
+.oi-power-standby:before {
+  content: '\e0ab'; }
+
+.oi-print:before {
+  content: '\e0ac'; }
+
+.oi-project:before {
+  content: '\e0ad'; }
+
+.oi-pulse:before {
+  content: '\e0ae'; }
+
+.oi-puzzle-piece:before {
+  content: '\e0af'; }
+
+.oi-question-mark:before {
+  content: '\e0b0'; }
+
+.oi-rain:before {
+  content: '\e0b1'; }
+
+.oi-random:before {
+  content: '\e0b2'; }
+
+.oi-reload:before {
+  content: '\e0b3'; }
+
+.oi-resize-both:before {
+  content: '\e0b4'; }
+
+.oi-resize-height:before {
+  content: '\e0b5'; }
+
+.oi-resize-width:before {
+  content: '\e0b6'; }
+
+.oi-rss-alt:before {
+  content: '\e0b7'; }
+
+.oi-rss:before {
+  content: '\e0b8'; }
+
+.oi-script:before {
+  content: '\e0b9'; }
+
+.oi-share-boxed:before {
+  content: '\e0ba'; }
+
+.oi-share:before {
+  content: '\e0bb'; }
+
+.oi-shield:before {
+  content: '\e0bc'; }
+
+.oi-signal:before {
+  content: '\e0bd'; }
+
+.oi-signpost:before {
+  content: '\e0be'; }
+
+.oi-sort-ascending:before {
+  content: '\e0bf'; }
+
+.oi-sort-descending:before {
+  content: '\e0c0'; }
+
+.oi-spreadsheet:before {
+  content: '\e0c1'; }
+
+.oi-star:before {
+  content: '\e0c2'; }
+
+.oi-sun:before {
+  content: '\e0c3'; }
+
+.oi-tablet:before {
+  content: '\e0c4'; }
+
+.oi-tag:before {
+  content: '\e0c5'; }
+
+.oi-tags:before {
+  content: '\e0c6'; }
+
+.oi-target:before {
+  content: '\e0c7'; }
+
+.oi-task:before {
+  content: '\e0c8'; }
+
+.oi-terminal:before {
+  content: '\e0c9'; }
+
+.oi-text:before {
+  content: '\e0ca'; }
+
+.oi-thumb-down:before {
+  content: '\e0cb'; }
+
+.oi-thumb-up:before {
+  content: '\e0cc'; }
+
+.oi-timer:before {
+  content: '\e0cd'; }
+
+.oi-transfer:before {
+  content: '\e0ce'; }
+
+.oi-trash:before {
+  content: '\e0cf'; }
+
+.oi-underline:before {
+  content: '\e0d0'; }
+
+.oi-vertical-align-bottom:before {
+  content: '\e0d1'; }
+
+.oi-vertical-align-center:before {
+  content: '\e0d2'; }
+
+.oi-vertical-align-top:before {
+  content: '\e0d3'; }
+
+.oi-video:before {
+  content: '\e0d4'; }
+
+.oi-volume-high:before {
+  content: '\e0d5'; }
+
+.oi-volume-low:before {
+  content: '\e0d6'; }
+
+.oi-volume-off:before {
+  content: '\e0d7'; }
+
+.oi-warning:before {
+  content: '\e0d8'; }
+
+.oi-wifi:before {
+  content: '\e0d9'; }
+
+.oi-wrench:before {
+  content: '\e0da'; }
+
+.oi-x:before {
+  content: '\e0db'; }
+
+.oi-yen:before {
+  content: '\e0dc'; }
+
+.oi-zoom-in:before {
+  content: '\e0dd'; }
+
+.oi-zoom-out:before {
+  content: '\e0de'; }
+
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
