@@ -3,14 +3,10 @@
     <head> 
         <title> LWCMP Tool </title>
         <meta charset="utf-8">
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
          
-        <!-- CSS Files -->
+        <%- include partials/css.ejs %>
         <link rel="stylesheet" type="text/css" href="/css/index.css">
-        <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-
+        
         <!-- JQuery 3.3.1 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
         
@@ -27,28 +23,21 @@
        <%- include partials/navbar.ejs %>
 
         <!-- home caption -->
+
         <div class="home-caption">
-            <div class="container main" style="height: 100%;">
-              <div class="admin-login-container d-flex justify-content-center align-items center">
-                <div class="admin-login text-center">
-                  <label><h3>Administrator Login</h3></label>
-            
-                  <form class="admin-login-form">
-                    <div class="form-group">
-                      <input type="username" id="username" class="form-control form-control-lg"   placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" id="password" class="form-control form-control-lg" placeholder="Password">
-                    </div>
-                    <button type="submit" class="btn btn-block btn-lg btn-success" id="submit">Sign In</button>
-                    <br>
-                    <label><h5 class="output"></h5></label>
-                  </form>
-            
+            <h1 class="text-dark"> Administrator Login </h1>
+            <form class="admin-login-form">
+                <div class="form-group">
+                  <input type="username" id="username" class="form-control form-control-lg"   placeholder="Username">
                 </div>
-              </div>
-            </div>
-          </div>
+                <div class="form-group">
+                  <input type="password" id="password" class="form-control form-control-lg" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-block btn-lg btn-success" id="submit">Sign In</button>
+                <br>
+                <label><h5 class="output"></h5></label>
+              </form>
+        </div>
     </body>
 
 <script src="/js/auth.js"></script>
