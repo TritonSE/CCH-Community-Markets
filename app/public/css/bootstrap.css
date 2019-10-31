@@ -8399,13 +8399,6 @@ header {
   max-height: 100%;
   height: 3rem; }
 
-/*
-.navbar-brand {
-  height: 3rem;
-  width: 6.5rem;
-  padding: 0;
-}
-*/
 @media (max-width: 575.98px) {
   .navbar-collapse {
     padding: 1.4rem 0.2rem;
