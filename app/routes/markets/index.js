@@ -15,8 +15,6 @@ function isAuthorized(req, res, next) {
  * @param { Market Address } address Market's address.
  */
 function generateKey(name, address) {
-  console.log(name);
-  console.log(address);
   const key = `${name.replace(/[^0-9a-zA-Z, ]/gi, '')}, ${address.replace(/[^0-9a-zA-Z, ]/gi, '')}`;
   return key.trim();
 }
@@ -27,9 +25,11 @@ router.get('/', isAuthorized, (req, res, next) => {
   db.getAllMarkets().then((allMarkets) => {
     for (const key in allMarkets) {
       const childData = allMarkets[key].marketInfo;
-      console.log('----------------');
-      console.log(allMarkets[key]);
-      console.log(childData);
+      // If this information is not present, generateKey will cause a crash
+      if (childData.marketName == null || childData.address == null) {
+        log.error(`Market missing critical information: ${JSON.stringify(childData)}`)
+        continue;
+      }
       markets.push({
         name: childData.marketName,
         address: childData.address,
