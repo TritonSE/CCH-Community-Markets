@@ -28,8 +28,7 @@ router.get('/', isAuthorized, (req, res, next) => {
       // If this information is not present, generateKey will cause a crash
       if (childData.marketName == null || childData.address == null) {
         log.error(`Market missing critical information: ${JSON.stringify(childData)}`);
-      }
-      else {
+      } else {
         markets.push({
           name: childData.marketName,
           address: childData.address,
