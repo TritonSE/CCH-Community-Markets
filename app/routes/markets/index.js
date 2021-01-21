@@ -27,7 +27,7 @@ router.get('/', isAuthorized, (req, res, next) => {
   db.getAllMarkets().then((allMarkets) => {
     for (const key in allMarkets) {
       const childData = allMarkets[key].marketInfo;
-      console.log("--------");
+      console.log('----------------');
       console.log(allMarkets[key]);
       console.log(childData);
       markets.push({
