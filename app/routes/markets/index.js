@@ -23,8 +23,11 @@ function generateKey(name, address) {
 router.get('/', isAuthorized, (req, res, next) => {
   const markets = [];
   db.getAllMarkets().then((allMarkets) => {
+    console.log(allMarkets);
     for (const key in allMarkets) {
       const childData = allMarkets[key].marketInfo;
+      console.log(allMarkets[key]);
+      console.log(childData);
       markets.push({
         name: childData.marketName,
         address: childData.address,
