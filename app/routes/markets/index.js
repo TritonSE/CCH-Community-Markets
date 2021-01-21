@@ -27,19 +27,19 @@ router.get('/', isAuthorized, (req, res, next) => {
       const childData = allMarkets[key].marketInfo;
       // If this information is not present, generateKey will cause a crash
       if (childData.marketName == null || childData.address == null) {
-        log.error(`Market missing critical information: ${JSON.stringify(childData)}`)
-        continue;
+        log.error(`Market missing critical information: ${JSON.stringify(childData)}`);
       }
-      markets.push({
-        name: childData.marketName,
-        address: childData.address,
-        size: childData.storeType,
-        zip: childData.zip,
-        level: childData.marketLevel,
-        key: generateKey(childData.marketName, childData.address),
-      });
+      else {
+        markets.push({
+          name: childData.marketName,
+          address: childData.address,
+          size: childData.storeType,
+          zip: childData.zip,
+          level: childData.marketLevel,
+          key: generateKey(childData.marketName, childData.address),
+        });
+      }
     }
-
     res.render('markets', { markets });
   }).catch((error) => {
     log.error(error);
