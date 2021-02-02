@@ -323,6 +323,12 @@ $('#assess-button').click(function(event) {
         marketLevel = marketLevel + 1;
     }
 
+    // HOTFIX: if the market does not accept WIC, it should be allowed to be level 3 (or greater).
+    // Instead, it will be capped at 2.
+    if (questionsList["Does the market accept WIC"] === "No" && marketLevel > 2) {
+      marketLevel = 2;
+    }
+
     const newMarket = userVals === 4 ? false : true;
 
     const sendData = {
