@@ -8577,6 +8577,16 @@ textarea {
     padding-right: 5px;
     color: #ffffff; }
 
+.downloadButton {
+  background-color: #EF7E24;
+  border-radius: 5px;
+  text-align: center;
+  padding: 6px;
+  margin-left: 70px;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
 .questionChartContainer {
   width: 65%;
   float: left; }
@@ -8588,6 +8598,10 @@ textarea {
   .sideChartContainer p {
     margin-left: 70px;
     margin-top: -13px; }
+  .sideChartContainer hr {
+    margin-left: 70px;
+    margin-top: -13px; 
+  }
 
 .chartContainer {
   margin-top: 80px;
